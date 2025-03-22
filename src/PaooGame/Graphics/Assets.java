@@ -24,6 +24,7 @@ public class Assets
     public static BufferedImage rockLeft;
     public static BufferedImage rockRight;
     public static BufferedImage tree;
+    public static BufferedImage background;
 
     /*! \fn public static void Init()
         \brief Functia initializaza referintele catre elementele grafice utilizate.
@@ -34,10 +35,13 @@ public class Assets
     public static void Init()
     {
             /// Se creaza temporar un obiect SpriteSheet initializat prin intermediul clasei ImageLoader
-        SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/PaooGameSpriteSheet.png"));
+        //SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/background.png"));
+        //SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/PaooGameSpriteSheet.png"));
 
             /// Se obtin subimaginile corespunzatoare elementelor necesare.
-        grass = sheet.crop(0, 0);
+        //background = sheet.crop(0, 0);
+        background = ImageLoader.LoadImage("/textures/background.png");
+       /* grass = sheet.crop(0, 0);
         soil = sheet.crop(1, 0);
         water = sheet.crop(2, 0);
         mountain = sheet.crop(3, 0);
@@ -50,6 +54,6 @@ public class Assets
         rockUp = sheet.crop(2, 2);
         rockDown = sheet.crop(3, 2);
         rockLeft = sheet.crop(0, 3);
-        rockRight = sheet.crop(1, 3);
+        rockRight = sheet.crop(1, 3);*/
     }
 }

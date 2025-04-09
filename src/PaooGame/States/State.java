@@ -1,7 +1,8 @@
 package PaooGame.States;
 
-import java.awt.*;
 import PaooGame.RefLinks;
+
+import java.awt.*;
 
 /*! \class State
     \brief Implementeaza notiunea abstracta de stare a jocului/programului.

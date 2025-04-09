@@ -1,5 +1,7 @@
 package PaooGame.Tiles;
 
+import PaooGame.Tiles.ForLevel1.*;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -8,20 +10,31 @@ import java.awt.image.BufferedImage;
  */
 public class Tile
 {
-    private static final int NO_TILES   = 32;
+    private static final int NO_TILES   = 48;
     public static Tile[] tiles          = new Tile[NO_TILES];       /*!< Vector de referinte de tipuri de dale.*/
 
         /// De remarcat ca urmatoarele dale sunt statice si publice. Acest lucru imi permite sa le am incarcate
         /// o singura data in memorie
-    public static Tile grassTile        = new GrassTile(0);     /*!< Dala de tip iarba*/
-    public static Tile mountainTile     = new MountainTile(1);  /*!< Dala de tip munte/piatra*/
-    public static Tile waterTile        = new WaterTile(2);     /*!< Dala de tip apa*/
-    public static Tile treeTile         = new TreeTile(3);      /*!< Dala de tip copac*/
-    public static Tile soilTile         = new SoilTile(4);      /*!< Dala de tip sol/pamant*/
-    //public static Tile backgroundd        = new background(5);
 
-    public static final int TILE_WIDTH  = 48;                       /*!< Latimea unei dale.*/
-    public static final int TILE_HEIGHT = 48;                       /*!< Inaltimea unei dale.*/
+    public static Tile grassTile        = new GrassTile(30);     /*!< Dala de tip iarba*/
+    public static Tile mountainTile     = new MountainTile(31);  /*!< Dala de tip munte/piatra*/
+    public static Tile waterTile        = new WaterTile(32);     /*!< Dala de tip apa*/
+    public static Tile treeTile         = new TreeTile(33);      /*!< Dala de tip copac*/
+    public static Tile soilTile         = new SoilTile(34);      /*!< Dala de tip sol/pamant*/
+    public static Tile fundal        = new Fundal(35);
+
+    public static Tile podea1        = new Podea1(0);
+    public static Tile turn        = new Turn(1);
+    public static Tile turn2        = new Turn2(2);
+    public static Tile turn3        = new Turn3(3);
+    public static Tile treaptaJos        = new TreaptaJos(4);
+    public static Tile treaptaJos2        = new TreaptaJos2(5);
+    public static Tile franghie        = new Franghie(6);
+    public static Tile franghie2        = new Franghie2(7);
+
+
+    public static final int TILE_WIDTH  = 32;                       /*!< Latimea unei dale.*/
+    public static final int TILE_HEIGHT = 32;                       /*!< Inaltimea unei dale.*/
 
     protected BufferedImage img;                                    /*!< Imaginea aferenta tipului de dala.*/
     protected final int id;                                         /*!< Id-ul unic aferent tipului de dala.*/

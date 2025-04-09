@@ -1,6 +1,7 @@
-package PaooGame.Tiles;
+package PaooGame.Tiles.ForLevel1;
 
 import PaooGame.Graphics.Assets;
+import PaooGame.Tiles.Tile;
 
 public class Turn extends Tile
 {

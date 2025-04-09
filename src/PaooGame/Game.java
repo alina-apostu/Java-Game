@@ -2,6 +2,8 @@ package PaooGame;
 
 import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
+import PaooGame.Input.KeyManager;
+import PaooGame.States.*;
 import PaooGame.Tiles.Tile;
 
 import java.awt.*;
@@ -46,6 +48,7 @@ public class Game implements Runnable
     private boolean         runState;   /*!< Flag ce starea firului de executie.*/
     private Thread          gameThread; /*!< Referinta catre thread-ul de update si draw al ferestrei*/
     private BufferStrategy  bs;         /*!< Referinta catre un mecanism cu care se organizeaza memoria complexa pentru un canvas.*/
+
     /// Sunt cateva tipuri de "complex buffer strategies", scopul fiind acela de a elimina fenomenul de
     /// flickering (palpaire) a ferestrei.
     /// Modul in care va fi implementata aceasta strategie in cadrul proiectului curent va fi triplu buffer-at
@@ -60,6 +63,12 @@ public class Game implements Runnable
 
     private Graphics        g;          /*!< Referinta catre un context grafic.*/
 
+    private State playState;            /*!< Referinta catre joc.*/
+    private State menuState;            /*!< Referinta catre menu.*/
+    private State settingsState;        /*!< Referinta catre setari.*/
+    private State aboutState;           /*!< Referinta catre about.*/
+    private KeyManager keyManager;      /*!< Referinta catre obiectul care gestioneaza intrarile din partea utilizatorului.*/
+    private RefLinks refLink;            /*!< Referinta catre un obiect a carui sarcina este doar de a retine diverse referinte pentru a fi usor accesibile.*/
 
     private Tile tile; /*!< variabila membra temporara. Este folosita in aceasta etapa doar pentru a desena ceva pe ecran.*/
 
@@ -81,6 +90,7 @@ public class Game implements Runnable
         wnd = new GameWindow(title, width, height);
             /// Resetarea flagului runState ce indica starea firului de executie (started/stoped)
         runState = false;
+        keyManager = new KeyManager();
     }
 
     /*! \fn private void init()
@@ -92,11 +102,22 @@ public class Game implements Runnable
      */
     private void InitGame()
     {
-        wnd = new GameWindow("Schelet Proiect PAOO", 800, 600);
+       //wnd = new GameWindow("Schelet Proiect PAOO", 800, 600);
             /// Este construita fereastra grafica.
         wnd.BuildGameWindow();
-            /// Se incarca toate elementele grafice (dale)
+        ///Sa ataseaza ferestrei managerul de tastatura pentru a primi evenimentele furnizate de fereastra.
+        wnd.GetWndFrame().addKeyListener(keyManager);
+        ///Se incarca toate elementele grafice (dale)
         Assets.Init();
+        ///Se construieste obiectul de tip shortcut ce va retine o serie de referinte catre elementele importante din program.
+        refLink = new RefLinks(this);
+        ///Definirea starilor programului
+        playState       = new PlayState(refLink);
+        menuState       = new MenuState(refLink);
+        settingsState   = new SettingsState(refLink);
+        aboutState      = new AboutState(refLink);
+        ///Seteaza starea implicita cu care va fi lansat programul in executie
+        State.SetState(playState);
     }
 
     /*! \fn public void run()
@@ -197,6 +218,13 @@ public class Game implements Runnable
      */
     private void Update()
     {
+        keyManager.Update();
+        ///Trebuie obtinuta starea curenta pentru care urmeaza a se actualiza starea, atentie trebuie sa fie diferita de null.
+        if(State.GetState() != null)
+        {
+            ///Actualizez starea curenta a jocului daca exista.
+            State.GetState().Update();
+        }
 
     }
 
@@ -228,7 +256,9 @@ public class Game implements Runnable
             /// Se obtine contextul grafic curent in care se poate desena.
         g = bs.getDrawGraphics();
             /// Se sterge ce era
+
         g.clearRect(0, 0, wnd.GetWndWidth(), wnd.GetWndHeight());
+        g.setColor(new Color(163,145,132));//culoare fundal
 
             /// operatie de desenare
             // ...............
@@ -237,10 +267,29 @@ public class Game implements Runnable
             Tile.waterTile.Draw(g, 2 * Tile.TILE_WIDTH, 0);
             Tile.mountainTile.Draw(g, 3 * Tile.TILE_WIDTH, 0);
             Tile.treeTile.Draw(g, 4 * Tile.TILE_WIDTH, 0);*/
-            //Tile.backgroundd.Draw(g, 0 * Tile.TILE_WIDTH, 0);
+            //Tile.fundal.Draw(g, 0 * Tile.TILE_WIDTH, 0);
+        //g.drawImage(Assets.background, 0, 0, 100, 40, null);
+       /* for (int x = 0; x < wnd.GetWndWidth(); x += 100) {
+            for (int y = 0; y < wnd.GetWndHeight(); y += 40) {
+                g.drawImage(Assets.background, x, y, 100, 40, null);
+            }
+        }
+        g.setColor(Color.white);
+        g.fillRect(0,0,40, 40);*/
+        /// operatie de desenare
+        ///Trebuie obtinuta starea curenta pentru care urmeaza a se actualiza starea, atentie trebuie sa fie diferita de null.
+        if(State.GetState() != null)
+        {
+            ///Actualizez starea curenta a jocului daca exista.
+            State.GetState().Draw(g);
+        }
+        /// end operatie de desenare
 
-           /* g.drawRect(1 * Tile.TILE_WIDTH, 1 * Tile.TILE_HEIGHT, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);*/
-        g.drawImage(Assets.background, 0, 0, wnd.GetWndWidth(), wnd.GetWndHeight(), null);
+
+
+
+        /* g.drawRect(1 * Tile.TILE_WIDTH, 1 * Tile.TILE_HEIGHT, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);*/
+       //g.drawImage(Assets.background, 0, 0, wnd.GetWndWidth(), wnd.GetWndHeight(), null);//!!!afiseaza imaginea de funda, dar pe tot ecranul
 
 
             // end operatie de desenare
@@ -251,5 +300,27 @@ public class Game implements Runnable
             /// elementele grafice ce au fost desenate pe canvas).
         g.dispose();
     }
+
+
+        public int GetWidth()
+        {
+            return wnd.GetWndWidth();
+        }
+
+        /*! \fn public int GetHeight()
+            \brief Returneaza inaltimea ferestrei
+         */
+        public int GetHeight()
+        {
+            return wnd.GetWndHeight();
+        }
+
+        /*! \fn public KeyManager GetKeyManager()
+            \brief Returneaza obiectul care gestioneaza tastatura.
+         */
+        public KeyManager GetKeyManager()
+        {
+            return keyManager;
+        }
 }
 

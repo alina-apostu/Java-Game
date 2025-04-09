@@ -25,6 +25,15 @@ public class Assets
     public static BufferedImage rockRight;
     public static BufferedImage tree;
     public static BufferedImage background;
+    public static BufferedImage podea1;
+    public static BufferedImage turn;
+    public static BufferedImage turn2;
+    public static BufferedImage turn3;
+    public static BufferedImage treaptaJos;
+    public static BufferedImage treaptaJos2;
+    public static BufferedImage franghie;
+    public static BufferedImage franghie2;
+
 
     /*! \fn public static void Init()
         \brief Functia initializaza referintele catre elementele grafice utilizate.
@@ -36,13 +45,15 @@ public class Assets
     {
             /// Se creaza temporar un obiect SpriteSheet initializat prin intermediul clasei ImageLoader
         //SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/background.png"));
-        //SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/PaooGameSpriteSheet.png"));
+        //background = ImageLoader.LoadImage("/textures/background.png");
+        SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/podea1.png"));
+        SpriteSheet sheet2 = new SpriteSheet(ImageLoader.LoadImage("/textures/turn.png"));
 
             /// Se obtin subimaginile corespunzatoare elementelor necesare.
         //background = sheet.crop(0, 0);
-        background = ImageLoader.LoadImage("/textures/background.png");
-       /* grass = sheet.crop(0, 0);
-        soil = sheet.crop(1, 0);
+
+       //grass = sheet.crop(1, 0);
+        /*soil = sheet.crop(1, 0);
         water = sheet.crop(2, 0);
         mountain = sheet.crop(3, 0);
         townGrass = sheet.crop(0, 1);
@@ -55,5 +66,13 @@ public class Assets
         rockDown = sheet.crop(3, 2);
         rockLeft = sheet.crop(0, 3);
         rockRight = sheet.crop(1, 3);*/
+        podea1=sheet.crop(0,3);
+        turn=sheet2.crop(1,10);
+        turn2=sheet2.crop(1,9);
+        turn3=sheet2.crop(1,8);
+        treaptaJos=sheet2.crop(5,8);
+        treaptaJos2=sheet2.crop(4,8);
+        franghie=sheet2.crop(5,7);
+        franghie2=sheet2.crop(4,7);
     }
 }

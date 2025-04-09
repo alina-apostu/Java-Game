@@ -1,4 +1,6 @@
 package PaooGame.Tiles.ForLevel1;
 
-public class Flacara {
+public class Flacara
+{
+
 }

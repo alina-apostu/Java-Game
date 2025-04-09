@@ -1,8 +1,8 @@
 package PaooGame.States;
 
-import PaooGame.Items.Hero;
-import PaooGame.RefLinks;
+//import PaooGame.Items.Hero;
 import PaooGame.Maps.Map;
+import PaooGame.RefLinks;
 
 import java.awt.*;
 
@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class PlayState extends State
 {
-    private Hero hero;  /*!< Referinta catre obiectul animat erou (controlat de utilizator).*/
+    //private Hero hero;  /*!< Referinta catre obiectul animat erou (controlat de utilizator).*/
     private Map map;    /*!< Referinta catre harta curenta.*/
 
     /*! \fn public PlayState(RefLinks refLink)
@@ -28,7 +28,7 @@ public class PlayState extends State
             ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
             ///Construieste eroul
-        hero = new Hero(refLink,100, 100);
+        //hero = new Hero(refLink,100, 100);
     }
 
     /*! \fn public void Update()
@@ -38,7 +38,7 @@ public class PlayState extends State
     public void Update()
     {
         map.Update();
-        hero.Update();
+        //hero.Update();
     }
 
     /*! \fn public void Draw(Graphics g)
@@ -50,6 +50,6 @@ public class PlayState extends State
     public void Draw(Graphics g)
     {
         map.Draw(g);
-        hero.Draw(g);
+        //hero.Draw(g);
     }
 }

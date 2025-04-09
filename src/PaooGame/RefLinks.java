@@ -1,8 +1,7 @@
 package PaooGame;
 
-import PaooGame.Maps.Map;
-
 import PaooGame.Input.KeyManager;
+import PaooGame.Maps.Map;
 
 /*! \class public class RefLinks
     \brief Clasa ce retine o serie de referinte ale unor elemente pentru a fi usor accesibile.

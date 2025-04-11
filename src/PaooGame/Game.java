@@ -1,8 +1,12 @@
 package PaooGame;
 
+import PaooGame.Camera.Camera;
+import PaooGame.Camera.Camera2;
 import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
 import PaooGame.Input.KeyManager;
+import PaooGame.Items.Item;
+import PaooGame.Maps.Map;
 import PaooGame.States.*;
 import PaooGame.Tiles.Tile;
 
@@ -82,6 +86,10 @@ public class Game implements Runnable
         \param width Latimea ferestrei in pixeli.
         \param height Inaltimea ferestrei in pixeli.
      */
+
+
+    Camera2 cam; //initializare
+
     public Game(String title, int width, int height)
     {
             /// Obiectul GameWindow este creat insa fereastra nu este construita
@@ -90,6 +98,7 @@ public class Game implements Runnable
         wnd = new GameWindow(title, width, height);
             /// Resetarea flagului runState ce indica starea firului de executie (started/stoped)
         runState = false;
+        ///Construirea obiectului de gestiune a evenimentelor de tastatura
         keyManager = new KeyManager();
     }
 
@@ -116,6 +125,9 @@ public class Game implements Runnable
         menuState       = new MenuState(refLink);
         settingsState   = new SettingsState(refLink);
         aboutState      = new AboutState(refLink);
+
+
+        cam=new Camera2(0,0,300,192);
         ///Seteaza starea implicita cu care va fi lansat programul in executie
         State.SetState(playState);
     }
@@ -218,6 +230,7 @@ public class Game implements Runnable
      */
     private void Update()
     {
+        ///Determina starea tastelor
         keyManager.Update();
         ///Trebuie obtinuta starea curenta pentru care urmeaza a se actualiza starea, atentie trebuie sa fie diferita de null.
         if(State.GetState() != null)
@@ -225,6 +238,13 @@ public class Game implements Runnable
             ///Actualizez starea curenta a jocului daca exista.
             State.GetState().Update();
         }
+        if(State.GetState() instanceof PlayState)
+        {
+            Item player = ((PlayState) State.GetState()).getPlayer();
+
+            cam.tick(player);
+        }
+
 
     }
 
@@ -256,11 +276,21 @@ public class Game implements Runnable
             /// Se obtine contextul grafic curent in care se poate desena.
         g = bs.getDrawGraphics();
             /// Se sterge ce era
-
         g.clearRect(0, 0, wnd.GetWndWidth(), wnd.GetWndHeight());
-        g.setColor(new Color(163,145,132));//culoare fundal
 
-            /// operatie de desenare
+        Graphics2D g2d=(Graphics2D) g;
+
+
+        g.setColor(new Color(163,145,132));//culoare fundal
+        //g.setColor(new Color(51,0,25));//culoare fundal
+        g.fillRect(0, 0, wnd.GetWndWidth(), wnd.GetWndHeight());//desenare efectiva a culorii
+
+
+
+
+
+
+        /// operatie de desenare
             // ...............
            /* Tile.grassTile.Draw(g, 0 * Tile.TILE_WIDTH, 0);
             Tile.soilTile.Draw(g, 1 * Tile.TILE_WIDTH, 0);
@@ -276,7 +306,9 @@ public class Game implements Runnable
         }
         g.setColor(Color.white);
         g.fillRect(0,0,40, 40);*/
-        /// operatie de desenare
+
+        //g2d.translate(cam.getX(),cam.getY());
+        cam.apply(g2d);
         ///Trebuie obtinuta starea curenta pentru care urmeaza a se actualiza starea, atentie trebuie sa fie diferita de null.
         if(State.GetState() != null)
         {
@@ -284,6 +316,8 @@ public class Game implements Runnable
             State.GetState().Draw(g);
         }
         /// end operatie de desenare
+
+        //g2d.translate(-cam.getX(),-cam.getY());
 
 
 

@@ -10,8 +10,9 @@ import java.awt.image.BufferedImage;
 public class Assets
 {
         /// Referinte catre elementele grafice (dale) utilizate in joc.
-    public static BufferedImage playerLeft;
-    public static BufferedImage playerRight;
+    public static BufferedImage heroLeft;
+    public static BufferedImage heroRight;
+
     public static BufferedImage soil;
     public static BufferedImage grass;
     public static BufferedImage mountain;
@@ -35,6 +36,44 @@ public class Assets
     public static BufferedImage franghie2;
 
 
+    public static BufferedImage bookShelf;
+    public static BufferedImage bookShelf2;
+    public static BufferedImage bookShelf3;
+    public static BufferedImage bookShelf4;
+    public static BufferedImage bookShelf5;
+    public static BufferedImage bookShelf6;
+    public static BufferedImage bookShelf7;
+    public static BufferedImage bookShelf8;
+    public static BufferedImage bookShelf9;
+    public static BufferedImage bookShelf10;
+    public static BufferedImage bookShelf11;
+    public static BufferedImage bookShelf12;
+    public static BufferedImage bookShelf13;
+    public static BufferedImage bookShelf14;
+    public static BufferedImage bookShelf15;
+    public static BufferedImage bookShelf16;
+
+    public static BufferedImage bookShelf17;
+    public static BufferedImage bookShelf18;
+    public static BufferedImage bookShelf19;
+    public static BufferedImage bookShelf20;
+    public static BufferedImage bookShelf21;
+    public static BufferedImage bookShelf22;
+    public static BufferedImage bookShelf23;
+    public static BufferedImage bookShelf24;
+    public static BufferedImage bookShelf25;
+    public static BufferedImage bookShelf26;
+    public static BufferedImage bookShelf27;
+    public static BufferedImage bookShelf28;
+    public static BufferedImage bookShelf29;
+    public static BufferedImage bookShelf30;
+    public static BufferedImage bookShelf31;
+    public static BufferedImage bookShelf32;
+
+    public static BufferedImage stand1;
+
+
+
     /*! \fn public static void Init()
         \brief Functia initializaza referintele catre elementele grafice utilizate.
 
@@ -48,6 +87,9 @@ public class Assets
         //background = ImageLoader.LoadImage("/textures/background.png");
         SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/podea1.png"));
         SpriteSheet sheet2 = new SpriteSheet(ImageLoader.LoadImage("/textures/turn.png"));
+        SpriteSheet sheet3 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf.png"));
+        SpriteSheet sheet4 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf2.png"));
+        SpriteSheet sheet5 = new SpriteSheet(ImageLoader.LoadImage("/textures/paianjen_2.png"));
 
             /// Se obtin subimaginile corespunzatoare elementelor necesare.
         //background = sheet.crop(0, 0);
@@ -66,6 +108,9 @@ public class Assets
         rockDown = sheet.crop(3, 2);
         rockLeft = sheet.crop(0, 3);
         rockRight = sheet.crop(1, 3);*/
+        heroLeft = sheet5.crop(3, 4);
+        heroRight = sheet5.crop(0, 0);
+
         podea1=sheet.crop(0,3);
         turn=sheet2.crop(1,10);
         turn2=sheet2.crop(1,9);
@@ -74,5 +119,41 @@ public class Assets
         treaptaJos2=sheet2.crop(4,8);
         franghie=sheet2.crop(5,7);
         franghie2=sheet2.crop(4,7);
+        bookShelf=sheet3.crop(16,4);
+        bookShelf2=sheet3.crop(16,5);
+        bookShelf3=sheet3.crop(16,6);
+        bookShelf4=sheet3.crop(16,7);
+        bookShelf5=sheet3.crop(17,4);
+        bookShelf6=sheet3.crop(17,5);
+        bookShelf7=sheet3.crop(17,6);
+        bookShelf8=sheet3.crop(17,7);
+        bookShelf9=sheet3.crop(18,4);
+        bookShelf10=sheet3.crop(18,5);
+        bookShelf11=sheet3.crop(18,6);
+        bookShelf12=sheet3.crop(18,7);
+        bookShelf13=sheet3.crop(19,4);
+        bookShelf14=sheet3.crop(19,5);
+        bookShelf15=sheet3.crop(19,6);
+        bookShelf16=sheet3.crop(19,7);
+
+
+        bookShelf17=sheet3.crop(4,4);
+        bookShelf18=sheet3.crop(4,5);
+        bookShelf19=sheet3.crop(4,6);
+        bookShelf20=sheet3.crop(4,7);
+        bookShelf21=sheet3.crop(5,4);
+        bookShelf22=sheet3.crop(5,5);
+        bookShelf23=sheet3.crop(5,6);
+        bookShelf24=sheet3.crop(5,7);
+        bookShelf25=sheet3.crop(6,4);
+        bookShelf26=sheet3.crop(6,5);
+        bookShelf27=sheet3.crop(6,6);
+        bookShelf28=sheet3.crop(6,7);
+        bookShelf29=sheet3.crop(7,4);
+        bookShelf30=sheet3.crop(7,5);
+        bookShelf31=sheet3.crop(7,6);
+        bookShelf32=sheet3.crop(7,7);
+
+        stand1=sheet4.crop(0,0);
     }
 }

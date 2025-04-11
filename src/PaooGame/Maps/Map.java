@@ -4,6 +4,8 @@ import PaooGame.RefLinks;
 import PaooGame.Tiles.Tile;
 
 import java.awt.*;
+import java.io.*;
+//import java.util.*;
 
 /*! \class public class Map
     \brief Implementeaza notiunea de harta a jocului.
@@ -14,7 +16,8 @@ public class Map
     private int width;          /*!< Latimea hartii in numar de dale.*/
     private int height;         /*!< Inaltimea hartii in numar de dale.*/
     private int [][] tiles;     /*!< Referinta catre o matrice cu codurile dalelor ce vor construi harta.*/
-
+    private int Width2=32*100;
+    private int Height2=32*6;
     /*! \fn public Map(RefLinks refLink)
         \brief Constructorul de initializare al clasei.
 
@@ -24,6 +27,7 @@ public class Map
     {
             /// Retine referinta "shortcut".
         this.refLink = refLink;
+
             ///incarca harta de start. Functia poate primi ca argument id-ul hartii ce poate fi incarcat.
         LoadWorld();
     }
@@ -44,9 +48,9 @@ public class Map
     public void Draw(Graphics g)
     {
             ///Se parcurge matricea de dale (codurile aferente) si se deseneaza harta respectiva
-        for(int y = 0; y < refLink.GetGame().GetHeight()/Tile.TILE_HEIGHT; y++)
+        for(int y = 0; y < Height2/Tile.TILE_HEIGHT; y++)
         {
-            for(int x = 0; x < refLink.GetGame().GetWidth()/Tile.TILE_WIDTH; x++)
+            for(int x = 0; x < Width2/Tile.TILE_WIDTH; x++)
             {
                 if(GetTile(x,y)!=null) {
                     GetTile(x, y).Draw(g, (int) x * Tile.TILE_HEIGHT, (int) y * Tile.TILE_WIDTH);
@@ -78,29 +82,68 @@ public class Map
         return t;
     }
 
+    public int GetWidth(){ return this.width;}
+
+    public int GetHeight(){ return this.height;}
+
     /*! \fn private void LoadWorld()
         \brief Functie de incarcare a hartii jocului.
         Aici se poate genera sau incarca din fisier harta. Momentan este incarcata static.
      */
-    private void LoadWorld()
-    {
+    private void LoadWorld() {
         //atentie latimea si inaltimea trebuiesc corelate cu dimensiunile ferestrei sau
         //se poate implementa notiunea de camera/cadru de vizualizare al hartii
-            ///Se stabileste latimea hartii in numar de dale.
-        width = 20;
-            ///Se stabileste inaltimea hartii in numar de dale
+        ///Se stabileste latimea hartii in numar de dale.
+        width = 100;
+        ///Se stabileste inaltimea hartii in numar de dale
         height = 6;
-            ///Se construieste matricea de coduri de dale
+        ///Se construieste matricea de coduri de dale
         tiles = new int[width][height];
-            //Se incarca matricea cu coduri
-        for(int y = 0; y < height; y++)
-        {
-            for(int x = 0; x < width; x++)
-            {
+        //Se incarca matricea cu coduri
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
                 tiles[x][y] = MiddleEastMap(y, x);
             }
         }
     }
+
+       /* try
+        {
+            InputStream is = getClass().getResourceAsStream("/res/textures/mapsFile/map1.txt");
+            if (is == null) {
+                throw new RuntimeException("Fișierul map1.txt nu a fost găsit!");
+            }
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            int x = 0;
+            int y = 0;
+
+            while (x <  width && y< height)
+            {
+                String line = br.readLine();
+
+                while (x < width) {
+                    String numbers[] = line.split(" ");
+                    int num = Integer.parseInt(numbers[x]);
+                    tiles[x][y] = num;
+                   x++;
+                }
+
+                if (x == width) {
+                    x = 0;
+                    y++;
+                }
+            }
+
+            br.close();
+
+        }
+        catch (Exception e)
+        {
+            // tratarea erorilor aici, dacă este nevoie
+        }/*
+
+
 
     /*! \fn private int MiddleEastMap(int x ,int y)
         \brief O harta incarcata static.
@@ -108,17 +151,18 @@ public class Map
         \param x linia pe care se afla codul dalei de interes.
         \param y coloana pe care se afla codul dalei de interes.
      */
-    private int MiddleEastMap(int x ,int y)
-    {
+        private int MiddleEastMap ( int x, int y)
+        {
             ///Definire statica a matricei de coduri de dale.
-        final int map[][] = {
-                {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 6, 0, 0, 0, 0, 0},
-                {2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 6, 0, 0, 0, 0, 0},
-                {2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 6, 0, 0, 0, 0, 0},
-                {2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 6, 0, 0, 0, 0, 0},
-                {1,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 4, 0, 0, 0, 0, 0}
-        };
-        return map[x][y];
+            final int map[][] = {
+                    {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {2, 8, 12, 16, 20, -1, -1, 24, 28, 32, 36, -1, -1, 7, 6, -1, 0, 0, 0, -1,        8, 12,  16, 20, -1, 24, 28, 32, 36, -1, 8 , 12, 16, 20, -1, -1, -1, -1, -1, -1,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {2, 9, 13, 17, 21, -1, -1, 25, 29, 33, 37, -1, -1, 7, 6, -1, -1, 0, -1, -1,      9, 13,  17, 21, -1, 25, 29, 33, 37, -1, 9 , 13, 17, 21, -1, -1, -1, -1, -1, -1,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {2, 10, 14, 18, 22, -1, -1, 26, 30, 34, 38, -1, -1, 7, 6, -1, -1, -1, -1, -1,    10, 14, 18, 22, -1, 26, 30, 34, 38, -1, 10, 14, 18, 22, -1, -1, -1, -1, -1, -1,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {2, 11, 15, 19, 23, -1, -1, 27, 31, 35, 39, -1, -1, 7, 6, -1, -1, -1, -1, -1,    11, 15, 19, 23, -1, 27, 31, 35, 39, -1, 11, 15, 19, 23, -1, -1,  0, -1, -1, -1,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 4, 0, 0, 0, 0, 0,                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
+            };
+            return map[x][y];
+        }
     }
-}

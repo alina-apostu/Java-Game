@@ -5,6 +5,7 @@ import PaooGame.Camera.Camera2;
 import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
 import PaooGame.Input.KeyManager;
+import PaooGame.Input.MouseInput;
 import PaooGame.Items.Item;
 import PaooGame.Maps.Map;
 import PaooGame.States.*;
@@ -112,10 +113,11 @@ public class Game implements Runnable
     private void InitGame()
     {
        //wnd = new GameWindow("Schelet Proiect PAOO", 800, 600);
-            /// Este construita fereastra grafica.
+        /// Este construita fereastra grafica.
         wnd.BuildGameWindow();
         ///Sa ataseaza ferestrei managerul de tastatura pentru a primi evenimentele furnizate de fereastra.
         wnd.GetWndFrame().addKeyListener(keyManager);
+        wnd.GetCanvas().addMouseListener(new MouseInput());
         ///Se incarca toate elementele grafice (dale)
         Assets.Init();
         ///Se construieste obiectul de tip shortcut ce va retine o serie de referinte catre elementele importante din program.
@@ -128,8 +130,9 @@ public class Game implements Runnable
 
 
         cam=new Camera2(0,0,300,192);
-        ///Seteaza starea implicita cu care va fi lansat programul in executie
-        State.SetState(playState);
+        //Seteaza starea implicita cu care va fi lansat programul in executie
+        // setam starea implicita la menuState
+        State.SetState(menuState);
     }
 
     /*! \fn public void run()
@@ -308,7 +311,11 @@ public class Game implements Runnable
         g.fillRect(0,0,40, 40);*/
 
         //g2d.translate(cam.getX(),cam.getY());
-        cam.apply(g2d);
+        // camera se aplica doar in PlaySate nu si la meniu
+        if(State.GetState() instanceof PlayState)
+        {
+            cam.apply(g2d);
+        }
         ///Trebuie obtinuta starea curenta pentru care urmeaza a se actualiza starea, atentie trebuie sa fie diferita de null.
         if(State.GetState() != null)
         {

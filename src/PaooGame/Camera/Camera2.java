@@ -17,7 +17,7 @@ public class Camera2 {
         this.bounds = new Rectangle((int) x, (int) y, (int) width, (int) height);
         this.x = x;
         this.y = y;
-        this.scale = 4.0;
+        this.scale = 3;
     }
 
     // metoda prin care se setează poziția camerei

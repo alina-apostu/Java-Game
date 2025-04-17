@@ -127,7 +127,8 @@ public class Game implements Runnable
         aboutState      = new AboutState(refLink);
 
 
-        cam=new Camera2(0,0,300,192);
+        cam=new Camera2(0,0,wnd.GetWndWidth(), wnd.GetWndHeight());
+        //cam=new Camera2(0,0,300,192);
         ///Seteaza starea implicita cu care va fi lansat programul in executie
         State.SetState(playState);
     }
@@ -281,8 +282,9 @@ public class Game implements Runnable
         Graphics2D g2d=(Graphics2D) g;
 
 
-        g.setColor(new Color(163,145,132));//culoare fundal
-        //g.setColor(new Color(51,0,25));//culoare fundal
+        g.setColor(new Color(72,60,50));//culoare fundal  mar0
+        //g.setColor(new Color(163,145,132)); bej
+
         g.fillRect(0, 0, wnd.GetWndWidth(), wnd.GetWndHeight());//desenare efectiva a culorii
 
 

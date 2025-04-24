@@ -21,7 +21,7 @@ public class PlayState extends State
 
         \param refLink O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.
      */
-    public PlayState(RefLinks refLink)
+    public PlayState(RefLinks refLink, String characterName)
     {
             ///Apel al constructorului clasei de baza
         super(refLink);
@@ -30,7 +30,7 @@ public class PlayState extends State
             ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
             ///Construieste eroul
-        hero = new Hero(refLink,100, 100);
+        hero = new Hero(refLink,100, 125, characterName);
     }
 
     /*! \fn public void Update()

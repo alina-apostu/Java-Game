@@ -72,6 +72,10 @@ public class Assets
 
     public static BufferedImage stand1;
 
+    public static BufferedImage[] lunaUp, lunaRight;
+    public static BufferedImage[] freyaUp, freyaRight;
+    public static BufferedImage[] emberUp, emberRight;
+
 
 
     /*! \fn public static void Init()
@@ -91,25 +95,31 @@ public class Assets
         SpriteSheet sheet4 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf2.png"));
         SpriteSheet sheet5 = new SpriteSheet(ImageLoader.LoadImage("/textures/paianjen_2.png"));
 
-            /// Se obtin subimaginile corespunzatoare elementelor necesare.
-        //background = sheet.crop(0, 0);
+        SpriteSheet lunaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/luna.png"));
+        SpriteSheet freyaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/freya.png"));
+        SpriteSheet emberSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/ember.png"));
 
-       //grass = sheet.crop(1, 0);
-        /*soil = sheet.crop(1, 0);
-        water = sheet.crop(2, 0);
-        mountain = sheet.crop(3, 0);
-        townGrass = sheet.crop(0, 1);
-        townGrassDestroyed = sheet.crop(1, 1);
-        townSoil = sheet.crop(2, 1);
-        tree = sheet.crop(3, 1);
-        playerLeft = sheet.crop(0, 2);
-        playerRight = sheet.crop(1, 2);
-        rockUp = sheet.crop(2, 2);
-        rockDown = sheet.crop(3, 2);
-        rockLeft = sheet.crop(0, 3);
-        rockRight = sheet.crop(1, 3);*/
-        heroLeft = sheet5.crop(3, 4);
-        heroRight = sheet5.crop(0, 0);
+        // Se obtin subimaginile corespunzatoare elementelor necesare.
+
+        lunaUp = new BufferedImage[4];
+        lunaRight = new BufferedImage[2];
+        freyaUp = new BufferedImage[4];
+        freyaRight = new BufferedImage[2];
+        emberUp = new BufferedImage[4];
+        emberRight = new BufferedImage[2];
+
+        for(int i=0;i<4;i++)
+        {
+            lunaUp[i] = lunaSheet.crop(i,0);
+            freyaUp[i] = freyaSheet.crop(i,0);
+            emberUp[i] = emberSheet.crop(i,0);
+        }
+        for(int i=0;i<2;i++)
+        {
+            lunaRight[i] = lunaSheet.crop(i,1);
+            freyaRight[i] = freyaSheet.crop(i,1);
+            emberRight[i] = emberSheet.crop(i,1);
+        }
 
         podea1=sheet.crop(0,3);
         turn=sheet2.crop(1,10);

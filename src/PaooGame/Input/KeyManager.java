@@ -54,6 +54,7 @@ public class KeyManager implements KeyListener
     {
         ///se retine in vectorul de flaguri ca o tasta a fost apasata.
         keys[e.getKeyCode()] = true;
+
     }
 
     /*! \fn public void keyReleased(KeyEvent e)

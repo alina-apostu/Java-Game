@@ -115,6 +115,7 @@ public class Game implements Runnable
        //wnd = new GameWindow("Schelet Proiect PAOO", 800, 600);
         /// Este construita fereastra grafica.
         wnd.BuildGameWindow();
+        wnd.GetWndFrame().requestFocus();
         ///Sa ataseaza ferestrei managerul de tastatura pentru a primi evenimentele furnizate de fereastra.
         wnd.GetWndFrame().addKeyListener(keyManager);
         wnd.GetCanvas().addMouseListener(new MouseInput());
@@ -123,10 +124,10 @@ public class Game implements Runnable
         ///Se construieste obiectul de tip shortcut ce va retine o serie de referinte catre elementele importante din program.
         refLink = new RefLinks(this);
         ///Definirea starilor programului
-        playState       = new PlayState(refLink);
+        //playState       = new PlayState(refLink);
         menuState       = new MenuState(refLink);
-        settingsState   = new SettingsState(refLink);
-        aboutState      = new AboutState(refLink);
+        //settingsState   = new SettingsState(refLink);
+        //aboutState      = new AboutState(refLink);
 
 
         cam=new Camera2(0,0,300,192);

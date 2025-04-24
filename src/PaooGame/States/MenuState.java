@@ -172,7 +172,7 @@ public class MenuState extends State
                         else
                         {
                             JOptionPane.showMessageDialog(null,"You chose: " + selectedCharacter + "\nLevel 1 is loading...", "Selected character",JOptionPane.INFORMATION_MESSAGE);
-                            State.SetState(new PlayState(refLink)); // schimbam starea jocului
+                            State.SetState(new PlayState(refLink, selectedCharacter)); // schimbam starea jocului
                         }
                    }
                         else if(loadButton.contains(mx,my))

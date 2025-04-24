@@ -1,12 +1,10 @@
 package PaooGame;
 
-import PaooGame.Camera.Camera;
 import PaooGame.Camera.Camera2;
 import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
 import PaooGame.Input.KeyManager;
 import PaooGame.Items.Item;
-import PaooGame.Maps.Map;
 import PaooGame.States.*;
 import PaooGame.Tiles.Tile;
 

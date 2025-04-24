@@ -24,12 +24,12 @@ public class Tile
         /// De remarcat ca urmatoarele dale sunt statice si publice. Acest lucru imi permite sa le am incarcate
         /// o singura data in memorie
 
-    public static Tile grassTile        = new GrassTile(99);     /*!< Dala de tip iarba*/
-    public static Tile mountainTile     = new MountainTile(98);  /*!< Dala de tip munte/piatra*/
-    public static Tile waterTile        = new WaterTile(97);     /*!< Dala de tip apa*/
-    public static Tile treeTile         = new TreeTile(96);      /*!< Dala de tip copac*/
-    public static Tile soilTile         = new SoilTile(95);      /*!< Dala de tip sol/pamant*/
-    public static Tile fundal        = new Fundal(94);
+    /*public static Tile grassTile        = new GrassTile(99);     /*!< Dala de tip iarba*/
+   // public static Tile mountainTile     = new MountainTile(98);  /*!< Dala de tip munte/piatra*/
+    //public static Tile waterTile        = new WaterTile(97);     /*!< Dala de tip apa*/
+    //public static Tile treeTile         = new TreeTile(96);      /*!< Dala de tip copac*/
+    //public static Tile soilTile         = new SoilTile(95);      /*!< Dala de tip sol/pamant*/
+    //public static Tile fundal        = new Fundal(94);
 
     public static Tile podea1        = new Podea1(0);
     public static Tile turn        = new Turn(1);

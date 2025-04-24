@@ -30,7 +30,7 @@ public class Camera2 {
 
         DisplayMode displayMode = gd.getDisplayMode();
 
-        // Lățimea și înălțimea ecranului monitorului
+        // Lățimea și înălțimea ecranului monitorului7\
         int screenWidth = displayMode.getWidth();
         int screenHeight = displayMode.getHeight();
 

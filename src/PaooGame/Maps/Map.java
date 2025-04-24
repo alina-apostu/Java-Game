@@ -97,10 +97,10 @@ public class Map {
 
     public Tile GetTile(int x, int y, int layer) {
         if (x < 0 || y < 0 || x >= width || y >= height) {
-            return Tile.grassTile;
+            return Tile.podea1;
         }
         if (layer < 0 || layer >= NUM_LAYERS) {
-            return Tile.grassTile;  // Poți returna un tile implicit dacă stratul nu este valid
+            return Tile.podea1;  // Poți returna un tile implicit dacă stratul nu este valid
         }
 
 
@@ -110,7 +110,7 @@ public class Map {
             }
             Tile t = Tile.tiles[tileId];
             if (t == null) {
-                return Tile.mountainTile;
+                return Tile.podea1;
             }
 
         return t;

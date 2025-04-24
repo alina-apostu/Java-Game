@@ -13,19 +13,7 @@ public class Assets
     public static BufferedImage heroLeft;
     public static BufferedImage heroRight;
 
-    public static BufferedImage soil;
-    public static BufferedImage grass;
-    public static BufferedImage mountain;
-    public static BufferedImage townGrass;
-    public static BufferedImage townGrassDestroyed;
-    public static BufferedImage townSoil;
-    public static BufferedImage water;
-    public static BufferedImage rockUp;
-    public static BufferedImage rockDown;
-    public static BufferedImage rockLeft;
-    public static BufferedImage rockRight;
-    public static BufferedImage tree;
-    public static BufferedImage background;
+
     public static BufferedImage podea1;
     public static BufferedImage turn;
     public static BufferedImage turn2;

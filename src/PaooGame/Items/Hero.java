@@ -59,7 +59,7 @@ public class Hero extends Character
             ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea implicita(normala)
         normalBounds.x = 16;
         normalBounds.y = 16;
-        normalBounds.width = 16;
+        normalBounds.width = 32;
         normalBounds.height = 32;
 
             ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea de atac

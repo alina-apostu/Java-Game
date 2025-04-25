@@ -116,8 +116,9 @@ public class Game implements Runnable
         /// Este construita fereastra grafica.
         wnd.BuildGameWindow();
         wnd.GetWndFrame().requestFocus();
+        wnd.GetCanvas().requestFocus();
         ///Sa ataseaza ferestrei managerul de tastatura pentru a primi evenimentele furnizate de fereastra.
-        wnd.GetWndFrame().addKeyListener(keyManager);
+        wnd.GetCanvas().addKeyListener(keyManager);
         wnd.GetCanvas().addMouseListener(new MouseInput());
         ///Se incarca toate elementele grafice (dale)
         Assets.Init();

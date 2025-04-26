@@ -25,12 +25,12 @@ public class Map {
 
         \param refLink O referinte catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.
      */
-    public Map(RefLinks refLink) {
+    public Map(RefLinks refLink, int mapId) {
         /// Retine referinta "shortcut".
         this.refLink = refLink;
 
         ///incarca harta de start. Functia poate primi ca argument id-ul hartii ce poate fi incarcat.
-        LoadWorld();
+        LoadWorld(mapId);
     }
 
     /*! \fn public  void Update()
@@ -128,7 +128,7 @@ public class Map {
         \brief Functie de incarcare a hartii jocului.
         Aici se poate genera sau incarca din fisier harta. Momentan este incarcata static.
      */
-    private void LoadWorld() {
+    private void LoadWorld(int mapId) {
         //atentie latimea si inaltimea trebuiesc corelate cu dimensiunile ferestrei sau
         //se poate implementa notiunea de camera/cadru de vizualizare al hartii
         ///Se stabileste latimea hartii in numar de dale.
@@ -144,7 +144,23 @@ public class Map {
             }
         }*/
         layers = new int[NUM_LAYERS][width][height];
-        loadLayersFromFile("/textures/mapsFile/map1.txt", NUM_LAYERS);
+
+        String mapPath = "";
+        switch (mapId) {
+            case 1:
+                mapPath = "/textures/mapsFile/map1.txt"; // Harta 1
+                break;
+            case 2:
+                mapPath = "/textures/mapsFile/map2.txt"; // Harta 2
+                break;
+            case 3:
+                mapPath = "/textures/mapsFile/map3.txt"; // Harta 3
+                break;
+            default:
+                mapPath = "/textures/mapsFile/map1.txt"; // Dacă ID-ul nu este valid, se încarcă harta 1
+                break;
+        }
+        loadLayersFromFile(mapPath, NUM_LAYERS);
     }
 
     private void loadLayersFromFile(String path, int numLayers) {

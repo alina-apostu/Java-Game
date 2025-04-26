@@ -44,9 +44,10 @@ public class Camera2 {
         double scaleY = screenHeight/ logicHeight;
 
         System.out.println(screenWidth+" "+screenHeight+" "+scaleX+" "+ scaleY+"gata");
+        double diagonalInches = Math.sqrt(Math.pow(screenWidth, 2) + Math.pow(screenHeight, 2)) / 96; // ppi=densiotatea pixeli
+        double ppi = Math.sqrt(Math.pow(screenWidth, 2) + Math.pow(screenHeight, 2)) / diagonalInches;
 
-
-        this.scale = Math.min(scaleX, scaleY);
+        this.scale = Math.min(scaleX, scaleY)* (96 / ppi);;
         //System.out.println(scale);
         this.scale=Math.min(scale, 4);
         //System.out.println(scale);

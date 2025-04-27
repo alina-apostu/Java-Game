@@ -1,8 +1,14 @@
 package PaooGame.Tiles;
 
 import PaooGame.Tiles.ForLevel1.*;
+import PaooGame.Tiles.ForLevel1.Carti.*;
+import PaooGame.Tiles.ForLevel1.Flacari.*;
 import PaooGame.Tiles.ForLevel1.Shelf1.*;
 import PaooGame.Tiles.ForLevel1.Shelf2.*;
+import PaooGame.Tiles.ForLevel1.Scari.*;
+import PaooGame.Tiles.ForLevel1.Stand.*;
+import PaooGame.Tiles.ForLevel1.Turnuri.*;
+import PaooGame.Tiles.ForLevel1.Trepte.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,12 +24,12 @@ public class Tile
         /// De remarcat ca urmatoarele dale sunt statice si publice. Acest lucru imi permite sa le am incarcate
         /// o singura data in memorie
 
-    public static Tile grassTile        = new GrassTile(99);     /*!< Dala de tip iarba*/
-    public static Tile mountainTile     = new MountainTile(98);  /*!< Dala de tip munte/piatra*/
-    public static Tile waterTile        = new WaterTile(97);     /*!< Dala de tip apa*/
-    public static Tile treeTile         = new TreeTile(96);      /*!< Dala de tip copac*/
-    public static Tile soilTile         = new SoilTile(95);      /*!< Dala de tip sol/pamant*/
-    public static Tile fundal        = new Fundal(94);
+    /*public static Tile grassTile        = new GrassTile(99);     /*!< Dala de tip iarba*/
+   // public static Tile mountainTile     = new MountainTile(98);  /*!< Dala de tip munte/piatra*/
+    //public static Tile waterTile        = new WaterTile(97);     /*!< Dala de tip apa*/
+    //public static Tile treeTile         = new TreeTile(96);      /*!< Dala de tip copac*/
+    //public static Tile soilTile         = new SoilTile(95);      /*!< Dala de tip sol/pamant*/
+    //public static Tile fundal        = new Fundal(94);
 
     public static Tile podea1        = new Podea1(0);
     public static Tile turn        = new Turn(1);
@@ -68,7 +74,41 @@ public class Tile
     public static Tile bookShelf31     = new BookShelf31(38);
     public static Tile bookShelf32     = new BookShelf32(39);
 
-    public static Tile stand1     = new Stand1(40);
+
+
+    public static Tile scara1     = new Scara1(41);
+    public static Tile scara2     = new Scara2(42);
+    public static Tile scara3     = new Scara3(43);
+    public static Tile scara4     = new Scara4(44);
+    public static Tile scara5     = new Scara5(45);
+    public static Tile scara6     = new Scara6(46);
+    public static Tile scara7     = new Scara7(47);
+    public static Tile scara8     = new Scara8(48);
+    public static Tile scara9     = new Scara9(49);
+    public static Tile scara10     = new Scara10(50);
+    public static Tile scara11    = new Scara11(51);
+    public static Tile scara12     = new Scara12(52);
+    public static Tile scara13     = new Scara13(53);
+    public static Tile scara14     = new Scara14(54);
+    public static Tile scara15    = new Scara15(55);
+    public static Tile scara16     = new Scara16(56);
+
+    public static Tile carte1     = new Carte1(57);
+    public static Tile carte2     = new Carte2(58);
+
+    public static Tile flacara     = new Flacara(59);
+    public static Tile flacara2     = new Flacara2(60);
+
+    public static Tile stand1     = new Stand1(61);
+    public static Tile stand2     = new Stand2(62);
+    public static Tile stand3     = new Stand3(63);
+
+    public static Tile stand4     = new Stand4(64);
+    public static Tile stand5     = new Stand5(65);
+
+    public static Tile clepsidra     = new Clepsidra(66);
+
+
 
 
 

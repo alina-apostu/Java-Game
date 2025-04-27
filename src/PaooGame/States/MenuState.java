@@ -163,26 +163,26 @@ public class MenuState extends State
         // verificam ce personaj a fost ales
         if(lunaBox.contains(mx,my)) selectedCharacter = "Luna";
         else if(freyaBox.contains(mx,my)) selectedCharacter = "Freya";
-             else if(emberBox.contains(mx,my)) selectedCharacter = "Ember";
-        // daca s-a dat click pe start mai intai verificam daca jucatorul a ales un personaj apoi trecem in PlayState
-                   else if(startButton.contains(mx,my))
-                   {
-                        if(selectedCharacter == null)
-                            JOptionPane.showMessageDialog(null, "You must choose a character before starting the game!", "Warning", JOptionPane.WARNING_MESSAGE);
-                        else
-                        {
-                            JOptionPane.showMessageDialog(null,"You chose: " + selectedCharacter + "\nLevel 1 is loading...", "Selected character",JOptionPane.INFORMATION_MESSAGE);
-                            State.SetState(new PlayState(refLink, selectedCharacter)); // schimbam starea jocului
-                        }
-                   }
-                        else if(loadButton.contains(mx,my))
-                        {
-                            JOptionPane.showMessageDialog(null,"Game is loading...", "Load game",JOptionPane.INFORMATION_MESSAGE);
-                        }
-                             else if(exitButton.contains(mx,my))
-                            {
-                                System.exit(0);
-                            }
+        else if(emberBox.contains(mx,my)) selectedCharacter = "Ember";
+            // daca s-a dat click pe start mai intai verificam daca jucatorul a ales un personaj apoi trecem in PlayState
+        else if(startButton.contains(mx,my))
+        {
+            if(selectedCharacter == null)
+                JOptionPane.showMessageDialog(null, "You must choose a character before starting the game!", "Warning", JOptionPane.WARNING_MESSAGE);
+            else
+            {
+                JOptionPane.showMessageDialog(null,"You chose: " + selectedCharacter + "\nLevel 1 is loading...", "Selected character",JOptionPane.INFORMATION_MESSAGE);
+                State.SetState(new PlayState(refLink, selectedCharacter)); // schimbam starea jocului
+            }
+        }
+        else if(loadButton.contains(mx,my))
+        {
+            JOptionPane.showMessageDialog(null,"Game is loading...", "Load game",JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if(exitButton.contains(mx,my))
+        {
+            System.exit(0);
+        }
     }
 
 }

@@ -56,13 +56,13 @@ public class Hero extends Character
         image = characterRight[0];
         characterIndex = 0; // se incepe de la primul cadru
         lastTime = System.currentTimeMillis(); // pentru a controla veteza animatiei
-            ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea implicita(normala)
+        ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea implicita(normala)
         normalBounds.x = 16;
         normalBounds.y = 16;
         normalBounds.width = 32;
         normalBounds.height = 32;
 
-            ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea de atac
+        ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea de atac
         attackBounds.x = 10;
         attackBounds.y = 10;
         attackBounds.width = 38;
@@ -137,25 +137,25 @@ public class Hero extends Character
      */
     private void GetInput()
     {
-            ///Implicit eroul nu trebuie sa se deplaseze daca nu este apasata o tasta
+        ///Implicit eroul nu trebuie sa se deplaseze daca nu este apasata o tasta
         xMove = 0;
         yMove = 0;
-            ///Verificare apasare tasta "sus"
+        ///Verificare apasare tasta "sus"
         if(refLink.GetKeyManager().up)
         {
             yMove = -speed;
         }
-            ///Verificare apasare tasta "jos"
+        ///Verificare apasare tasta "jos"
         if(refLink.GetKeyManager().down)
         {
             yMove = speed;
         }
-            ///Verificare apasare tasta "left"
+        ///Verificare apasare tasta "left"
         if(refLink.GetKeyManager().left)
         {
             xMove = -speed;
         }
-            ///Verificare apasare tasta "dreapta"
+        ///Verificare apasare tasta "dreapta"
         if(refLink.GetKeyManager().right)
         {
             xMove = speed;
@@ -172,7 +172,7 @@ public class Hero extends Character
     {
         g.drawImage(image, (int)x, (int)y, width, height, null);
 
-            ///doar pentru debug daca se doreste vizualizarea dreptunghiului de coliziune altfel se vor comenta urmatoarele doua linii
+        ///doar pentru debug daca se doreste vizualizarea dreptunghiului de coliziune altfel se vor comenta urmatoarele doua linii
         //g.setColor(Color.blue);
         //g.fillRect((int)(x + bounds.x), (int)(y + bounds.y), bounds.width, bounds.height);
     }

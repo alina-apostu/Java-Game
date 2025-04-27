@@ -1,6 +1,5 @@
 package PaooGame;
 
-import PaooGame.Camera.Camera;
 import PaooGame.Camera.Camera2;
 import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
@@ -93,11 +92,11 @@ public class Game implements Runnable
 
     public Game(String title, int width, int height)
     {
-            /// Obiectul GameWindow este creat insa fereastra nu este construita
-            /// Acest lucru va fi realizat in metoda init() prin apelul
-            /// functiei BuildGameWindow();
+        /// Obiectul GameWindow este creat insa fereastra nu este construita
+        /// Acest lucru va fi realizat in metoda init() prin apelul
+        /// functiei BuildGameWindow();
         wnd = new GameWindow(title, width, height);
-            /// Resetarea flagului runState ce indica starea firului de executie (started/stoped)
+        /// Resetarea flagului runState ce indica starea firului de executie (started/stoped)
         runState = false;
         ///Construirea obiectului de gestiune a evenimentelor de tastatura
         keyManager = new KeyManager();
@@ -112,7 +111,7 @@ public class Game implements Runnable
      */
     private void InitGame()
     {
-       //wnd = new GameWindow("Schelet Proiect PAOO", 800, 600);
+        //wnd = new GameWindow("Schelet Proiect PAOO", 800, 600);
         /// Este construita fereastra grafica.
         wnd.BuildGameWindow();
         wnd.GetWndFrame().requestFocus();
@@ -144,23 +143,23 @@ public class Game implements Runnable
      */
     public void run()
     {
-            /// Initializeaza obiectul game
+        /// Initializeaza obiectul game
         InitGame();
         long oldTime = System.nanoTime();   /*!< Retine timpul in nanosecunde aferent frame-ului anterior.*/
         long curentTime;                    /*!< Retine timpul curent de executie.*/
 
-            /// Apelul functiilor Update() & Draw() trebuie realizat la fiecare 16.7 ms
-            /// sau mai bine spus de 60 ori pe secunda.
+        /// Apelul functiilor Update() & Draw() trebuie realizat la fiecare 16.7 ms
+        /// sau mai bine spus de 60 ori pe secunda.
 
         final int framesPerSecond   = 60; /*!< Constanta intreaga initializata cu numarul de frame-uri pe secunda.*/
         final double timeFrame      = 1000000000 / framesPerSecond; /*!< Durata unui frame in nanosecunde.*/
 
-            /// Atat timp timp cat threadul este pornit Update() & Draw()
+        /// Atat timp timp cat threadul este pornit Update() & Draw()
         while (runState == true)
         {
-                /// Se obtine timpul curent
+            /// Se obtine timpul curent
             curentTime = System.nanoTime();
-                /// Daca diferenta de timp dintre curentTime si oldTime mai mare decat 16.6 ms
+            /// Daca diferenta de timp dintre curentTime si oldTime mai mare decat 16.6 ms
             if((curentTime - oldTime) > timeFrame)
             {
                 /// Actualizeaza pozitiile elementelor
@@ -182,17 +181,17 @@ public class Game implements Runnable
     {
         if(runState == false)
         {
-                /// Se actualizeaza flagul de stare a threadului
+            /// Se actualizeaza flagul de stare a threadului
             runState = true;
-                /// Se construieste threadul avand ca parametru obiectul Game. De retinut faptul ca Game class
-                /// implementeaza interfata Runnable. Threadul creat va executa functia run() suprascrisa in clasa Game.
+            /// Se construieste threadul avand ca parametru obiectul Game. De retinut faptul ca Game class
+            /// implementeaza interfata Runnable. Threadul creat va executa functia run() suprascrisa in clasa Game.
             gameThread = new Thread(this);
-                /// Threadul creat este lansat in executie (va executa metoda run())
+            /// Threadul creat este lansat in executie (va executa metoda run())
             gameThread.start();
         }
         else
         {
-                /// Thread-ul este creat si pornit deja
+            /// Thread-ul este creat si pornit deja
             return;
         }
     }
@@ -206,24 +205,24 @@ public class Game implements Runnable
     {
         if(runState == true)
         {
-                /// Actualizare stare thread
+            /// Actualizare stare thread
             runState = false;
-                /// Metoda join() arunca exceptii motiv pentru care trebuie incadrata intr-un block try - catch.
+            /// Metoda join() arunca exceptii motiv pentru care trebuie incadrata intr-un block try - catch.
             try
             {
-                    /// Metoda join() pune un thread in asteptare panca cand un altul isi termina executie.
-                    /// Totusi, in situatia de fata efectul apelului este de oprire a threadului.
+                /// Metoda join() pune un thread in asteptare panca cand un altul isi termina executie.
+                /// Totusi, in situatia de fata efectul apelului este de oprire a threadului.
                 gameThread.join();
             }
             catch(InterruptedException ex)
             {
-                    /// In situatia in care apare o exceptie pe ecran vor fi afisate informatii utile pentru depanare.
+                /// In situatia in care apare o exceptie pe ecran vor fi afisate informatii utile pentru depanare.
                 ex.printStackTrace();
             }
         }
         else
         {
-                /// Thread-ul este oprit deja.
+            /// Thread-ul este oprit deja.
             return;
         }
     }
@@ -260,27 +259,27 @@ public class Game implements Runnable
      */
     private void Draw()
     {
-            /// Returnez bufferStrategy pentru canvasul existent
+        /// Returnez bufferStrategy pentru canvasul existent
         bs = wnd.GetCanvas().getBufferStrategy();
-            /// Verific daca buffer strategy a fost construit sau nu
+        /// Verific daca buffer strategy a fost construit sau nu
         if(bs == null)
         {
-                /// Se executa doar la primul apel al metodei Draw()
+            /// Se executa doar la primul apel al metodei Draw()
             try
             {
-                    /// Se construieste tripul buffer
+                /// Se construieste tripul buffer
                 wnd.GetCanvas().createBufferStrategy(3);
                 return;
             }
             catch (Exception e)
             {
-                    /// Afisez informatii despre problema aparuta pentru depanare.
+                /// Afisez informatii despre problema aparuta pentru depanare.
                 e.printStackTrace();
             }
         }
-            /// Se obtine contextul grafic curent in care se poate desena.
+        /// Se obtine contextul grafic curent in care se poate desena.
         g = bs.getDrawGraphics();
-            /// Se sterge ce era
+        /// Se sterge ce era
         g.clearRect(0, 0, wnd.GetWndWidth(), wnd.GetWndHeight());
 
         Graphics2D g2d=(Graphics2D) g;
@@ -296,13 +295,13 @@ public class Game implements Runnable
 
 
         /// operatie de desenare
-            // ...............
+        // ...............
            /* Tile.grassTile.Draw(g, 0 * Tile.TILE_WIDTH, 0);
             Tile.soilTile.Draw(g, 1 * Tile.TILE_WIDTH, 0);
             Tile.waterTile.Draw(g, 2 * Tile.TILE_WIDTH, 0);
             Tile.mountainTile.Draw(g, 3 * Tile.TILE_WIDTH, 0);
             Tile.treeTile.Draw(g, 4 * Tile.TILE_WIDTH, 0);*/
-            //Tile.fundal.Draw(g, 0 * Tile.TILE_WIDTH, 0);
+        //Tile.fundal.Draw(g, 0 * Tile.TILE_WIDTH, 0);
         //g.drawImage(Assets.background, 0, 0, 100, 40, null);
        /* for (int x = 0; x < wnd.GetWndWidth(); x += 100) {
             for (int y = 0; y < wnd.GetWndHeight(); y += 40) {
@@ -332,38 +331,38 @@ public class Game implements Runnable
 
 
         /* g.drawRect(1 * Tile.TILE_WIDTH, 1 * Tile.TILE_HEIGHT, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);*/
-       //g.drawImage(Assets.background, 0, 0, wnd.GetWndWidth(), wnd.GetWndHeight(), null);//!!!afiseaza imaginea de funda, dar pe tot ecranul
+        //g.drawImage(Assets.background, 0, 0, wnd.GetWndWidth(), wnd.GetWndHeight(), null);//!!!afiseaza imaginea de funda, dar pe tot ecranul
 
 
-            // end operatie de desenare
-            /// Se afiseaza pe ecran
+        // end operatie de desenare
+        /// Se afiseaza pe ecran
         bs.show();
 
-            /// Elibereaza resursele de memorie aferente contextului grafic curent (zonele de memorie ocupate de
-            /// elementele grafice ce au fost desenate pe canvas).
+        /// Elibereaza resursele de memorie aferente contextului grafic curent (zonele de memorie ocupate de
+        /// elementele grafice ce au fost desenate pe canvas).
         g.dispose();
     }
 
 
-        public int GetWidth()
-        {
-            return wnd.GetWndWidth();
-        }
+    public int GetWidth()
+    {
+        return wnd.GetWndWidth();
+    }
 
-        /*! \fn public int GetHeight()
-            \brief Returneaza inaltimea ferestrei
-         */
-        public int GetHeight()
-        {
-            return wnd.GetWndHeight();
-        }
+    /*! \fn public int GetHeight()
+        \brief Returneaza inaltimea ferestrei
+     */
+    public int GetHeight()
+    {
+        return wnd.GetWndHeight();
+    }
 
-        /*! \fn public KeyManager GetKeyManager()
-            \brief Returneaza obiectul care gestioneaza tastatura.
-         */
-        public KeyManager GetKeyManager()
-        {
-            return keyManager;
-        }
+    /*! \fn public KeyManager GetKeyManager()
+        \brief Returneaza obiectul care gestioneaza tastatura.
+     */
+    public KeyManager GetKeyManager()
+    {
+        return keyManager;
+    }
 }
 

@@ -10,22 +10,6 @@ import java.awt.image.BufferedImage;
 public class Assets
 {
         /// Referinte catre elementele grafice (dale) utilizate in joc.
-    public static BufferedImage heroLeft;
-    public static BufferedImage heroRight;
-
-    public static BufferedImage soil;
-    public static BufferedImage grass;
-    public static BufferedImage mountain;
-    public static BufferedImage townGrass;
-    public static BufferedImage townGrassDestroyed;
-    public static BufferedImage townSoil;
-    public static BufferedImage water;
-    public static BufferedImage rockUp;
-    public static BufferedImage rockDown;
-    public static BufferedImage rockLeft;
-    public static BufferedImage rockRight;
-    public static BufferedImage tree;
-    public static BufferedImage background;
     public static BufferedImage podea1;
     public static BufferedImage turn;
     public static BufferedImage turn2;
@@ -70,12 +54,41 @@ public class Assets
     public static BufferedImage bookShelf31;
     public static BufferedImage bookShelf32;
 
+
+    public static BufferedImage scara1;
+    public static BufferedImage scara2;
+    public static BufferedImage scara3;
+    public static BufferedImage scara4;
+    public static BufferedImage scara5;
+    public static BufferedImage scara6;
+    public static BufferedImage scara7;
+    public static BufferedImage scara8;
+    public static BufferedImage scara9;
+    public static BufferedImage scara10;
+    public static BufferedImage scara11;
+    public static BufferedImage scara12;
+    public static BufferedImage scara13;
+    public static BufferedImage scara14;
+    public static BufferedImage scara15;
+    public static BufferedImage scara16;
+
+    public static BufferedImage carte1;
+    public static BufferedImage carte2;
+
+    public static BufferedImage flacara;
+    public static BufferedImage flacara2;
+
     public static BufferedImage stand1;
+    public static BufferedImage stand2;
+    public static BufferedImage stand3;
+    public static BufferedImage stand4;
+    public static BufferedImage stand5;
+
+    public static BufferedImage clepsidra;
 
     public static BufferedImage[] lunaUp, lunaRight;
     public static BufferedImage[] freyaUp, freyaRight;
     public static BufferedImage[] emberUp, emberRight;
-
 
 
     /*! \fn public static void Init()
@@ -129,6 +142,7 @@ public class Assets
         treaptaJos2=sheet2.crop(4,8);
         franghie=sheet2.crop(5,7);
         franghie2=sheet2.crop(4,7);
+
         bookShelf=sheet3.crop(16,4);
         bookShelf2=sheet3.crop(16,5);
         bookShelf3=sheet3.crop(16,6);
@@ -164,6 +178,37 @@ public class Assets
         bookShelf31=sheet3.crop(7,6);
         bookShelf32=sheet3.crop(7,7);
 
-        stand1=sheet4.crop(0,0);
+        scara1=sheet4.crop(7,7);
+        scara2=sheet4.crop(7,8);
+        scara3=sheet4.crop(7,9);
+        scara4=sheet4.crop(7,10);
+        scara5=sheet4.crop(8,7);
+        scara6=sheet4.crop(8,8);
+        scara7=sheet4.crop(8,9);
+        scara8=sheet4.crop(8,10);
+        scara9=sheet4.crop(9,7);
+        scara10=sheet4.crop(9,8);
+        scara11=sheet4.crop(9,9);
+        scara12=sheet4.crop(9,10);
+        scara13=sheet4.crop(10,7);
+        scara14=sheet4.crop(10,8);
+        scara15=sheet4.crop(10,9);
+        scara16=sheet4.crop(10,10);
+
+        carte1=sheet4.crop(2,0);
+        carte2=sheet4.crop(7,0);
+
+        flacara=sheet2.crop(4,1);
+        flacara2=sheet2.crop(4,2);
+
+        stand1=sheet4.crop(2,8);
+        stand2=sheet4.crop(2,9);
+        stand3=sheet4.crop(1,8);
+
+        stand4=sheet4.crop(3,8);
+        stand5=sheet4.crop(3,9);
+
+        clepsidra=sheet4.crop(0,0);
+
     }
 }

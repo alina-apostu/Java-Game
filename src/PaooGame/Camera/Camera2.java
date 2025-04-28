@@ -49,7 +49,7 @@ public class Camera2 {
 
         this.scale = Math.min(scaleX, scaleY)* (96 / ppi);;
         //System.out.println(scale);
-        this.scale=Math.min(scale, 3);
+        this.scale=Math.min(scale, 4);
         //System.out.println(scale);
         this.scale=(int)scale;
         this.scale = Math.max(2.5, scale);

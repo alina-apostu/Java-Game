@@ -6,7 +6,6 @@ import PaooGame.Graphics.Assets;
 import PaooGame.Input.KeyManager;
 import PaooGame.Input.MouseInput;
 import PaooGame.Items.Item;
-import PaooGame.Maps.Map;
 import PaooGame.States.*;
 import PaooGame.Tiles.Tile;
 
@@ -129,11 +128,11 @@ public class Game implements Runnable
         //settingsState   = new SettingsState(refLink);
         //aboutState      = new AboutState(refLink);
 
-
-        cam=new Camera2(0,0,300,192);
-        //Seteaza starea implicita cu care va fi lansat programul in executie
-        // setam starea implicita la menuState
+        cam=new Camera2(0,0,wnd.GetWndWidth(), wnd.GetWndHeight());
+        //cam=new Camera2(0,0,300,192);
+        ///Seteaza starea implicita cu care va fi lansat programul in executie
         State.SetState(menuState);
+
     }
 
     /*! \fn public void run()
@@ -285,8 +284,9 @@ public class Game implements Runnable
         Graphics2D g2d=(Graphics2D) g;
 
 
+
         g.setColor(new Color(72,60,50));//culoare fundal
-        //g.setColor(new Color(51,0,25));//culoare fundal
+      
         g.fillRect(0, 0, wnd.GetWndWidth(), wnd.GetWndHeight());//desenare efectiva a culorii
 
 

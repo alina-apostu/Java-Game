@@ -84,11 +84,16 @@ public class Assets
     public static BufferedImage stand4;
     public static BufferedImage stand5;
 
+
     public static BufferedImage clepsidra;
 
     public static BufferedImage[] lunaUp, lunaRight;
     public static BufferedImage[] freyaUp, freyaRight;
     public static BufferedImage[] emberUp, emberRight;
+
+
+ 
+
 
 
     /*! \fn public static void Init()

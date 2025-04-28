@@ -285,7 +285,7 @@ public class Game implements Runnable
         Graphics2D g2d=(Graphics2D) g;
 
 
-        g.setColor(new Color(163,145,132));//culoare fundal
+        g.setColor(new Color(72,60,50));//culoare fundal
         //g.setColor(new Color(51,0,25));//culoare fundal
         g.fillRect(0, 0, wnd.GetWndWidth(), wnd.GetWndHeight());//desenare efectiva a culorii
 

@@ -107,6 +107,7 @@ public class Tile
     public static Tile stand5     = new Stand5(65);
 
     public static Tile clepsidra     = new Clepsidra(66);
+    public static Tile podea2     = new Clepsidra(66);
 
 
 

@@ -91,6 +91,13 @@ public class Assets
     public static BufferedImage clepsidra;
 
 
+
+
+
+
+
+    public static BufferedImage podea2;
+
     /*! \fn public static void Init()
         \brief Functia initializaza referintele catre elementele grafice utilizate.
 
@@ -107,6 +114,10 @@ public class Assets
         SpriteSheet sheet3 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf.png"));
         SpriteSheet sheet4 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf2.png"));
         SpriteSheet sheet5 = new SpriteSheet(ImageLoader.LoadImage("/textures/paianjen_2.png"));
+
+
+
+        SpriteSheet sheet9 = new SpriteSheet(ImageLoader.LoadImage("/textures/podea2.png"));
 
             /// Se obtin subimaginile corespunzatoare elementelor necesare.
         //background = sheet.crop(0, 0);
@@ -203,6 +214,7 @@ public class Assets
         stand5=sheet4.crop(3,9);
 
         clepsidra=sheet4.crop(0,0);
+        podea2=sheet9.crop(0,0);
 
     }
 }

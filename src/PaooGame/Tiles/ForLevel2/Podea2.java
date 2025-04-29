@@ -1,15 +1,15 @@
-package PaooGame.Tiles.ForLevel1.Carti;
+package PaooGame.Tiles.ForLevel2;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Tiles.Tile;
 
-public class Carte1 extends Tile
+public class Podea2 extends Tile
 {
 
-        public Carte1(int id)
+        public Podea2(int id)
         {
             /// Apel al constructorului clasei de baza
-            super(Assets.carte1, id);
+            super(Assets.podea2, id);
         }
 
 }

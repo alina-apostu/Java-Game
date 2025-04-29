@@ -117,6 +117,7 @@ public class Assets
 
 
 
+
             /// Se obtin subimaginile corespunzatoare elementelor necesare.
         //background = sheet.crop(0, 0);
 

@@ -18,6 +18,10 @@ import java.awt.image.BufferedImage;
 public class Hero extends Character
 {
     private BufferedImage image;    /*!< Referinta catre imaginea curenta a eroului.*/
+    private BufferedImage[] characterUp; // in functie de ce personaj este ales in meniu
+    private BufferedImage[] characterRight;
+    private int characterIndex; // index care indica cadrul curent din animatie
+    private long lastTime;
 
     /*! \fn public Hero(RefLinks refLink, float x, float y)
         \brief Constructorul de initializare al clasei Hero.
@@ -26,19 +30,39 @@ public class Hero extends Character
         \param x Pozitia initiala pe axa X a eroului.
         \param y Pozitia initiala pe axa Y a eroului.
      */
-    public Hero(RefLinks refLink, float x, float y)
+    public Hero(RefLinks refLink, float x, float y, String characterName)
     {
-            ///Apel al constructorului clasei de baza
+        //Apel al constructorului clasei de baza
         super(refLink, x,y, Character.DEFAULT_CREATURE_WIDTH, Character.DEFAULT_CREATURE_HEIGHT);
-            ///Seteaza imaginea de start a eroului
-        image = Assets.heroLeft;
-            ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea implicita(normala)
+
+        if(characterName.equals("Luna"))
+        {
+            characterUp = Assets.lunaUp;
+            characterRight = Assets.lunaRight;
+        }
+        else if(characterName.equals("Freya"))
+        {
+            characterUp = Assets.freyaUp;
+            characterRight = Assets.freyaRight;
+        }
+        else if(characterName.equals("Ember"))
+        {
+            characterUp = Assets.emberUp;
+            characterRight = Assets.emberRight;
+        }
+        else throw new IllegalArgumentException("Invalid character name: " + characterName);
+
+        //Seteaza imaginea de start a eroului
+        image = characterRight[0];
+        characterIndex = 0; // se incepe de la primul cadru
+        lastTime = System.currentTimeMillis(); // pentru a controla veteza animatiei
+        ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea implicita(normala)
         normalBounds.x = 16;
         normalBounds.y = 16;
-        normalBounds.width = 16;
+        normalBounds.width = 32;
         normalBounds.height = 32;
 
-            ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea de atac
+        ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea de atac
         attackBounds.x = 10;
         attackBounds.y = 10;
         attackBounds.width = 38;
@@ -51,18 +75,61 @@ public class Hero extends Character
     @Override
     public void Update()
     {
-            ///Verifica daca a fost apasata o tasta
+        //Verifica daca a fost apasata o tasta
         GetInput();
-            ///Actualizeaza pozitia
+
+        //Actualizeaza pozitia
         Move();
-            ///Actualizeaza imaginea
-        if(refLink.GetKeyManager().left == true)
+
+        long currentTime = System.currentTimeMillis();
+        if(currentTime - lastTime > 150) // 150 ms intre cadre
         {
-            image = Assets.heroLeft;
+            characterIndex++; // avansam la urmatorul cadru
+            lastTime = currentTime;
         }
-        if(refLink.GetKeyManager().right == true) {
-            image = Assets.heroRight;
+
+        //Actualizeaza imaginea
+        if(refLink.GetKeyManager().up == true)
+        {
+            if(characterIndex < characterUp.length)
+                image = characterUp[characterIndex];
+            else
+            {
+                characterIndex = 0;
+                image = characterUp[characterIndex];
+            }
         }
+        else if(refLink.GetKeyManager().right == true)
+        {
+            if(characterIndex < characterRight.length)
+                image = characterRight[characterIndex];
+            else
+            {
+                characterIndex = 0;
+                image=characterRight[characterIndex];
+            }
+        }
+        else if(refLink.GetKeyManager().left == true)
+        {
+            if(characterIndex < characterRight.length)
+                image = flipImageHorizontally(characterRight[characterIndex]);
+            else
+            {
+                characterIndex = 0;
+                image=flipImageHorizontally(characterRight[characterIndex]);
+            }
+        }
+    }
+
+    private BufferedImage flipImageHorizontally(BufferedImage img)
+    {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        BufferedImage flippedImg = new BufferedImage(width,height,img.getType());
+        Graphics2D g = flippedImg.createGraphics();
+        g.drawImage(img,0, 0, width, height, width, 0, 0, height, null);
+        g.dispose();
+        return flippedImg;
     }
 
     /*! \fn private void GetInput()
@@ -70,25 +137,25 @@ public class Hero extends Character
      */
     private void GetInput()
     {
-            ///Implicit eroul nu trebuie sa se deplaseze daca nu este apasata o tasta
+        ///Implicit eroul nu trebuie sa se deplaseze daca nu este apasata o tasta
         xMove = 0;
         yMove = 0;
-            ///Verificare apasare tasta "sus"
+        ///Verificare apasare tasta "sus"
         if(refLink.GetKeyManager().up)
         {
             yMove = -speed;
         }
-            ///Verificare apasare tasta "jos"
+        ///Verificare apasare tasta "jos"
         if(refLink.GetKeyManager().down)
         {
             yMove = speed;
         }
-            ///Verificare apasare tasta "left"
+        ///Verificare apasare tasta "left"
         if(refLink.GetKeyManager().left)
         {
             xMove = -speed;
         }
-            ///Verificare apasare tasta "dreapta"
+        ///Verificare apasare tasta "dreapta"
         if(refLink.GetKeyManager().right)
         {
             xMove = speed;
@@ -105,7 +172,7 @@ public class Hero extends Character
     {
         g.drawImage(image, (int)x, (int)y, width, height, null);
 
-            ///doar pentru debug daca se doreste vizualizarea dreptunghiului de coliziune altfel se vor comenta urmatoarele doua linii
+        ///doar pentru debug daca se doreste vizualizarea dreptunghiului de coliziune altfel se vor comenta urmatoarele doua linii
         //g.setColor(Color.blue);
         //g.fillRect((int)(x + bounds.x), (int)(y + bounds.y), bounds.width, bounds.height);
     }

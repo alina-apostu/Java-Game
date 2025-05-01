@@ -93,6 +93,43 @@ public class Assets
 
 
 
+    public static BufferedImage podea2;
+    public static BufferedImage copac1;
+    public static BufferedImage copac2;
+    public static BufferedImage copac3;
+    public static BufferedImage copac4;
+    public static BufferedImage copac5;
+    public static BufferedImage copac6;
+    public static BufferedImage copac7;
+    public static BufferedImage copac8;
+    public static BufferedImage copac9;
+    public static BufferedImage copac10;
+    public static BufferedImage copac11;
+    public static BufferedImage copac12;
+    public static BufferedImage copac13;
+
+
+    public static BufferedImage bookShelf33;
+    public static BufferedImage bookShelf34;
+    public static BufferedImage bookShelf35;
+    public static BufferedImage bookShelf36;
+    public static BufferedImage bookShelf37;
+    public static BufferedImage bookShelf38;
+    public static BufferedImage bookShelf39;
+    public static BufferedImage bookShelf40;
+    public static BufferedImage bookShelf41;
+    public static BufferedImage bookShelf42;
+    public static BufferedImage bookShelf43;
+    public static BufferedImage bookShelf44;
+    public static BufferedImage bookShelf45;
+    public static BufferedImage bookShelf46;
+    public static BufferedImage bookShelf47;
+    public static BufferedImage bookShelf48;
+
+    public static BufferedImage fundal1;
+    public static BufferedImage potiune1;
+
+
 
 
 
@@ -112,10 +149,14 @@ public class Assets
         SpriteSheet sheet3 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf.png"));
         SpriteSheet sheet4 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf2.png"));
         SpriteSheet sheet5 = new SpriteSheet(ImageLoader.LoadImage("/textures/paianjen_2.png"));
+        SpriteSheet sheet6 = new SpriteSheet(ImageLoader.LoadImage("/textures/tavan1.png"));
+        SpriteSheet sheet7 = new SpriteSheet(ImageLoader.LoadImage("/textures/copac1.png"));
+        SpriteSheet sheet8 = new SpriteSheet(ImageLoader.LoadImage("/textures/fundal_verde1.png"));
 
         SpriteSheet lunaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/luna.png"));
         SpriteSheet freyaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/freya.png"));
         SpriteSheet emberSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/ember.png"));
+
 
             /// Se obtin subimaginile corespunzatoare elementelor necesare.
 
@@ -201,7 +242,7 @@ public class Assets
         scara16=sheet4.crop(10,10);
 
         carte1=sheet4.crop(2,0);
-        carte2=sheet4.crop(7,0);
+        carte2=sheet4.crop(6,0);
 
         flacara=sheet2.crop(4,1);
         flacara2=sheet2.crop(4,2);
@@ -215,5 +256,40 @@ public class Assets
 
         clepsidra=sheet4.crop(0,0);
 
+
+        podea2=sheet6.crop(0,0);
+        copac1=sheet7.crop(0,0); //incep tile uri pentru nivelul 2
+        copac2=sheet7.crop(0,1);
+        copac3=sheet7.crop(0,2);
+        copac4=sheet7.crop(0,3);
+        copac5=sheet7.crop(1,0);
+        copac6=sheet7.crop(1,1);
+        copac7=sheet7.crop(1,2);
+        copac8=sheet7.crop(1,3);
+        copac9=sheet7.crop(2,0);
+        copac10=sheet7.crop(2,1);
+        copac11=sheet7.crop(2,2);
+        copac12=sheet7.crop(2,3);
+        copac13=sheet7.crop(2,0);
+
+        bookShelf33=sheet3.crop(12,0);
+        bookShelf34=sheet3.crop(12,1);
+        bookShelf35=sheet3.crop(12,2);
+        bookShelf36=sheet3.crop(12,3);
+        bookShelf37=sheet3.crop(13,0);
+        bookShelf38=sheet3.crop(13,1);
+        bookShelf39=sheet3.crop(13,2);
+        bookShelf40=sheet3.crop(13,3);
+        bookShelf41=sheet3.crop(14,0);
+        bookShelf42=sheet3.crop(14,1);
+        bookShelf43=sheet3.crop(14,2);
+        bookShelf44=sheet3.crop(14,3);
+        bookShelf45=sheet3.crop(15,0);
+        bookShelf46=sheet3.crop(15,1);
+        bookShelf47=sheet3.crop(15,2);
+        bookShelf48=sheet3.crop(15,3);
+
+        fundal1=sheet8.crop(0,6);
+        potiune1=sheet4.crop(3,2);
     }
 }

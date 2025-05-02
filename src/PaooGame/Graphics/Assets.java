@@ -114,19 +114,23 @@ public class Assets
 
         // Se obtin subimaginile corespunzatoare elementelor necesare.
 
-        lunaUp = new BufferedImage[4];
+        lunaUp = new BufferedImage[3];
         lunaRight = new BufferedImage[2];
-        freyaUp = new BufferedImage[4];
+        freyaUp = new BufferedImage[3];
         freyaRight = new BufferedImage[2];
-        emberUp = new BufferedImage[4];
+        emberUp = new BufferedImage[3];
         emberRight = new BufferedImage[2];
 
-        for(int i=0;i<4;i++)
-        {
-            lunaUp[i] = lunaSheet.crop(i,0);
-            freyaUp[i] = freyaSheet.crop(i,0);
-            emberUp[i] = emberSheet.crop(i,0);
-        }
+        lunaUp[0] = lunaSheet.crop(0,1);
+        freyaUp[0] = freyaSheet.crop(0,1);
+        emberUp[0] = emberSheet.crop(0,1);
+        lunaUp[1] = lunaSheet.crop(1,0);
+        freyaUp[1] = freyaSheet.crop(1,0);
+        emberUp[1] = emberSheet.crop(1,0);
+        lunaUp[2] = lunaSheet.crop(0,1);
+        freyaUp[2] = freyaSheet.crop(0,1);
+        emberUp[2] = emberSheet.crop(0,1);
+
         for(int i=0;i<2;i++)
         {
             lunaRight[i] = lunaSheet.crop(i,1);

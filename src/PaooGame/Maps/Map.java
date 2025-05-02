@@ -19,6 +19,7 @@ public class Map {
     private final int NUM_LAYERS = 3; // numar layere
     private int Width2 = 32 * 100;
     private int Height2 = 32 * 6;
+    private int mapId;
 
     /*! \fn public Map(RefLinks refLink)
         \brief Constructorul de initializare al clasei.
@@ -28,7 +29,7 @@ public class Map {
     public Map(RefLinks refLink, int mapId) {
         /// Retine referinta "shortcut".
         this.refLink = refLink;
-
+        this.mapId=mapId;
         ///incarca harta de start. Functia poate primi ca argument id-ul hartii ce poate fi incarcat.
         LoadWorld(mapId);
     }
@@ -123,6 +124,7 @@ public class Map {
     public int GetHeight() {
         return this.height;
     }
+    public int getLevelIndex(){return this.mapId;}
 
     /*! \fn private void LoadWorld()
         \brief Functie de incarcare a hartii jocului.

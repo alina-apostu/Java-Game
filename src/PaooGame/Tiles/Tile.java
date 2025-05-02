@@ -9,6 +9,11 @@ import PaooGame.Tiles.ForLevel1.Scari.*;
 import PaooGame.Tiles.ForLevel1.Stand.*;
 import PaooGame.Tiles.ForLevel1.Turnuri.*;
 import PaooGame.Tiles.ForLevel1.Trepte.*;
+import PaooGame.Tiles.ForLevel2.*;
+import PaooGame.Tiles.ForLevel2.Copac.*;
+import PaooGame.Tiles.ForLevel2.Shelf3.*;
+import PaooGame.Tiles.ForLevel2.Fundal.*;
+import PaooGame.Tiles.ForLevel3.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,7 +23,7 @@ import java.awt.image.BufferedImage;
  */
 public class Tile
 {
-    private static final int NO_TILES   = 100;
+    private static final int NO_TILES   = 200;
     public static Tile[] tiles          = new Tile[NO_TILES];       /*!< Vector de referinte de tipuri de dale.*/
 
         /// De remarcat ca urmatoarele dale sunt statice si publice. Acest lucru imi permite sa le am incarcate
@@ -107,6 +112,45 @@ public class Tile
     public static Tile stand5     = new Stand5(65);
 
     public static Tile clepsidra     = new Clepsidra(66);
+    public static Tile podea2     = new Podea2(67);
+
+    public static Tile copac1     = new Copac1(68);
+    public static Tile copac2     = new Copac2(69);
+    public static Tile copac3     = new Copac3(70);
+    public static Tile copac4     = new Copac4(71);
+    public static Tile copac5     = new Copac5(72);
+    public static Tile copac6     = new Copac6(73);
+    public static Tile copac7     = new Copac7(74);
+    public static Tile copac8     = new Copac8(75);
+    public static Tile copac9     = new Copac9(76);
+    public static Tile copac10     = new Copac10(77);
+    public static Tile copac11     = new Copac11(78);
+    public static Tile copac12     = new Copac12(79);
+    public static Tile copac13     = new Copac13(80);
+
+    public static Tile bookShelf33     = new BookShelf33(81);
+    public static Tile bookShelf34     = new BookShelf34(82);
+    public static Tile bookShelf35     = new BookShelf35(83);
+    public static Tile bookShelf36     = new BookShelf36(84);
+    public static Tile bookShelf37     = new BookShelf37(85);
+    public static Tile bookShelf38     = new BookShelf38(86);
+    public static Tile bookShelf39     = new BookShelf39(87);
+    public static Tile bookShelf40     = new BookShelf40(88);
+    public static Tile bookShelf41     = new BookShelf41(89);
+    public static Tile bookShelf42     = new BookShelf42(90);
+    public static Tile bookShelf43     = new BookShelf43(91);
+    public static Tile bookShelf44     = new BookShelf44(92);
+    public static Tile bookShelf45     = new BookShelf45(93);
+    public static Tile bookShelf46     = new BookShelf46(94);
+    public static Tile bookShelf47     = new BookShelf47(95);
+    public static Tile bookShelf48     = new BookShelf48(96);
+
+    public static Tile fundal1     = new Fundal1(97);
+    public static Tile potiune1     = new Potiune1(98);
+
+    public static Tile lemn     = new Lemn(99);
+    public static Tile fundal2     = new Fundal2(100);
+
 
 
 

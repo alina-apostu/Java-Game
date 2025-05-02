@@ -1,7 +1,7 @@
 package PaooGame.States;
 
-//import PaooGame.Items.Hero;
 import PaooGame.Items.Hero;
+import PaooGame.Items.NPC.Mouse;
 import PaooGame.Items.Item;
 import PaooGame.Maps.Map;
 import PaooGame.RefLinks;
@@ -15,6 +15,7 @@ public class PlayState extends State
 {
     private Hero hero;  /*!< Referinta catre obiectul animat erou (controlat de utilizator).*/
     private Map map;    /*!< Referinta catre harta curenta.*/
+    //private Mouse mouse;
 
     /*! \fn public PlayState(RefLinks refLink)
         \brief Constructorul de initializare al clasei
@@ -30,7 +31,8 @@ public class PlayState extends State
             ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
             ///Construieste eroul
-        hero = new Hero(refLink,50, 125, selectedCharacter);
+        hero = new Hero(refLink,50, 115, selectedCharacter);
+        //mouse = new Mouse(refLink,300,111, "purple");
     }
 
     /*! \fn public void Update()
@@ -41,6 +43,7 @@ public class PlayState extends State
     {
         map.Update();
         hero.Update();
+        //mouse.Update();
     }
 
     /*! \fn public void Draw(Graphics g)
@@ -52,6 +55,7 @@ public class PlayState extends State
     public void Draw(Graphics g)
     {
         map.Draw(g);
+        //mouse.Draw(g);
         hero.Draw(g);
     }
 

@@ -84,12 +84,17 @@ public class Assets
     public static BufferedImage stand4;
     public static BufferedImage stand5;
 
+
     public static BufferedImage clepsidra;
 
     public static BufferedImage[] lunaUp, lunaRight;
     public static BufferedImage[] freyaUp, freyaRight;
     public static BufferedImage[] emberUp, emberRight;
 
+    public static BufferedImage[] greenMouse;
+    public static BufferedImage[] blueMouse;
+    public static BufferedImage[] purpleMouse;
+ 
 
     /*! \fn public static void Init()
         \brief Functia initializaza referintele catre elementele grafice utilizate.
@@ -114,6 +119,7 @@ public class Assets
 
         // Se obtin subimaginile corespunzatoare elementelor necesare.
 
+        // pisici
         lunaUp = new BufferedImage[3];
         lunaRight = new BufferedImage[2];
         freyaUp = new BufferedImage[3];
@@ -137,6 +143,23 @@ public class Assets
             freyaRight[i] = freyaSheet.crop(i,1);
             emberRight[i] = emberSheet.crop(i,1);
         }
+
+        // soricei
+        greenMouse = new BufferedImage[3];
+        blueMouse = new BufferedImage[3];
+        purpleMouse = new BufferedImage[3];
+
+        greenMouse[0] = ImageLoader.LoadImage("/NPC/green_mouse.png");
+        greenMouse[1] = ImageLoader.LoadImage("/NPC/green_mouse2.png");
+        greenMouse[2] = ImageLoader.LoadImage("/NPC/green_mouse3.png");
+
+        blueMouse[0] = ImageLoader.LoadImage("/NPC/blue_mouse.png");
+        blueMouse[1] = ImageLoader.LoadImage("/NPC/blue_mouse2.png");
+        blueMouse[2] = ImageLoader.LoadImage("/NPC/blue_mouse3.png");
+
+        purpleMouse[0] = ImageLoader.LoadImage("/NPC/purple_mouse.png");
+        purpleMouse[1] = ImageLoader.LoadImage("/NPC/purple_mouse2.png");
+        purpleMouse[2] = ImageLoader.LoadImage("/NPC/purple_mouse3.png");
 
         podea1=sheet.crop(0,3);
         turn=sheet2.crop(1,10);

@@ -13,6 +13,7 @@ import PaooGame.Tiles.ForLevel2.*;
 import PaooGame.Tiles.ForLevel2.Copac.*;
 import PaooGame.Tiles.ForLevel2.Shelf3.*;
 import PaooGame.Tiles.ForLevel2.Fundal.*;
+import PaooGame.Tiles.ForLevel3.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -146,6 +147,9 @@ public class Tile
 
     public static Tile fundal1     = new Fundal1(97);
     public static Tile potiune1     = new Potiune1(98);
+
+    public static Tile lemn     = new Lemn(99);
+    public static Tile fundal2     = new Fundal2(100);
 
 
 

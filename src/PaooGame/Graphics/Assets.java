@@ -94,6 +94,11 @@ public class Assets
     public static BufferedImage[] greenMouse;
     public static BufferedImage[] blueMouse;
     public static BufferedImage[] purpleMouse;
+
+    public static BufferedImage[] redSpider;
+    public static BufferedImage[] redSpiderAttack;
+    public static BufferedImage[] web;
+
  
 
     /*! \fn public static void Init()
@@ -104,9 +109,7 @@ public class Assets
      */
     public static void Init()
     {
-            /// Se creaza temporar un obiect SpriteSheet initializat prin intermediul clasei ImageLoader
-        //SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/background.png"));
-        //background = ImageLoader.LoadImage("/textures/background.png");
+        // Se creaza temporar un obiect SpriteSheet initializat prin intermediul clasei ImageLoader
         SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/podea1.png"));
         SpriteSheet sheet2 = new SpriteSheet(ImageLoader.LoadImage("/textures/turn.png"));
         SpriteSheet sheet3 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf.png"));
@@ -116,6 +119,9 @@ public class Assets
         SpriteSheet lunaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/luna.png"));
         SpriteSheet freyaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/freya.png"));
         SpriteSheet emberSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/ember.png"));
+
+        SpriteSheet redSpiderSheet = new SpriteSheet(ImageLoader.LoadImage("/NPC/red_spider.png"));
+        SpriteSheet webSheet = new SpriteSheet(ImageLoader.LoadImage("/NPC/web.png"));
 
         // Se obtin subimaginile corespunzatoare elementelor necesare.
 
@@ -161,6 +167,24 @@ public class Assets
         purpleMouse[1] = ImageLoader.LoadImage("/NPC/purple_mouse2.png");
         purpleMouse[2] = ImageLoader.LoadImage("/NPC/purple_mouse3.png");
 
+        // paianjenii rosii
+        redSpider = new BufferedImage[3];
+        redSpiderAttack = new BufferedImage[8];
+        web = new BufferedImage[6];
+
+        redSpider[0] = redSpiderSheet.crop(0,0);
+        redSpider[1] = redSpiderSheet.crop(1,0);
+        redSpider[2] = redSpiderSheet.crop(0,0);
+        for(int i=0;i<8;i++)
+        {
+            redSpiderAttack[i] = redSpiderSheet.crop(i,2);
+        }
+        for(int i=0;i<6;i++)
+        {
+            web[i] = webSheet.crop(i,0);
+        }
+
+        // elemente harti
         podea1=sheet.crop(0,3);
         turn=sheet2.crop(1,10);
         turn2=sheet2.crop(1,9);

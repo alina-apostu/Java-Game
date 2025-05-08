@@ -2,6 +2,7 @@ package PaooGame.States;
 
 import PaooGame.Items.Hero;
 import PaooGame.Items.NPC.Mouse;
+import PaooGame.Items.NPC.RedSpider;
 import PaooGame.Items.Item;
 import PaooGame.Maps.Map;
 import PaooGame.RefLinks;
@@ -15,7 +16,9 @@ public class PlayState extends State
 {
     private Hero hero;  /*!< Referinta catre obiectul animat erou (controlat de utilizator).*/
     private Map map;    /*!< Referinta catre harta curenta.*/
-    //private Mouse mouse;
+    private Mouse mouse;
+    private RedSpider redSpider;
+    private RedSpider redSpider2;
 
     /*! \fn public PlayState(RefLinks refLink)
         \brief Constructorul de initializare al clasei
@@ -33,6 +36,8 @@ public class PlayState extends State
             ///Construieste eroul
         hero = new Hero(refLink,50, 115, selectedCharacter);
         //mouse = new Mouse(refLink,300,111, "purple");
+        //redSpider = new RedSpider(refLink, 200, 115);
+        //redSpider2 = new RedSpider(refLink,250, 115);
     }
 
     /*! \fn public void Update()
@@ -44,6 +49,8 @@ public class PlayState extends State
         map.Update();
         hero.Update();
         //mouse.Update();
+        //redSpider.Update();
+        //redSpider2.Update();
     }
 
     /*! \fn public void Draw(Graphics g)
@@ -56,6 +63,8 @@ public class PlayState extends State
     {
         map.Draw(g);
         //mouse.Draw(g);
+        //redSpider.Draw(g);
+        //redSpider2.Draw(g);
         hero.Draw(g);
     }
 

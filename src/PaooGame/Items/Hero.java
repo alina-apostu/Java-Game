@@ -34,7 +34,7 @@ public class Hero extends Character
     private final float maxJumpSpeed = 6f; // viteza initiala de saritura
     private final float gravity = 0.5f; // acceleratia gravitationala (cat de repede cade)
     private long lastJumpTime = 0; // momentul ultimei apasari pe tasta up
-    private final long jumpBoost = 200; //(ms) daca se apasa rede iar tasta up creste inaltimea sariturii
+    private final long jumpBoost = 260; //(ms) daca se apasa rede iar tasta up creste inaltimea sariturii
     private float groundLevelY; // y unde se afla solul pe care coboara personajul
 
     /*! \fn public Hero(RefLinks refLink, float x, float y)

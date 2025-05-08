@@ -101,6 +101,52 @@ public class Assets
 
  
 
+
+
+    public static BufferedImage podea2;
+    public static BufferedImage copac1;
+    public static BufferedImage copac2;
+    public static BufferedImage copac3;
+    public static BufferedImage copac4;
+    public static BufferedImage copac5;
+    public static BufferedImage copac6;
+    public static BufferedImage copac7;
+    public static BufferedImage copac8;
+    public static BufferedImage copac9;
+    public static BufferedImage copac10;
+    public static BufferedImage copac11;
+    public static BufferedImage copac12;
+    public static BufferedImage copac13;
+
+
+    public static BufferedImage bookShelf33;
+    public static BufferedImage bookShelf34;
+    public static BufferedImage bookShelf35;
+    public static BufferedImage bookShelf36;
+    public static BufferedImage bookShelf37;
+    public static BufferedImage bookShelf38;
+    public static BufferedImage bookShelf39;
+    public static BufferedImage bookShelf40;
+    public static BufferedImage bookShelf41;
+    public static BufferedImage bookShelf42;
+    public static BufferedImage bookShelf43;
+    public static BufferedImage bookShelf44;
+    public static BufferedImage bookShelf45;
+    public static BufferedImage bookShelf46;
+    public static BufferedImage bookShelf47;
+    public static BufferedImage bookShelf48;
+
+    public static BufferedImage fundal1;
+    public static BufferedImage potiune1;
+    public static BufferedImage lemn;
+    public static BufferedImage fundal2;
+
+    public static BufferedImage[] spiderBlueRight;
+
+
+
+
+
     /*! \fn public static void Init()
         \brief Functia initializaza referintele catre elementele grafice utilizate.
 
@@ -115,6 +161,13 @@ public class Assets
         SpriteSheet sheet3 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf.png"));
         SpriteSheet sheet4 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf2.png"));
         SpriteSheet sheet5 = new SpriteSheet(ImageLoader.LoadImage("/textures/paianjen_2.png"));
+        SpriteSheet sheet6 = new SpriteSheet(ImageLoader.LoadImage("/textures/tavan1.png"));
+        SpriteSheet sheet7 = new SpriteSheet(ImageLoader.LoadImage("/textures/copac1.png"));
+        SpriteSheet sheet8 = new SpriteSheet(ImageLoader.LoadImage("/textures/fundal_verde1.png"));
+        SpriteSheet sheet9 = new SpriteSheet(ImageLoader.LoadImage("/textures/lemn2.png"));
+        SpriteSheet sheet10 = new SpriteSheet(ImageLoader.LoadImage("/textures/fundal_bej.png"));
+        SpriteSheet sheet11 = new SpriteSheet(ImageLoader.LoadImage("/textures/scari_maro1.png"));
+        SpriteSheet spiderBlueSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/SpiderBlue.png"));
 
         SpriteSheet lunaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/luna.png"));
         SpriteSheet freyaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/freya.png"));
@@ -133,6 +186,7 @@ public class Assets
         emberUp = new BufferedImage[3];
         emberRight = new BufferedImage[2];
 
+
         lunaUp[0] = lunaSheet.crop(0,1);
         freyaUp[0] = freyaSheet.crop(0,1);
         emberUp[0] = emberSheet.crop(0,1);
@@ -142,13 +196,16 @@ public class Assets
         lunaUp[2] = lunaSheet.crop(0,1);
         freyaUp[2] = freyaSheet.crop(0,1);
         emberUp[2] = emberSheet.crop(0,1);
-
+      
+        spiderBlueRight = new BufferedImage[7];
+      
         for(int i=0;i<2;i++)
         {
             lunaRight[i] = lunaSheet.crop(i,1);
             freyaRight[i] = freyaSheet.crop(i,1);
             emberRight[i] = emberSheet.crop(i,1);
         }
+
 
         // soricei
         greenMouse = new BufferedImage[3];
@@ -183,6 +240,14 @@ public class Assets
         {
             web[i] = webSheet.crop(i,0);
         }
+
+     
+        for(int i=0;i<6;i++)
+        {
+            spiderBlueRight[i] = spiderBlueSheet.crop(i,9);
+
+        }
+        spiderBlueRight[6]=spiderBlueSheet.crop(0,8);
 
         // elemente harti
         podea1=sheet.crop(0,3);
@@ -229,25 +294,25 @@ public class Assets
         bookShelf31=sheet3.crop(7,6);
         bookShelf32=sheet3.crop(7,7);
 
-        scara1=sheet4.crop(7,7);
-        scara2=sheet4.crop(7,8);
-        scara3=sheet4.crop(7,9);
-        scara4=sheet4.crop(7,10);
-        scara5=sheet4.crop(8,7);
-        scara6=sheet4.crop(8,8);
-        scara7=sheet4.crop(8,9);
-        scara8=sheet4.crop(8,10);
-        scara9=sheet4.crop(9,7);
-        scara10=sheet4.crop(9,8);
-        scara11=sheet4.crop(9,9);
-        scara12=sheet4.crop(9,10);
-        scara13=sheet4.crop(10,7);
-        scara14=sheet4.crop(10,8);
-        scara15=sheet4.crop(10,9);
-        scara16=sheet4.crop(10,10);
+        scara1=sheet11.crop(7,7);
+        scara2=sheet11.crop(7,8);
+        scara3=sheet11.crop(7,9);
+        scara4=sheet11.crop(7,10);
+        scara5=sheet11.crop(8,7);
+        scara6=sheet11.crop(8,8);
+        scara7=sheet11.crop(8,9);
+        scara8=sheet11.crop(8,10);
+        scara9=sheet11.crop(9,7);
+        scara10=sheet11.crop(9,8);
+        scara11=sheet11.crop(9,9);
+        scara12=sheet11.crop(9,10);
+        scara13=sheet11.crop(10,7);
+        scara14=sheet11.crop(10,8);
+        scara15=sheet11.crop(10,9);
+        scara16=sheet11.crop(10,10);
 
         carte1=sheet4.crop(2,0);
-        carte2=sheet4.crop(7,0);
+        carte2=sheet4.crop(6,0);
 
         flacara=sheet2.crop(4,1);
         flacara2=sheet2.crop(4,2);
@@ -260,6 +325,45 @@ public class Assets
         stand5=sheet4.crop(3,9);
 
         clepsidra=sheet4.crop(0,0);
+
+
+        podea2=sheet6.crop(0,0);
+        copac1=sheet7.crop(0,0); //incep tile uri pentru nivelul 2
+        copac2=sheet7.crop(0,1);
+        copac3=sheet7.crop(0,2);
+        copac4=sheet7.crop(0,3);
+        copac5=sheet7.crop(1,0);
+        copac6=sheet7.crop(1,1);
+        copac7=sheet7.crop(1,2);
+        copac8=sheet7.crop(1,3);
+        copac9=sheet7.crop(2,0);
+        copac10=sheet7.crop(2,1);
+        copac11=sheet7.crop(2,2);
+        copac12=sheet7.crop(2,3);
+        copac13=sheet7.crop(2,0);
+
+        bookShelf33=sheet3.crop(12,0);
+        bookShelf34=sheet3.crop(12,1);
+        bookShelf35=sheet3.crop(12,2);
+        bookShelf36=sheet3.crop(12,3);
+        bookShelf37=sheet3.crop(13,0);
+        bookShelf38=sheet3.crop(13,1);
+        bookShelf39=sheet3.crop(13,2);
+        bookShelf40=sheet3.crop(13,3);
+        bookShelf41=sheet3.crop(14,0);
+        bookShelf42=sheet3.crop(14,1);
+        bookShelf43=sheet3.crop(14,2);
+        bookShelf44=sheet3.crop(14,3);
+        bookShelf45=sheet3.crop(15,0);
+        bookShelf46=sheet3.crop(15,1);
+        bookShelf47=sheet3.crop(15,2);
+        bookShelf48=sheet3.crop(15,3);
+
+        fundal1=sheet8.crop(0,6);
+        potiune1=sheet4.crop(3,2);
+
+        lemn=sheet9.crop(2,6);
+        fundal2=sheet10.crop(0,6);
 
     }
 }

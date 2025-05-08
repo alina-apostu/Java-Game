@@ -178,6 +178,9 @@ public class Tile
     public static Tile magic23    = new Magic23(123);
 
 
+    public static Tile c1   = new C1(124);
+
+
 
 
 

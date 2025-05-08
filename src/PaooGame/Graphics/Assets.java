@@ -161,6 +161,8 @@ public class Assets
 
     public static BufferedImage web1;
 
+    public static BufferedImage c1;
+
 
 
 
@@ -191,6 +193,7 @@ public class Assets
         SpriteSheet spiderBlueSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/SpiderBlue.png"));
         SpriteSheet magic = new SpriteSheet(ImageLoader.LoadImage("/textures/CarteMagica.png"));
         SpriteSheet web = new SpriteSheet(ImageLoader.LoadImage("/textures/spiderWeb1.png"));
+        SpriteSheet sheet12 = new SpriteSheet(ImageLoader.LoadImage("/textures/cartiMari.png"));
 
         SpriteSheet lunaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/luna.png"));
         SpriteSheet freyaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/freya.png"));
@@ -368,6 +371,8 @@ public class Assets
         magic23=magic.crop(4,0);
 
         web1=web.crop(5,4);
+
+        c1=sheet12.crop(10,9);
 
     }
 }

@@ -17,13 +17,13 @@ public class SpiderBlue extends Character {
     public SpiderBlue(RefLinks refLink, float x, float y) {
         super(refLink, x, y, Character.DEFAULT_CREATURE_WIDTH, Character.DEFAULT_CREATURE_HEIGHT);
 
-        moveRight = Assets.spiderBlueRight; // Asigură-te că ai imagini în Assets.spiderRight
+        moveRight = Assets.spiderBlueRight;
         image = moveRight[0];
         characterIndex = 0;
         lastTime = System.currentTimeMillis();
 
-        leftLimit = x - 50;   // cât se mișcă în stânga
-        rightLimit = x + 50;  // cât se mișcă în dreapta
+        leftLimit = x - 50;
+        rightLimit = x + 50;
         speed = 1.0f;
 
         normalBounds.x = 16;

@@ -14,6 +14,8 @@ import PaooGame.Tiles.ForLevel2.Copac.*;
 import PaooGame.Tiles.ForLevel2.Shelf3.*;
 import PaooGame.Tiles.ForLevel2.Fundal.*;
 import PaooGame.Tiles.ForLevel3.*;
+import PaooGame.Tiles.ForLevel3.Magic.*;
+
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -150,6 +152,30 @@ public class Tile
 
     public static Tile lemn     = new Lemn(99);
     public static Tile fundal2     = new Fundal2(100);
+
+    public static Tile magic1     = new Magic1(101);
+    public static Tile magic2     = new Magic2(102);
+    public static Tile magic3     = new Magic3(103);
+    public static Tile magic4     = new Magic4(104);
+    public static Tile magic5     = new Magic5(105);
+    public static Tile magic6     = new Magic6(106);
+    public static Tile magic7     = new Magic7(107);
+    public static Tile magic8     = new Magic8(108);
+    public static Tile magic9     = new Magic9(109);
+    public static Tile magic10    = new Magic10(110);
+    public static Tile magic11    = new Magic11(111);
+    public static Tile magic12    = new Magic12(112);
+    public static Tile magic13     = new Magic13(113);
+    public static Tile magic14    = new Magic14(114);
+    public static Tile magic15    = new Magic15(115);
+    public static Tile magic16    = new Magic16(116);
+    public static Tile magic17     = new Magic17(117);
+    public static Tile magic18    = new Magic18(118);
+    public static Tile magic19    = new Magic19(119);
+    public static Tile magic20    = new Magic20(120);
+    public static Tile magic21    = new Magic21(121);
+    public static Tile magic22    = new Magic22(122);
+    public static Tile magic23    = new Magic23(123);
 
 
 

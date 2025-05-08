@@ -21,7 +21,21 @@ public class Hero extends Character
     private BufferedImage[] characterUp; // in functie de ce personaj este ales in meniu
     private BufferedImage[] characterRight;
     private int characterIndex; // index care indica cadrul curent din animatie
-    private long lastTime;
+
+    private boolean isAnimating = false; //
+    private String currentAnimation = ""; // "up", "right", "left"
+    private long lastFrameTime = 0; // cand a fost schimbat ultimul cadru
+    private final long frameInterval = 200; // cât de des (în ms) să schimbe cadrul
+
+    // pentru saritura
+    private boolean isJumping = false; // daca personajul este in faza de urcare (saritura)
+    private boolean isFalling = false; // daca personajul este in faza de coborare din saritura
+    private float jumpSpeed = 4f; // viteza de urcare/coborare in saritura
+    private final float maxJumpSpeed = 6f; // viteza initiala de saritura
+    private final float gravity = 0.5f; // acceleratia gravitationala (cat de repede cade)
+    private long lastJumpTime = 0; // momentul ultimei apasari pe tasta up
+    private final long jumpBoost = 260; //(ms) daca se apasa rede iar tasta up creste inaltimea sariturii
+    private float groundLevelY; // y unde se afla solul pe care coboara personajul
 
     /*! \fn public Hero(RefLinks refLink, float x, float y)
         \brief Constructorul de initializare al clasei Hero.
@@ -55,7 +69,6 @@ public class Hero extends Character
         //Seteaza imaginea de start a eroului
         image = characterRight[0];
         characterIndex = 0; // se incepe de la primul cadru
-        lastTime = System.currentTimeMillis(); // pentru a controla veteza animatiei
         ///Stabilieste pozitia relativa si dimensiunea dreptunghiului de coliziune, starea implicita(normala)
         normalBounds.x = 16;
         normalBounds.y = 16;
@@ -67,6 +80,8 @@ public class Hero extends Character
         attackBounds.y = 10;
         attackBounds.width = 38;
         attackBounds.height = 38;
+
+        this.groundLevelY = y; // retinem nivelul solului
     }
 
     /*! \fn public void Update()
@@ -78,47 +93,80 @@ public class Hero extends Character
         //Verifica daca a fost apasata o tasta
         GetInput();
 
-        //Actualizeaza pozitia
-        Move();
-
+        // timpul curent in ms
+        // este folosit pentru a controla timpul intre schimbarea cadrelor animatiei
         long currentTime = System.currentTimeMillis();
-        if(currentTime - lastTime > 150) // 150 ms intre cadre
+
+        if (isAnimating && currentTime - lastFrameTime > frameInterval)
         {
-            characterIndex++; // avansam la urmatorul cadru
-            lastTime = currentTime;
+            characterIndex++; // se schimba cadrul animatiei
+            lastFrameTime = currentTime;
+
+            switch (currentAnimation)
+            {
+                case "up":
+                    if (characterIndex >= characterUp.length)
+                    {
+                        characterIndex = 0;
+                        isAnimating = false;
+                    }
+                    else
+                    {
+                        image = characterUp[characterIndex];
+                    }
+                    break;
+
+                case "right":
+                    if (characterIndex >= characterRight.length)
+                    {
+                        characterIndex = 0;
+                        isAnimating = false;
+                    }
+                    else
+                    {
+                        image = characterRight[characterIndex];
+                    }
+                    break;
+
+                case "left":
+                    if (characterIndex >= characterRight.length)
+                    {
+                        characterIndex = 0;
+                        isAnimating = false;
+                    } else
+                    {
+                        image = flipImageHorizontally(characterRight[characterIndex]);
+                    }
+                    break;
+            }
         }
 
-        //Actualizeaza imaginea
-        if(refLink.GetKeyManager().up == true)
+        // saritura
+        if (isJumping)
         {
-            if(characterIndex < characterUp.length)
-                image = characterUp[characterIndex];
-            else
+            y -= jumpSpeed; // urca
+            jumpSpeed -= gravity; // se incetineste saritura
+
+            // personajul a atins varful sariturii
+            if (jumpSpeed <= 0)
             {
-                characterIndex = 0;
-                image = characterUp[characterIndex];
+                isJumping = false;
+                isFalling = true; // personajul incepe sa cada
             }
         }
-        else if(refLink.GetKeyManager().right == true)
+        else if (isFalling)
         {
-            if(characterIndex < characterRight.length)
-                image = characterRight[characterIndex];
-            else
+            y += jumpSpeed; // cade
+            jumpSpeed += gravity; // se accelereaza cadearea
+
+            if (y >= groundLevelY)
             {
-                characterIndex = 0;
-                image=characterRight[characterIndex];
+                y = groundLevelY;
+                isFalling = false; // se opreste caderea
+                jumpSpeed = 0; // viteza de saritura se reseteaza
             }
         }
-        else if(refLink.GetKeyManager().left == true)
-        {
-            if(characterIndex < characterRight.length)
-                image = flipImageHorizontally(characterRight[characterIndex]);
-            else
-            {
-                characterIndex = 0;
-                image=flipImageHorizontally(characterRight[characterIndex]);
-            }
-        }
+        Move();
     }
 
     private BufferedImage flipImageHorizontally(BufferedImage img)
@@ -140,25 +188,63 @@ public class Hero extends Character
         ///Implicit eroul nu trebuie sa se deplaseze daca nu este apasata o tasta
         xMove = 0;
         yMove = 0;
-        ///Verificare apasare tasta "sus"
-        if(refLink.GetKeyManager().up)
+
+        // sus
+        long currentTime = System.currentTimeMillis(); // timul actual in milisecunde
+        if (refLink.GetKeyManager().up)
         {
-            yMove = -speed;
+            // daca personajul nu sare sau coboara se initiaza o saritura
+            if (!isJumping && !isFalling)
+            {
+                isJumping = true;
+                jumpSpeed = maxJumpSpeed;
+                lastJumpTime = currentTime;
+            }
+            // daca personajul sare sau cade si jucatorul apasa repde din nou tasta up saritura o sa aiba un boost
+            else if ((isJumping || isFalling) && (currentTime - lastJumpTime < jumpBoost))
+            {
+                jumpSpeed += 1f;
+                // daca viteza sariturii depaseste maximul o facem egala cu maximul
+                if (jumpSpeed > maxJumpSpeed)
+                    jumpSpeed = maxJumpSpeed;
+            }
+
+            // daca nu se afla deja intr-o animatie se incepe una
+            if (!isAnimating)
+            {
+                isAnimating = true;
+                currentAnimation = "up";
+                characterIndex = 0;
+                image = characterUp[characterIndex];
+                lastFrameTime = currentTime;
+            }
         }
-        ///Verificare apasare tasta "jos"
-        if(refLink.GetKeyManager().down)
-        {
-            yMove = speed;
-        }
-        ///Verificare apasare tasta "left"
-        if(refLink.GetKeyManager().left)
-        {
-            xMove = -speed;
-        }
-        ///Verificare apasare tasta "dreapta"
-        if(refLink.GetKeyManager().right)
+
+        // dreapta
+        if (refLink.GetKeyManager().right)
         {
             xMove = speed;
+            if (!isAnimating)
+            {
+                isAnimating = true;
+                currentAnimation = "right";
+                characterIndex = 0;
+                image = characterRight[characterIndex];
+                lastFrameTime = currentTime;
+            }
+        }
+
+        // stanga
+        if (refLink.GetKeyManager().left)
+        {
+            xMove = -speed;
+            if (!isAnimating) {
+                isAnimating = true;
+                currentAnimation = "left";
+                characterIndex = 0;
+                image = flipImageHorizontally(characterRight[characterIndex]);
+                lastFrameTime = currentTime;
+            }
         }
     }
 

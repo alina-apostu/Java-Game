@@ -1,7 +1,8 @@
 package PaooGame.States;
 
-//import PaooGame.Items.Hero;
 import PaooGame.Items.Hero;
+import PaooGame.Items.NPC.Mouse;
+import PaooGame.Items.NPC.RedSpider;
 import PaooGame.Items.Item;
 import PaooGame.Items.SpiderBlue;
 import PaooGame.Maps.Map;
@@ -17,7 +18,13 @@ public class PlayState extends State
 {
     private Hero hero;  /*!< Referinta catre obiectul animat erou (controlat de utilizator).*/
     private Map map;    /*!< Referinta catre harta curenta.*/
+    
+    private Mouse mouse;
+    private RedSpider redSpider;
+    private RedSpider redSpider2;
+    
     private ArrayList<SpiderBlue> spiders;
+
     /*! \fn public PlayState(RefLinks refLink)
         \brief Constructorul de initializare al clasei
 
@@ -32,8 +39,11 @@ public class PlayState extends State
             ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
             ///Construieste eroul
-        hero = new Hero(refLink,100, 125, selectedCharacter);
 
+        hero = new Hero(refLink,50, 115, selectedCharacter);
+        //mouse = new Mouse(refLink,300,111, "purple");
+        //redSpider = new RedSpider(refLink, 200, 115);
+        //redSpider2 = new RedSpider(refLink,250, 115);
 
         spiders = new ArrayList<>();
         int x=map.getLevelIndex();
@@ -57,7 +67,9 @@ public class PlayState extends State
     {
         map.Update();
         hero.Update();
-
+        //mouse.Update();
+        //redSpider.Update();
+        //redSpider2.Update();
         for (SpiderBlue spider : spiders) {
             spider.Update();
         }
@@ -72,6 +84,9 @@ public class PlayState extends State
     public void Draw(Graphics g)
     {
         map.Draw(g);
+        //mouse.Draw(g);
+        //redSpider.Draw(g);
+        //redSpider2.Draw(g);
         hero.Draw(g);
 
         for (SpiderBlue spider : spiders) {

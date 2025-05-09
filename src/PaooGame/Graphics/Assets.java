@@ -136,8 +136,8 @@ public class Assets
 
 
     public static BufferedImage magic1;
-    public static BufferedImage magic2;
     public static BufferedImage magic3;
+    public static BufferedImage magic2;
     public static BufferedImage magic4;
     public static BufferedImage magic5;
     public static BufferedImage magic6;
@@ -162,6 +162,11 @@ public class Assets
     public static BufferedImage web1;
 
     public static BufferedImage c1;
+    public static BufferedImage c2;
+    public static BufferedImage c3;
+    public static BufferedImage c4;
+    public static BufferedImage c5;
+    public static BufferedImage c6;
 
 
 
@@ -193,7 +198,7 @@ public class Assets
         SpriteSheet spiderBlueSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/SpiderBlue.png"));
         SpriteSheet magic = new SpriteSheet(ImageLoader.LoadImage("/textures/CarteMagica.png"));
         SpriteSheet web = new SpriteSheet(ImageLoader.LoadImage("/textures/spiderWeb1.png"));
-        SpriteSheet sheet12 = new SpriteSheet(ImageLoader.LoadImage("/textures/cartiMari.png"));
+        SpriteSheet sheet12 = new SpriteSheet(ImageLoader.LoadImage("/textures/carti3_transp.png"));
 
         SpriteSheet lunaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/luna.png"));
         SpriteSheet freyaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/freya.png"));
@@ -372,7 +377,12 @@ public class Assets
 
         web1=web.crop(5,4);
 
-        c1=sheet12.crop(10,9);
+        c1=sheet12.crop(4,18);
+        c2=sheet12.crop(5,18);
+        c3=sheet12.crop(4,19);
+        c4=sheet12.crop(5,19);
+        c5=sheet12.crop(6,19);
+        c6=sheet12.crop(7,19);
 
     }
 }

@@ -14,6 +14,7 @@ import PaooGame.Tiles.ForLevel2.Copac.*;
 import PaooGame.Tiles.ForLevel2.Shelf3.*;
 import PaooGame.Tiles.ForLevel2.Fundal.*;
 import PaooGame.Tiles.ForLevel3.*;
+import PaooGame.Tiles.ForLevel3.CarteMare1.*;
 import PaooGame.Tiles.ForLevel3.Magic.*;
 
 
@@ -179,6 +180,11 @@ public class Tile
 
 
     public static Tile c1   = new C1(124);
+    public static Tile c2   = new C2(125);
+    public static Tile c3   = new C3(126);
+    public static Tile c4   = new C4(127);
+    public static Tile c5   = new C5(128);
+    public static Tile c6   = new C6(129);
 
 
 

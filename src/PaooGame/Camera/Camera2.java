@@ -58,6 +58,8 @@ public class Camera2 {
         this.x = x;
         this.y = y;
 
+        //logicWidth/scale=pixeli care se vad efectiv, nu cei reali
+
     }
 
     // metoda prin care se setează poziția camerei
@@ -85,28 +87,30 @@ public class Camera2 {
         return bounds;
     }
 
-    public void tick(Item player)
+   public void tick(Item player)
     {
-        this.x=player.GetX()-100 ;
+        this.x=player.GetX() -  bounds.getWidth() / 2;
 
         if (x < 0) {x = 0;}
 
-        else if (x > (TOTAL_WIDTH * TILE_SIZE ) - bounds.getWidth())
+        else if (x > ((TOTAL_WIDTH * TILE_SIZE ) - bounds.getWidth()*scale/2))
         {
-            x = (TOTAL_WIDTH* TILE_SIZE ) - bounds.getWidth();
+            x = (TOTAL_WIDTH* TILE_SIZE ) - bounds.getWidth()*scale/2;
+
         }
+
+//bounds.getWidth()*scale/2 sunt pixeli fizici si /2 pentru a ramane la capatul din dreapta jumatate din dimensiunea camerei
 
         this.y=0;
 
 
-        /*if (y < 0) {
-            y = 0;
-        }
-        if (y > (MAP_HEIGHT * TILE_SIZE * scale) - bounds.getHeight()) {
-            y = (MAP_HEIGHT * TILE_SIZE * scale) - bounds.getHeight();
-        }*/
 
     }
+
+
+
+
+
 
 
 

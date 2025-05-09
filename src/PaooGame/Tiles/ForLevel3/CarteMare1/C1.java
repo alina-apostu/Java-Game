@@ -1,4 +1,4 @@
-package PaooGame.Tiles.ForLevel3;
+package PaooGame.Tiles.ForLevel3.CarteMare1;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Tiles.Tile;

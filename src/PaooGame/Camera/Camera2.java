@@ -39,21 +39,23 @@ public class Camera2 {
         double logicHeight = height;//MAP_HEIGHT * TILE_SIZE*2; //384
 
 
+
         // factorul de scalare în funcție de dimensiunea ecranului
         double scaleX = screenWidth/ logicWidth;
         double scaleY = screenHeight/ logicHeight;
 
         System.out.println(screenWidth+" "+screenHeight+" "+scaleX+" "+ scaleY+"gata");
-        double diagonalInches = Math.sqrt(Math.pow(screenWidth, 2) + Math.pow(screenHeight, 2)) / 96; // ppi=densiotatea pixeli
-        double ppi = Math.sqrt(Math.pow(screenWidth, 2) + Math.pow(screenHeight, 2)) / diagonalInches;
 
-        this.scale = Math.min(scaleX, scaleY)* (96 / ppi);;
-        //System.out.println(scale);
-        this.scale=Math.min(scale, 4);
-        //System.out.println(scale);
-        this.scale=(int)scale;
-        this.scale = Math.max(2.5, scale);
-       // System.out.println(scale);
+        this.scale = Math.min(scaleX, scaleY);
+        double diff=Math.abs(scaleX-scaleY);
+        if(diff>=1)
+        {
+            this.scale=Math.ceil(scale);
+        }
+
+
+        this.scale = Math.max(1.0, Math.min(this.scale, 4.0)); System.out.println(scale);
+
         this.bounds = new Rectangle((int) x, (int) y, (int) (logicWidth/scale), (int) (logicHeight/scale));
         this.x = x;
         this.y = y;
@@ -106,12 +108,6 @@ public class Camera2 {
 
 
     }
-
-
-
-
-
-
 
 
 }

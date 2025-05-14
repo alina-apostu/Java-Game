@@ -1,15 +1,15 @@
-package PaooGame.Tiles.ForLevel3;
+package PaooGame.Tiles.ForLevel3.TipuriLemn;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Tiles.Tile;
 
-public class Lemn3 extends Tile
+public class Lemn extends Tile
 {
 
-        public Lemn3(int id)
+        public Lemn(int id)
         {
             /// Apel al constructorului clasei de baza
-            super(Assets.lemn3, id);
+            super(Assets.lemn, id);
         }
 
 }

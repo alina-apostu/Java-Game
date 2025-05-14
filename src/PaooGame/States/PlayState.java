@@ -61,14 +61,23 @@ public class PlayState extends State
             spiders.add(new SpiderBlue(refLink, 2750, 45));
             spiders.add(new SpiderBlue(refLink, 3050, 115));
         }
+        else if (map.getLevelIndex() == 3) { // Dacă este harta 3
+            spiders.add(new SpiderBlue(refLink, 280, 115));
+            spiders.add(new SpiderBlue(refLink, 300, 115));
+            spiders.add(new SpiderBlue(refLink, 320, 115));
+            spiders.add(new SpiderBlue(refLink, 850, 115));
+            spiders.add(new SpiderBlue(refLink, 1400, 115));
 
-        if (map.getLevelIndex() == 1)
+        }
+
+        else if (map.getLevelIndex() == 1)  //Daca este harta 1
         {
             mouse1 = new Mouse(refLink,300,111, "purple");
             mouse2 = new Mouse(refLink, 422, 120, "green");
         }
 
         collisionHandler = new CollisionHandler();
+
     }
 
     /*! \fn public void Update()

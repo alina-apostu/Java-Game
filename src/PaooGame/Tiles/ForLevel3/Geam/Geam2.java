@@ -1,22 +1,22 @@
-package PaooGame.Tiles.ForLevel3;
+package PaooGame.Tiles.ForLevel3.Geam;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Tiles.Tile;
 
 import java.awt.*;
 
-public class Panza1 extends Tile
+public class Geam2 extends Tile
 {
 
-        public Panza1(int id)
+        public Geam2(int id)
         {
             /// Apel al constructorului clasei de baza
-            super(Assets.panza1, id);
+            super(Assets.geam2, id);
         }
 
     @Override
     public void Draw(Graphics g, int x, int y) {
-        g.drawImage(img, x, y, 64, 64, null);
+        g.drawImage(img, x, y, 32, 32, null);
     }
 
 }

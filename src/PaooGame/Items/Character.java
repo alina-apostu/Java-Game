@@ -2,6 +2,8 @@ package PaooGame.Items;
 
 import PaooGame.RefLinks;
 
+import java.awt.*;
+
 /*! \class public abstract class Character extends Item
     \brief Defineste notiunea abstracta de caracter/individ/fiinta din joc.
 
@@ -130,6 +132,11 @@ public abstract class Character extends Item
     public void SetYMove(float yMove)
     {
         this.yMove = yMove;
+    }
+
+    public Rectangle getBounds()
+    {
+        return new Rectangle((int)x,(int)y,width,height);
     }
 }
 

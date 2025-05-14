@@ -14,10 +14,18 @@ public class Mouse extends PaooGame.Items.Character
     private long lastFrameTime;
     private final long frameInterval = 200; // intervalul la care se schimba cadrele
     private String currentColor;
+    private boolean consumed = false; // se face true cand pisica mananca soricelul si ii ia puterea
+
+    // sclipici
+    private boolean showSparkle = false;
+    private long sparkleStartTime;
+    private static final long sparkleDuration = 350; // ms
+    private String sparkleColor;
 
     public Mouse(RefLinks refLink, float x, float y, String mouseColor)
     {
         super(refLink, x,y, 50, 50);
+
 
         if(mouseColor.equals("green"))
         {
@@ -38,7 +46,7 @@ public class Mouse extends PaooGame.Items.Character
         {
             throw new IllegalArgumentException("Invalid mouse color: " + mouseColor);
         }
-
+        sparkleColor = currentColor;
         mouseIndex = 0; // incepem de la primul cadru
         lastFrameTime = System.currentTimeMillis();
 
@@ -49,6 +57,13 @@ public class Mouse extends PaooGame.Items.Character
     }
     public void Update()
     {
+        if(consumed)
+        {
+            if(showSparkle == true && System.currentTimeMillis() - sparkleStartTime > sparkleDuration)
+                showSparkle = false; // gata
+            return; // nu mai dam update la soarece
+        }
+
         long currentTime = System.currentTimeMillis();
 
         // schimbăm cadrul animației dacă a trecut suficient timp
@@ -63,6 +78,43 @@ public class Mouse extends PaooGame.Items.Character
     }
     public void Draw(Graphics g)
     {
+        if(consumed)
+        {
+            if(showSparkle)
+                if(sparkleColor.equals("purple"))
+                    g.drawImage(Assets.purple_sparkle, (int)(x+10), (int)y, width, height, null);
+                else if(sparkleColor.equals("green"))
+                    g.drawImage(Assets.green_sparkle, (int)(x+10), (int)y, width, height, null);
+                else if(sparkleColor.equals("blue"))
+                    g.drawImage(Assets.blue_sparkle, (int)(x+10), (int)y, width, height, null);
+            return; // nu mai desenam soarecele
+        }
         g.drawImage(currentMouse[mouseIndex], (int)x, (int)y, width, height, null );
+    }
+
+    public boolean isConsumed()
+    {
+        return consumed;
+    }
+
+    public String getCurrentColor()
+    {
+        return currentColor;
+    }
+
+    public void setConsumed(boolean consumed)
+    {
+        this.consumed = consumed;
+    }
+
+    @Override
+    public Rectangle getBounds() {
+        return new Rectangle((int)(x + 14), (int)(y + 14), width - 28, height - 28);
+    }
+
+    public void showSparkle()
+    {
+        showSparkle = true;
+        sparkleStartTime = System.currentTimeMillis();
     }
 }

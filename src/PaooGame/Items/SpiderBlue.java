@@ -81,6 +81,6 @@ public class SpiderBlue extends Character {
 
     @Override
     public void Draw(Graphics g) {
-        g.drawImage(image, (int)x, (int)y, width, height, null);
+        g.drawImage(image, (int) x, (int) y, width, height, null);
     }
 }

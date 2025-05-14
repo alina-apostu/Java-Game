@@ -91,6 +91,18 @@ public class Assets
     public static BufferedImage[] freyaUp, freyaRight;
     public static BufferedImage[] emberUp, emberRight;
 
+    public static BufferedImage[] greenMouse;
+    public static BufferedImage[] blueMouse;
+    public static BufferedImage[] purpleMouse;
+    public static  BufferedImage purple_sparkle;
+    public static BufferedImage green_sparkle;
+    public static BufferedImage blue_sparkle;
+
+    public static BufferedImage[] redSpider;
+    public static BufferedImage[] redSpiderAttack;
+    public static BufferedImage[] web;
+
+ 
 
 
 
@@ -224,9 +236,7 @@ public class Assets
      */
     public static void Init()
     {
-            /// Se creaza temporar un obiect SpriteSheet initializat prin intermediul clasei ImageLoader
-        //SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/background.png"));
-        //background = ImageLoader.LoadImage("/textures/background.png");
+        // Se creaza temporar un obiect SpriteSheet initializat prin intermediul clasei ImageLoader
         SpriteSheet sheet = new SpriteSheet(ImageLoader.LoadImage("/textures/podea1.png"));
         SpriteSheet sheet2 = new SpriteSheet(ImageLoader.LoadImage("/textures/turn.png"));
         SpriteSheet sheet3 = new SpriteSheet(ImageLoader.LoadImage("/textures/bookShelf.png"));
@@ -248,24 +258,32 @@ public class Assets
         SpriteSheet freyaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/freya.png"));
         SpriteSheet emberSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/ember.png"));
 
+        SpriteSheet redSpiderSheet = new SpriteSheet(ImageLoader.LoadImage("/NPC/red_spider.png"));
+        SpriteSheet webSheet = new SpriteSheet(ImageLoader.LoadImage("/NPC/web.png"));
 
-            /// Se obtin subimaginile corespunzatoare elementelor necesare.
+        // Se obtin subimaginile corespunzatoare elementelor necesare.
 
-        lunaUp = new BufferedImage[4];
+        // pisici
+        lunaUp = new BufferedImage[3];
         lunaRight = new BufferedImage[2];
-        freyaUp = new BufferedImage[4];
+        freyaUp = new BufferedImage[3];
         freyaRight = new BufferedImage[2];
-        emberUp = new BufferedImage[4];
+        emberUp = new BufferedImage[3];
         emberRight = new BufferedImage[2];
 
-        spiderBlueRight = new BufferedImage[7];
 
-        for(int i=0;i<4;i++)
-        {
-            lunaUp[i] = lunaSheet.crop(i,0);
-            freyaUp[i] = freyaSheet.crop(i,0);
-            emberUp[i] = emberSheet.crop(i,0);
-        }
+        lunaUp[0] = lunaSheet.crop(0,1);
+        freyaUp[0] = freyaSheet.crop(0,1);
+        emberUp[0] = emberSheet.crop(0,1);
+        lunaUp[1] = lunaSheet.crop(1,0);
+        freyaUp[1] = freyaSheet.crop(1,0);
+        emberUp[1] = emberSheet.crop(1,0);
+        lunaUp[2] = lunaSheet.crop(0,1);
+        freyaUp[2] = freyaSheet.crop(0,1);
+        emberUp[2] = emberSheet.crop(0,1);
+      
+        spiderBlueRight = new BufferedImage[7];
+      
         for(int i=0;i<2;i++)
         {
             lunaRight[i] = lunaSheet.crop(i,1);
@@ -273,6 +291,46 @@ public class Assets
             emberRight[i] = emberSheet.crop(i,1);
         }
 
+
+        // soricei
+        greenMouse = new BufferedImage[3];
+        blueMouse = new BufferedImage[3];
+        purpleMouse = new BufferedImage[3];
+
+        purple_sparkle = ImageLoader.LoadImage("/NPC/purple_glitter.png");
+        green_sparkle = ImageLoader.LoadImage("/NPC/green_glitter.png");
+        blue_sparkle = ImageLoader.LoadImage("/NPC/blue_glitter.png");
+
+        greenMouse[0] = ImageLoader.LoadImage("/NPC/green_mouse.png");
+        greenMouse[1] = ImageLoader.LoadImage("/NPC/green_mouse2.png");
+        greenMouse[2] = ImageLoader.LoadImage("/NPC/green_mouse3.png");
+
+        blueMouse[0] = ImageLoader.LoadImage("/NPC/blue_mouse.png");
+        blueMouse[1] = ImageLoader.LoadImage("/NPC/blue_mouse2.png");
+        blueMouse[2] = ImageLoader.LoadImage("/NPC/blue_mouse3.png");
+
+        purpleMouse[0] = ImageLoader.LoadImage("/NPC/purple_mouse.png");
+        purpleMouse[1] = ImageLoader.LoadImage("/NPC/purple_mouse2.png");
+        purpleMouse[2] = ImageLoader.LoadImage("/NPC/purple_mouse3.png");
+
+        // paianjenii rosii
+        redSpider = new BufferedImage[3];
+        redSpiderAttack = new BufferedImage[8];
+        web = new BufferedImage[6];
+
+        redSpider[0] = redSpiderSheet.crop(0,0);
+        redSpider[1] = redSpiderSheet.crop(1,0);
+        redSpider[2] = redSpiderSheet.crop(0,0);
+        for(int i=0;i<8;i++)
+        {
+            redSpiderAttack[i] = redSpiderSheet.crop(i,2);
+        }
+        for(int i=0;i<6;i++)
+        {
+            web[i] = webSheet.crop(i,0);
+        }
+
+     
         for(int i=0;i<6;i++)
         {
             spiderBlueRight[i] = spiderBlueSheet.crop(i,9);
@@ -280,6 +338,7 @@ public class Assets
         }
         spiderBlueRight[6]=spiderBlueSheet.crop(0,8);
 
+        // elemente harti
         podea1=sheet.crop(0,3);
         turn=sheet2.crop(1,10);
         turn2=sheet2.crop(1,9);

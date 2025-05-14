@@ -79,7 +79,8 @@ public class PlayState extends State
         map.Update();
         collisionHandler.checkCollision(hero, mouse1); // Verifici ÎNAINTE de mutare
         collisionHandler.checkCollision(hero,mouse2);
-        if (!Game.isPaused) {
+        if (!Game.isPaused)
+        {
             hero.Update();  // Doar dacă nu e pauză, îl lași să se miște
         }
         mouse1.Update();

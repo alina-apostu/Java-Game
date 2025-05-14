@@ -1,5 +1,6 @@
 package PaooGame.Items;
 
+import PaooGame.Game;
 import PaooGame.Graphics.Assets;
 import PaooGame.RefLinks;
 
@@ -36,6 +37,8 @@ public class Hero extends Character
     private long lastJumpTime = 0; // momentul ultimei apasari pe tasta up
     private final long jumpBoost = 260; //(ms) daca se apasa rede iar tasta up creste inaltimea sariturii
     private float groundLevelY; // y unde se afla solul pe care coboara personajul
+
+    private String power; // puterea luate de la soricei
 
     /*! \fn public Hero(RefLinks refLink, float x, float y)
         \brief Constructorul de initializare al clasei Hero.
@@ -185,6 +188,13 @@ public class Hero extends Character
      */
     private void GetInput()
     {
+        if(Game.isPaused == true)
+        {
+            SetXMove(0);
+            SetYMove(0);
+            return;
+        }
+
         ///Implicit eroul nu trebuie sa se deplaseze daca nu este apasata o tasta
         xMove = 0;
         yMove = 0;
@@ -238,7 +248,8 @@ public class Hero extends Character
         if (refLink.GetKeyManager().left)
         {
             xMove = -speed;
-            if (!isAnimating) {
+            if (!isAnimating)
+            {
                 isAnimating = true;
                 currentAnimation = "left";
                 characterIndex = 0;
@@ -261,5 +272,20 @@ public class Hero extends Character
         ///doar pentru debug daca se doreste vizualizarea dreptunghiului de coliziune altfel se vor comenta urmatoarele doua linii
         //g.setColor(Color.blue);
         //g.fillRect((int)(x + bounds.x), (int)(y + bounds.y), bounds.width, bounds.height);
+    }
+
+    public void setPower(String power)
+    {
+        this.power = power;
+    }
+
+    public String getPower()
+    {
+        return power;
+    }
+
+    @Override
+    public Rectangle getBounds() {
+        return new Rectangle((int)(x + 14), (int)(y + 14), width - 28, height - 28);
     }
 }

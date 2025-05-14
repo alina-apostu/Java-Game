@@ -1,12 +1,13 @@
-package PaooGame.Items;
+package PaooGame.Items.NPC;
 
 import PaooGame.Graphics.Assets;
+import PaooGame.Items.Character;
 import PaooGame.RefLinks;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SpiderBlue extends Character {
+public class SpiderBlue extends PaooGame.Items.Character {
     private BufferedImage[] moveRight;
     private BufferedImage image;
     private int characterIndex;
@@ -15,7 +16,7 @@ public class SpiderBlue extends Character {
     private float leftLimit, rightLimit;
 
     public SpiderBlue(RefLinks refLink, float x, float y) {
-        super(refLink, x, y, Character.DEFAULT_CREATURE_WIDTH, Character.DEFAULT_CREATURE_HEIGHT);
+        super(refLink, x, y, PaooGame.Items.Character.DEFAULT_CREATURE_WIDTH, Character.DEFAULT_CREATURE_HEIGHT);
 
         moveRight = Assets.spiderBlueRight; // Asigură-te că ai imagini în Assets.spiderRight
         image = moveRight[0];

@@ -59,7 +59,8 @@ public class RedSpider extends Character
 
         if(isWebVisible == true)
         {
-            if (currentTime - lastWebFrameTime >= webFrameInterval) {
+            if (currentTime - lastWebFrameTime >= webFrameInterval)
+            {
                 lastWebFrameTime = currentTime;
                 if (webIndex < web.length - 1)
                     webIndex++;

@@ -94,6 +94,9 @@ public class Assets
     public static BufferedImage[] greenMouse;
     public static BufferedImage[] blueMouse;
     public static BufferedImage[] purpleMouse;
+    public static  BufferedImage purple_sparkle;
+    public static BufferedImage green_sparkle;
+    public static BufferedImage blue_sparkle;
 
     public static BufferedImage[] redSpider;
     public static BufferedImage[] redSpiderAttack;
@@ -211,6 +214,10 @@ public class Assets
         greenMouse = new BufferedImage[3];
         blueMouse = new BufferedImage[3];
         purpleMouse = new BufferedImage[3];
+
+        purple_sparkle = ImageLoader.LoadImage("/NPC/purple_glitter.png");
+        green_sparkle = ImageLoader.LoadImage("/NPC/green_glitter.png");
+        blue_sparkle = ImageLoader.LoadImage("/NPC/blue_glitter.png");
 
         greenMouse[0] = ImageLoader.LoadImage("/NPC/green_mouse.png");
         greenMouse[1] = ImageLoader.LoadImage("/NPC/green_mouse2.png");

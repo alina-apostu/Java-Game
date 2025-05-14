@@ -16,7 +16,7 @@ public class Map {
     private int height;         /*!< Inaltimea hartii in numar de dale.*/
     //private int [][] tiles;     /*!< Referinta catre o matrice cu codurile dalelor ce vor construi harta.*/
     private int[][][] layers;
-    private final int NUM_LAYERS = 3; // numar layere
+    private final int NUM_LAYERS = 5; // numar layere
     private int Width2 = 32 * 100;
     private int Height2 = 32 * 6;
     private int mapId;

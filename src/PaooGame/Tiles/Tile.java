@@ -14,7 +14,14 @@ import PaooGame.Tiles.ForLevel2.Copac.*;
 import PaooGame.Tiles.ForLevel2.Shelf3.*;
 import PaooGame.Tiles.ForLevel2.Fundal.*;
 import PaooGame.Tiles.ForLevel3.*;
+import PaooGame.Tiles.ForLevel3.CarteCotor1.*;
+import PaooGame.Tiles.ForLevel3.CarteJos1.*;
+import PaooGame.Tiles.ForLevel3.CarteJos2.*;
 import PaooGame.Tiles.ForLevel3.CarteMare1.*;
+import PaooGame.Tiles.ForLevel3.CarteMare2.*;
+import PaooGame.Tiles.ForLevel3.Fantoma.Fantoma1;
+import PaooGame.Tiles.ForLevel3.Fantoma.Fantoma2;
+import PaooGame.Tiles.ForLevel3.FinalWeb.*;
 import PaooGame.Tiles.ForLevel3.Magic.*;
 
 
@@ -185,6 +192,42 @@ public class Tile
     public static Tile c4   = new C4(127);
     public static Tile c5   = new C5(128);
     public static Tile c6   = new C6(129);
+
+
+    public static Tile cc1   = new CC1(130);
+    public static Tile cc2   = new CC2(131);
+    public static Tile cc3   = new CC3(132);
+
+    public static Tile web1   = new Web1(133);
+
+    public static Tile lemn3     = new Lemn3(134);
+
+    public static Tile ccc1   = new CCC1(135);
+    public static Tile ccc2   = new CCC2(136);
+    public static Tile ccc3   = new CCC3(137);
+    public static Tile ccc4   = new CCC4(138);
+    public static Tile ccc5   = new CCC5(139);
+    public static Tile ccc6   = new CCC6(140);
+
+    public static Tile fantoma1   = new Fantoma1(141);
+    public static Tile fantoma2   = new Fantoma2(142);
+
+    public static Tile panza1   = new Panza1(143);
+    public static Tile panza2   = new Panza2(144);
+
+    public static Tile ccc7   = new CCC7(145);
+    public static Tile ccc8   = new CCC8(146);
+    public static Tile ccc9   = new CCC9(147);
+    public static Tile ccc10  = new CCC10(148);
+    public static Tile ccc11  = new CCC11(149);
+    public static Tile ccc12  = new CCC12(150);
+
+    public static Tile c7   = new C7(151);
+    public static Tile c8   = new C8(152);
+    public static Tile c9   = new C9(153);
+    public static Tile c10  = new C10(154);
+    public static Tile c11  = new C11(155);
+    public static Tile c12  = new C12(156);
 
 
 

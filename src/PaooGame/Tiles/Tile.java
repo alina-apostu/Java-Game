@@ -13,7 +13,6 @@ import PaooGame.Tiles.ForLevel2.*;
 import PaooGame.Tiles.ForLevel2.Copac.*;
 import PaooGame.Tiles.ForLevel2.Shelf3.*;
 import PaooGame.Tiles.ForLevel2.Fundal.*;
-import PaooGame.Tiles.ForLevel3.*;
 import PaooGame.Tiles.ForLevel3.CarteCotor1.*;
 import PaooGame.Tiles.ForLevel3.CarteJos1.*;
 import PaooGame.Tiles.ForLevel3.CarteJos2.*;
@@ -22,7 +21,13 @@ import PaooGame.Tiles.ForLevel3.CarteMare2.*;
 import PaooGame.Tiles.ForLevel3.Fantoma.Fantoma1;
 import PaooGame.Tiles.ForLevel3.Fantoma.Fantoma2;
 import PaooGame.Tiles.ForLevel3.FinalWeb.*;
+import PaooGame.Tiles.ForLevel3.Geam.*;
 import PaooGame.Tiles.ForLevel3.Magic.*;
+import PaooGame.Tiles.ForLevel3.Panza.Panza1;
+import PaooGame.Tiles.ForLevel3.Panza.Panza2;
+import PaooGame.Tiles.ForLevel3.Panza.Panza3;
+import PaooGame.Tiles.ForLevel3.TipuriLemn.Lemn;
+import PaooGame.Tiles.ForLevel3.TipuriLemn.Lemn3;
 
 
 import java.awt.*;
@@ -228,6 +233,15 @@ public class Tile
     public static Tile c10  = new C10(154);
     public static Tile c11  = new C11(155);
     public static Tile c12  = new C12(156);
+
+    public static Tile panza3   = new Panza3(157);
+
+    public static Tile geam1   = new Geam1(158);
+    public static Tile geam2   = new Geam2(159);
+    public static Tile geam3   = new Geam3(160);
+    public static Tile geam4   = new Geam4(161);
+    public static Tile geam5   = new Geam5(162);
+    public static Tile geam6   = new Geam6(163);
 
 
 

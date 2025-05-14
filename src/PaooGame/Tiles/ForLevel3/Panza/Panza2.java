@@ -1,9 +1,7 @@
-package PaooGame.Tiles.ForLevel3;
+package PaooGame.Tiles.ForLevel3.Panza;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Tiles.Tile;
-
-import java.awt.*;
 
 public class Panza2 extends Tile
 {

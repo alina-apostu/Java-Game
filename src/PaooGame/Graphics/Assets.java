@@ -202,6 +202,15 @@ public class Assets
     public static BufferedImage c11;
     public static BufferedImage c12;
 
+    public static BufferedImage panza3;
+
+    public static BufferedImage geam1;
+    public static BufferedImage geam2;
+    public static BufferedImage geam3;
+    public static BufferedImage geam4;
+    public static BufferedImage geam5;
+    public static BufferedImage geam6;
+
 
 
 
@@ -231,7 +240,7 @@ public class Assets
         SpriteSheet sheet11 = new SpriteSheet(ImageLoader.LoadImage("/textures/scari_maro1.png"));
         SpriteSheet spiderBlueSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/SpiderBlue.png"));
         SpriteSheet magic = new SpriteSheet(ImageLoader.LoadImage("/textures/CarteMagica.png"));
-        SpriteSheet web = new SpriteSheet(ImageLoader.LoadImage("/textures/spiderWeb1.png"));
+        //SpriteSheet web = new SpriteSheet(ImageLoader.LoadImage("/textures/spiderWeb1.png"));
         SpriteSheet sheet12 = new SpriteSheet(ImageLoader.LoadImage("/textures/carti3_transp.png"));
         SpriteSheet sheet13 = new SpriteSheet(ImageLoader.LoadImage("/textures/lemn3.png"));
 
@@ -422,7 +431,7 @@ public class Assets
         cc2=sheet12.crop(14,16);
         cc3=sheet12.crop(14,17);
 
-        web1=web.crop(0,51);
+        //web1=web.crop(0,51);
 
         lemn3=sheet13.crop(2,6);
 
@@ -453,6 +462,15 @@ public class Assets
         c10=sheet12.crop(17,19);
         c11=sheet12.crop(16,20);
         c12=sheet12.crop(17,20);
+
+        panza3=spiderBlueSheet.crop(3,15);
+
+        geam1=sheet4.crop(0,3);
+        geam2=sheet4.crop(0,4);
+        geam3=sheet4.crop(0,5);
+        geam4=sheet4.crop(1,3);
+        geam5=sheet4.crop(1,4);
+        geam6=sheet4.crop(1,5);
 
     }
 }

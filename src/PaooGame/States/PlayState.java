@@ -47,6 +47,14 @@ public class PlayState extends State
             spiders.add(new SpiderBlue(refLink, 2750, 45));
             spiders.add(new SpiderBlue(refLink, 3050, 115));
         }
+        else if (map.getLevelIndex() == 3) { // Dacă este harta 3
+            spiders.add(new SpiderBlue(refLink, 280, 115));
+            spiders.add(new SpiderBlue(refLink, 300, 115));
+            spiders.add(new SpiderBlue(refLink, 320, 115));
+            spiders.add(new SpiderBlue(refLink, 850, 115));
+            spiders.add(new SpiderBlue(refLink, 1400, 115));
+
+        }
     }
 
     /*! \fn public void Update()

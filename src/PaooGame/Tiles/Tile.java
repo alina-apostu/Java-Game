@@ -14,6 +14,16 @@ import PaooGame.Tiles.ForLevel2.Copac.*;
 import PaooGame.Tiles.ForLevel2.Shelf3.*;
 import PaooGame.Tiles.ForLevel2.Fundal.*;
 import PaooGame.Tiles.ForLevel3.*;
+import PaooGame.Tiles.ForLevel3.CarteCotor1.*;
+import PaooGame.Tiles.ForLevel3.CarteJos1.*;
+import PaooGame.Tiles.ForLevel3.CarteJos2.*;
+import PaooGame.Tiles.ForLevel3.CarteMare1.*;
+import PaooGame.Tiles.ForLevel3.CarteMare2.*;
+import PaooGame.Tiles.ForLevel3.Fantoma.Fantoma1;
+import PaooGame.Tiles.ForLevel3.Fantoma.Fantoma2;
+import PaooGame.Tiles.ForLevel3.FinalWeb.*;
+import PaooGame.Tiles.ForLevel3.Magic.*;
+
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -150,6 +160,74 @@ public class Tile
 
     public static Tile lemn     = new Lemn(99);
     public static Tile fundal2     = new Fundal2(100);
+
+    public static Tile magic1     = new Magic1(101);
+    public static Tile magic2     = new Magic2(102);
+    public static Tile magic3     = new Magic3(103);
+    public static Tile magic4     = new Magic4(104);
+    public static Tile magic5     = new Magic5(105);
+    public static Tile magic6     = new Magic6(106);
+    public static Tile magic7     = new Magic7(107);
+    public static Tile magic8     = new Magic8(108);
+    public static Tile magic9     = new Magic9(109);
+    public static Tile magic10    = new Magic10(110);
+    public static Tile magic11    = new Magic11(111);
+    public static Tile magic12    = new Magic12(112);
+    public static Tile magic13     = new Magic13(113);
+    public static Tile magic14    = new Magic14(114);
+    public static Tile magic15    = new Magic15(115);
+    public static Tile magic16    = new Magic16(116);
+    public static Tile magic17     = new Magic17(117);
+    public static Tile magic18    = new Magic18(118);
+    public static Tile magic19    = new Magic19(119);
+    public static Tile magic20    = new Magic20(120);
+    public static Tile magic21    = new Magic21(121);
+    public static Tile magic22    = new Magic22(122);
+    public static Tile magic23    = new Magic23(123);
+
+
+    public static Tile c1   = new C1(124);
+    public static Tile c2   = new C2(125);
+    public static Tile c3   = new C3(126);
+    public static Tile c4   = new C4(127);
+    public static Tile c5   = new C5(128);
+    public static Tile c6   = new C6(129);
+
+
+    public static Tile cc1   = new CC1(130);
+    public static Tile cc2   = new CC2(131);
+    public static Tile cc3   = new CC3(132);
+
+    public static Tile web1   = new Web1(133);
+
+    public static Tile lemn3     = new Lemn3(134);
+
+    public static Tile ccc1   = new CCC1(135);
+    public static Tile ccc2   = new CCC2(136);
+    public static Tile ccc3   = new CCC3(137);
+    public static Tile ccc4   = new CCC4(138);
+    public static Tile ccc5   = new CCC5(139);
+    public static Tile ccc6   = new CCC6(140);
+
+    public static Tile fantoma1   = new Fantoma1(141);
+    public static Tile fantoma2   = new Fantoma2(142);
+
+    public static Tile panza1   = new Panza1(143);
+    public static Tile panza2   = new Panza2(144);
+
+    public static Tile ccc7   = new CCC7(145);
+    public static Tile ccc8   = new CCC8(146);
+    public static Tile ccc9   = new CCC9(147);
+    public static Tile ccc10  = new CCC10(148);
+    public static Tile ccc11  = new CCC11(149);
+    public static Tile ccc12  = new CCC12(150);
+
+    public static Tile c7   = new C7(151);
+    public static Tile c8   = new C8(152);
+    public static Tile c9   = new C9(153);
+    public static Tile c10  = new C10(154);
+    public static Tile c11  = new C11(155);
+    public static Tile c12  = new C12(156);
 
 
 

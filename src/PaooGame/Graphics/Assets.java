@@ -147,6 +147,75 @@ public class Assets
     public static BufferedImage[] spiderBlueRight;
 
 
+    public static BufferedImage magic1;
+    public static BufferedImage magic3;
+    public static BufferedImage magic2;
+    public static BufferedImage magic4;
+    public static BufferedImage magic5;
+    public static BufferedImage magic6;
+    public static BufferedImage magic7;
+    public static BufferedImage magic8;
+    public static BufferedImage magic9;
+    public static BufferedImage magic10;
+    public static BufferedImage magic11;
+    public static BufferedImage magic12;
+    public static BufferedImage magic13;
+    public static BufferedImage magic14;
+    public static BufferedImage magic15;
+    public static BufferedImage magic16;
+    public static BufferedImage magic17;
+    public static BufferedImage magic18;
+    public static BufferedImage magic19;
+    public static BufferedImage magic20;
+    public static BufferedImage magic21;
+    public static BufferedImage magic22;
+    public static BufferedImage magic23;
+
+    public static BufferedImage web1;
+    //carte 1
+    public static BufferedImage c1;
+    public static BufferedImage c2;
+    public static BufferedImage c3;
+    public static BufferedImage c4;
+    public static BufferedImage c5;
+    public static BufferedImage c6;
+
+    //carte cotor1 maro
+    public static BufferedImage cc1;
+    public static BufferedImage cc2;
+    public static BufferedImage cc3;
+
+    public static BufferedImage lemn3;
+
+    public static BufferedImage ccc1;
+    public static BufferedImage ccc2;
+    public static BufferedImage ccc3;
+    public static BufferedImage ccc4;
+    public static BufferedImage ccc5;
+    public static BufferedImage ccc6;
+
+    public static BufferedImage fantoma1;
+    public static BufferedImage fantoma2;
+
+    public static BufferedImage panza1;
+    public static BufferedImage panza2;
+
+    public static BufferedImage ccc7;
+    public static BufferedImage ccc8;
+    public static BufferedImage ccc9;
+    public static BufferedImage ccc10;
+    public static BufferedImage ccc11;
+    public static BufferedImage ccc12;
+
+    public static BufferedImage c7;
+    public static BufferedImage c8;
+    public static BufferedImage c9;
+    public static BufferedImage c10;
+    public static BufferedImage c11;
+    public static BufferedImage c12;
+
+
+
 
 
 
@@ -171,6 +240,10 @@ public class Assets
         SpriteSheet sheet10 = new SpriteSheet(ImageLoader.LoadImage("/textures/fundal_bej.png"));
         SpriteSheet sheet11 = new SpriteSheet(ImageLoader.LoadImage("/textures/scari_maro1.png"));
         SpriteSheet spiderBlueSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/SpiderBlue.png"));
+        SpriteSheet magic = new SpriteSheet(ImageLoader.LoadImage("/textures/CarteMagica.png"));
+        SpriteSheet web = new SpriteSheet(ImageLoader.LoadImage("/textures/spiderWeb1.png"));
+        SpriteSheet sheet12 = new SpriteSheet(ImageLoader.LoadImage("/textures/carti3_transp.png"));
+        SpriteSheet sheet13 = new SpriteSheet(ImageLoader.LoadImage("/textures/lemn3.png"));
 
         SpriteSheet lunaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/luna.png"));
         SpriteSheet freyaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/freya.png"));
@@ -371,6 +444,74 @@ public class Assets
 
         lemn=sheet9.crop(2,6);
         fundal2=sheet10.crop(0,6);
+
+        magic1=magic.crop(0,3);
+        magic2=magic.crop(0,4);
+        magic3=magic.crop(1,3);
+        magic4=magic.crop(1,4);
+        magic5=magic.crop(2,1);
+        magic6=magic.crop(2,2);
+        magic7=magic.crop(2,3);
+        magic8=magic.crop(2,4);
+        magic9=magic.crop(3,1);
+        magic10=magic.crop(3,2);
+        magic11=magic.crop(3,3);
+        magic12=magic.crop(3,4);
+        magic13=magic.crop(4,1);
+        magic14=magic.crop(4,2);
+        magic15=magic.crop(4,3);
+        magic16=magic.crop(4,4);
+        magic17=magic.crop(5,3);
+        magic18=magic.crop(5,4);
+        magic19=magic.crop(6,3);
+        magic20=magic.crop(6,4);
+        magic21=magic.crop(2,0);
+        magic22=magic.crop(3,0);
+        magic23=magic.crop(4,0);
+
+
+        c1=sheet12.crop(13,18);
+        c2=sheet12.crop(14,18);
+        c3=sheet12.crop(13,19);
+        c4=sheet12.crop(14,19);
+        c5=sheet12.crop(13,20);
+        c6=sheet12.crop(14,20);
+
+        cc1=sheet12.crop(14,15);
+        cc2=sheet12.crop(14,16);
+        cc3=sheet12.crop(14,17);
+
+        web1=web.crop(0,51);
+
+        lemn3=sheet13.crop(2,6);
+
+        ccc1=sheet12.crop(13,13);
+        ccc2=sheet12.crop(14,13);
+        ccc3=sheet12.crop(15,13);
+        ccc4=sheet12.crop(13,14);
+        ccc5=sheet12.crop(14,14);
+        ccc6=sheet12.crop(15,14);
+
+        fantoma1=sheet2.crop(6,0);
+        fantoma2=sheet2.crop(3,10);
+
+        panza1=spiderBlueSheet.crop(4,15);
+        panza2=spiderBlueSheet.crop(4,7);
+
+
+        ccc7=sheet12.crop(16,13);
+        ccc8=sheet12.crop(17,13);
+        ccc9=sheet12.crop(18,13);
+        ccc10=sheet12.crop(16,14);
+        ccc11=sheet12.crop(17,14);
+        ccc12=sheet12.crop(18,14);
+
+        c7=sheet12.crop(16,18);
+        c8=sheet12.crop(17,18);
+        c9=sheet12.crop(16,19);
+        c10=sheet12.crop(17,19);
+        c11=sheet12.crop(16,20);
+        c12=sheet12.crop(17,20);
 
     }
 }

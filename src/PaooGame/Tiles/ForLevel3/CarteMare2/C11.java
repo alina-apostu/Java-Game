@@ -1,0 +1,15 @@
+package PaooGame.Tiles.ForLevel3.CarteMare2;
+
+import PaooGame.Graphics.Assets;
+import PaooGame.Tiles.Tile;
+
+public class C11 extends Tile
+{
+
+        public C11(int id)
+        {
+            /// Apel al constructorului clasei de baza
+            super(Assets.c11, id);
+        }
+
+}

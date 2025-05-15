@@ -13,11 +13,22 @@ import javax.swing.SwingConstants;
 import java.awt.Graphics;
 import PaooGame.Items.Hero;
 import PaooGame.Items.NPC.*;
+import PaooGame.Tiles.Tile;
+import PaooGame.Maps.Map;
+import PaooGame.RefLinks;
+
 
 public class CollisionHandler
 {
     private String powerMessage = "";
     private boolean isPowerMessageDisplayed = false;
+    private final int tileSize = 32;
+    private RefLinks refLinks;
+
+
+    public CollisionHandler(RefLinks refLinks) {
+        this.refLinks = refLinks;
+    }
 
     public void checkCollision(Hero hero, Mouse mouse)
     {
@@ -87,4 +98,29 @@ public class CollisionHandler
             dialog.setVisible(true);
         }
     }
+
+    public boolean isTileSolid(int x, int y) {
+        if (x < 0 || y < 0 || x >= refLinks.GetMap().GetWidth() || y >= refLinks.GetMap().GetHeight()) {
+            return true;
+        }
+
+        Tile tile = refLinks.GetMap().GetTile(x, y, 1); // layer 1
+        return tile == null || tile.IsSolid();
+    }
+
+    public boolean checkTileCollision(Hero hero) {
+        int x =(int) hero.GetX() / tileSize;
+        int y =(int) hero.GetY() / tileSize;
+
+        int xRight = (int)(hero.GetX() + hero.GetWidth() - 1) / tileSize;
+        int yBottom = (int)(hero.GetY() + hero.GetHeight() - 1) / tileSize;
+
+        return isTileSolid(x, y) ||
+                isTileSolid(xRight, y) ||
+                isTileSolid(x, yBottom) ||
+                isTileSolid(xRight, yBottom);
+    }
+
+
+
 }

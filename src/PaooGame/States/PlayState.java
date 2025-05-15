@@ -4,7 +4,7 @@ import PaooGame.Game;
 import PaooGame.Items.Hero;
 import PaooGame.Items.NPC.Mouse;
 import PaooGame.Items.NPC.RedSpider;
-import PaooGame.Items.NPC.SpiderBlue;
+import PaooGame.Items.SpiderBlue;
 import PaooGame.Maps.Map;
 import PaooGame.RefLinks;
 import PaooGame.CollisionHandler;
@@ -52,31 +52,34 @@ public class PlayState extends State
         spiders = new ArrayList<>();
         int x=map.getLevelIndex();
         System.out.println(x);
-        if (map.getLevelIndex() == 2) { // Dacă este harta 2
-            spiders.add(new SpiderBlue(refLink, 300, 115));
-            spiders.add(new SpiderBlue(refLink, 900, 115));
-            spiders.add(new SpiderBlue(refLink, 1400, 115));
-            spiders.add(new SpiderBlue(refLink, 2100, 115));
-            spiders.add(new SpiderBlue(refLink, 2700, 115));
-            spiders.add(new SpiderBlue(refLink, 2750, 45));
-            spiders.add(new SpiderBlue(refLink, 3050, 115));
-        }
-        else if (map.getLevelIndex() == 3) { // Dacă este harta 3
-            spiders.add(new SpiderBlue(refLink, 280, 115));
-            spiders.add(new SpiderBlue(refLink, 300, 115));
-            spiders.add(new SpiderBlue(refLink, 320, 115));
-            spiders.add(new SpiderBlue(refLink, 850, 115));
-            spiders.add(new SpiderBlue(refLink, 1400, 115));
+        switch (map.getLevelIndex()) {
+            case 1:
+                mouse1 = new Mouse(refLink, 300, 111, "purple");
+                mouse2 = new Mouse(refLink, 422, 120, "green");
+                break;
 
+            case 2:
+                spiders.add(new SpiderBlue(refLink, 300, 115));
+                spiders.add(new SpiderBlue(refLink, 900, 115));
+                spiders.add(new SpiderBlue(refLink, 1400, 115));
+                spiders.add(new SpiderBlue(refLink, 2100, 115));
+                spiders.add(new SpiderBlue(refLink, 2700, 115));
+                spiders.add(new SpiderBlue(refLink, 2750, 45));
+                spiders.add(new SpiderBlue(refLink, 3050, 115));
+                break;
+
+            case 3:
+                spiders.add(new SpiderBlue(refLink, 280, 115));
+                spiders.add(new SpiderBlue(refLink, 300, 115));
+                spiders.add(new SpiderBlue(refLink, 320, 115));
+                spiders.add(new SpiderBlue(refLink, 850, 115));
+                spiders.add(new SpiderBlue(refLink, 1400, 115));
+                break;
         }
 
-        else if (map.getLevelIndex() == 1)  //Daca este harta 1
-        {
-            mouse1 = new Mouse(refLink,300,111, "purple");
-            mouse2 = new Mouse(refLink, 422, 120, "green");
-        }
 
-        collisionHandler = new CollisionHandler();
+        collisionHandler = new CollisionHandler(refLink);
+
 
     }
 
@@ -87,14 +90,27 @@ public class PlayState extends State
     public void Update()
     {
         map.Update();
-        collisionHandler.checkCollision(hero, mouse1); // Verifici ÎNAINTE de mutare
-        collisionHandler.checkCollision(hero,mouse2);
+        if(mouse1 != null) {
+            collisionHandler.checkCollision(hero, mouse1);
+        }
+        if(mouse2 != null) {
+            collisionHandler.checkCollision(hero, mouse2);
+        }
+
+        //collisionHandler.checkCollision(hero, mouse1); // Verifici ÎNAINTE de mutare
+        //collisionHandler.checkCollision(hero,mouse2);
         if (!Game.isPaused)
         {
             hero.Update();  // Doar dacă nu e pauză, îl lași să se miște
+
+            if (collisionHandler.checkTileCollision(hero)) {
+                // Tratăm coliziunea
+            }
+
         }
-        mouse1.Update();
-        mouse2.Update();
+        if(mouse1 != null) mouse1.Update();
+        if(mouse2 != null) mouse2.Update();
+
         //redSpider.Update();
         //redSpider2.Update();
         for (SpiderBlue spider : spiders) {
@@ -111,8 +127,9 @@ public class PlayState extends State
     public void Draw(Graphics g)
     {
         map.Draw(g);
-        mouse1.Draw(g);
-        mouse2.Draw(g);
+        if(mouse1 != null) mouse1.Draw(g);
+        if(mouse2 != null) mouse2.Draw(g);
+
         //redSpider.Draw(g);
         //redSpider2.Draw(g);
         hero.Draw(g);

@@ -128,7 +128,7 @@ public class Map {
 
     /*! \fn private void LoadWorld()
         \brief Functie de incarcare a hartii jocului.
-        Aici se poate genera sau incarca din fisier harta. Momentan este incarcata static.
+        Aici se poate genera sau incarca din fisier harta.
      */
     private void LoadWorld(int mapId) {
         //atentie latimea si inaltimea trebuiesc corelate cu dimensiunile ferestrei sau

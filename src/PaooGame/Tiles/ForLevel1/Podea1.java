@@ -12,4 +12,11 @@ public class Podea1 extends Tile
             super(Assets.podea1, id);
         }
 
+
+        @Override
+        public boolean IsSolid()
+    {
+        return true;
+    }
+
 }

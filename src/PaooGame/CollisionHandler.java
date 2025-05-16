@@ -28,8 +28,9 @@ public class CollisionHandler
 
     public CollisionHandler(RefLinks refLinks) {
         this.refLinks = refLinks;
-        CollisionStrategyRegistry.registerStrategy(0, new Floor1());
-        CollisionStrategyRegistry.registerStrategy(57, new BookTile());//podea1
+        //CollisionStrategyRegistry.registerStrategy(0, new Floor1());
+        CollisionStrategyRegistry.registerStrategy(57, new BookTile());
+        CollisionStrategyRegistry.registerStrategy(58, new BookTile());//podea1
     }
 
     public void checkCollision(Hero hero, Mouse mouse)
@@ -112,36 +113,46 @@ public class CollisionHandler
         int tileTop = heroBounds.y / tileSize; // linia tileului de sus unde începe eroul
         int tileBottom = (heroBounds.y + heroBounds.height) / tileSize;
 
+
+
         Map map = refLinks.GetMap();
 
-        for (int layer = 0; layer < map.getNUM_LAYERS(); layer++)
+       // System.out.println("mapid="+map.getLevelIndex());
+
+        for (int layer = 0; layer <map.getNUM_LAYERS(); layer++)
         {
+           // System.out.println("layer="+layer);
             for (int row = tileTop; row <= tileBottom; row++)
             {
                 for (int col = tileLeft; col <= tileRight; col++)
                 {
-                    Tile tile = map.GetTile(layer, col, row);
-                    if (tile == null || !tile.IsSolid()) continue;
-
-                    Rectangle tileBounds = new Rectangle(col * tileSize, row * tileSize, tileSize, tileSize);
-
-                    if (heroBounds.intersects(tileBounds))
+                    Tile tile = map.GetTile(col,row,layer);
+                    if (tile != null && tile.IsSolid())
                     {
-                        int tileId = tile.GetId();
-                        CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
-                        if (strategy != null) {
-                            strategy.handleCollision(hero, tileBounds);
-                        }
+                        System.out.println(tileLeft + " " + tileRight + " " + tileTop + " " + tileBottom);
 
+                        System.out.println("Tile ID: " + tile.GetId() + " at " + col + "," + row);
+
+
+                        Rectangle tileBounds = new Rectangle(col * tileSize, row * tileSize, tileSize, tileSize);
+
+                        System.out.println(tileBounds);
+
+
+                        if (heroBounds.intersects(tileBounds)) {
+                            System.out.println(heroBounds + " " + tileBounds);
+                            int tileId = tile.GetId();
+                            CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
+                            if (strategy != null) {
+                                strategy.handleCollision(hero, tileBounds);
+                            }
+
+                        }
                     }
                 }
             }
         }
     }
-
-
-
-
 
 
 

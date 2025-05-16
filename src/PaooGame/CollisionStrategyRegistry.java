@@ -5,6 +5,10 @@ import java.util.Map;
 public class CollisionStrategyRegistry {
     private static final Map<Integer, CollisionStrategy> strategies = new HashMap<>();
 
+    public CollisionStrategyRegistry() {
+        System.out.println("s a facut legatura intre tile si coliziune ");
+    }
+
     public static void registerStrategy(int tileId, CollisionStrategy strategy) {
         strategies.put(tileId, strategy);
     }

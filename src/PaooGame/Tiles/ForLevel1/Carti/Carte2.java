@@ -12,4 +12,10 @@ public class Carte2 extends Tile
             super(Assets.carte2, id);
         }
 
+    @Override
+    public boolean IsSolid()
+    {
+        return true;
+    }
+
 }

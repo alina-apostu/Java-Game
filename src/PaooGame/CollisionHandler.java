@@ -2,26 +2,21 @@ package PaooGame;
 
 import java.awt.Rectangle;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseListener;
-import javax.swing.JOptionPane;
 import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import java.awt.Graphics;
+
 import PaooGame.Items.Hero;
 import PaooGame.Items.NPC.*;
 import PaooGame.Tiles.Tile;
-import PaooGame.Maps.Map;
-import PaooGame.RefLinks;
 
 
 public class CollisionHandler
 {
     private String powerMessage = "";
-    private boolean isPowerMessageDisplayed = false;
+    private boolean isMessageDisplayed = false;
     private final int tileSize = 32;
     private RefLinks refLinks;
 
@@ -33,8 +28,9 @@ public class CollisionHandler
         CollisionStrategyRegistry.registerStrategy(58, new BookTile());//podea1
     }
 
-    public void checkCollision(Hero hero, Mouse mouse)
+    public void checkCollisionMouse(Hero hero, Mouse mouse)
     {
+        // soricei
         if(hero.getBounds().intersects(mouse.getBounds()) && mouse.isConsumed() == false)
         {
             String color = mouse.getCurrentColor();
@@ -64,9 +60,23 @@ public class CollisionHandler
         }
     }
 
+    public void checkCollisionRedSpider(Hero hero, RedSpider redSpider)
+    {
+        // paianjeni rosii
+        // panza
+        Rectangle webBounds = redSpider.getWebBounds();
+        if(webBounds != null && hero.getBounds().intersects(webBounds))
+        {
+            Game.isPaused = true;
+            hero.SetXMove(0);
+            hero.SetYMove(0);
+            showWebCaughtMessage();
+        }
+    }
+
     public void showPowerMessage(Hero hero, Mouse mouse)
     {
-        if(isPowerMessageDisplayed == false)
+        if(isMessageDisplayed == false)
         {
             Game.isPaused = true;
             // cream un dialog nou
@@ -85,7 +95,7 @@ public class CollisionHandler
             continueButton.addActionListener(e ->
             {
                 dialog.dispose();
-                isPowerMessageDisplayed = false;
+                isMessageDisplayed = false;
                 Game.isPaused = false;
                 Game.getRefLinks().GetKeyManager().resetKeys();
 
@@ -97,7 +107,40 @@ public class CollisionHandler
             buttonPanel.add(continueButton);
             dialog.add(buttonPanel,BorderLayout.SOUTH); // si il adaugam in sudul ferestrei
 
-            isPowerMessageDisplayed = true;
+            isMessageDisplayed = true;
+            dialog.setVisible(true);
+        }
+    }
+
+    private void showWebCaughtMessage()
+    {
+        if(isMessageDisplayed == false)
+        {
+            JDialog dialog = new JDialog();
+            dialog.setTitle("Caught in web!");
+            dialog.setModal(true);
+            dialog.setLayout(new BorderLayout());
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialog.setSize(300, 150);
+            dialog.setLocationRelativeTo(null);
+
+            JLabel messageLabel = new JLabel("You've been caught by the red spider's web! You lost one life!", SwingConstants.CENTER);
+            dialog.add(messageLabel, BorderLayout.CENTER);
+
+            JButton continueButton = new JButton("Continue");
+            continueButton.addActionListener(e ->
+            {
+                dialog.dispose();
+                isMessageDisplayed = false;
+                Game.isPaused = false;
+                Game.getRefLinks().GetKeyManager().resetKeys();
+            });
+
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.add(continueButton);
+            dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+            isMessageDisplayed = true;
             dialog.setVisible(true);
         }
     }

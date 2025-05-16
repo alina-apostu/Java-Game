@@ -248,6 +248,7 @@ public class Hero extends Character {
     }
 
     @Override
+
     public Rectangle getBounds() {
         return new Rectangle((int) (x + 14), (int) (y + 14), width - 28, height - 28);
     }
@@ -259,6 +260,7 @@ public class Hero extends Character {
 
     public boolean isFalling() {
         return this.isFalling;
+
     }
 
     public void setisJumping(boolean jumping) {

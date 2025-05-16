@@ -159,4 +159,15 @@ public class RedSpider extends Character
             g.drawImage(web[webIndex], webX + offsetX, webY, width, height, null);
         }
     }
+
+    public Rectangle getWebBounds()
+    {
+        if(isWebVisible == true && webIndex < web.length)
+        {
+            int[] webOffsetsX = {-5, -10, -15, -20, -25, -30};
+            int offsetX = webOffsetsX[webIndex];
+            return new Rectangle(webX + offsetX, webY, width, height);
+        }
+        return null;
+    }
 }

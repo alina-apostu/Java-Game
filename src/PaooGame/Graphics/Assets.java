@@ -102,9 +102,9 @@ public class Assets
     public static BufferedImage[] redSpiderAttack;
     public static BufferedImage[] web;
 
- 
+    public static BufferedImage[] spiderBlueRight;
 
-
+    public static BufferedImage shadowSpider;
 
     public static BufferedImage podea2;
     public static BufferedImage copac1;
@@ -143,9 +143,6 @@ public class Assets
     public static BufferedImage potiune1;
     public static BufferedImage lemn;
     public static BufferedImage fundal2;
-
-    public static BufferedImage[] spiderBlueRight;
-
 
     public static BufferedImage magic1;
     public static BufferedImage magic3;
@@ -329,7 +326,6 @@ public class Assets
         {
             web[i] = webSheet.crop(i,0);
         }
-
      
         for(int i=0;i<6;i++)
         {
@@ -337,6 +333,8 @@ public class Assets
 
         }
         spiderBlueRight[6]=spiderBlueSheet.crop(0,8);
+
+        shadowSpider = ImageLoader.LoadImage("/Inamici/spider.png");
 
         // elemente harti
         podea1=sheet.crop(0,3);

@@ -125,6 +125,7 @@ public class Map {
         return this.height;
     }
     public int getLevelIndex(){return this.mapId;}
+    public int getNUM_LAYERS(){return this.NUM_LAYERS;}
 
     /*! \fn private void LoadWorld()
         \brief Functie de incarcare a hartii jocului.

@@ -268,6 +268,13 @@ public class Tile
         tiles[id] = this;
     }
 
+    public static Tile getTileSimple(int id) {
+        if (id < 0 || id >= tiles.length) {
+            return null;
+        }
+        return tiles[id];
+    }
+
     /*! \fn public void Update()
         \brief Actualizeaza proprietatile dalei.
      */

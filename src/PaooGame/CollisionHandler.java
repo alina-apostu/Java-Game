@@ -28,6 +28,8 @@ public class CollisionHandler
 
     public CollisionHandler(RefLinks refLinks) {
         this.refLinks = refLinks;
+        CollisionStrategyRegistry.registerStrategy(0, new Floor1());
+        CollisionStrategyRegistry.registerStrategy(57, new BookTile());//podea1
     }
 
     public void checkCollision(Hero hero, Mouse mouse)
@@ -99,27 +101,52 @@ public class CollisionHandler
         }
     }
 
-    public boolean isTileSolid(int x, int y) {
-        if (x < 0 || y < 0 || x >= refLinks.GetMap().GetWidth() || y >= refLinks.GetMap().GetHeight()) {
-            return true;
+
+    public void checkTileCollision(Hero hero)
+    {
+        Rectangle heroBounds = hero.getBounds();
+        int tileSize = Tile.TILE_WIDTH;
+
+        int tileLeft = heroBounds.x / tileSize; // coloana tileului din stânga unde începe eroul
+        int tileRight = (heroBounds.x + heroBounds.width) / tileSize;
+        int tileTop = heroBounds.y / tileSize; // linia tileului de sus unde începe eroul
+        int tileBottom = (heroBounds.y + heroBounds.height) / tileSize;
+
+        Map map = refLinks.GetMap();
+
+        for (int layer = 0; layer < map.getNUM_LAYERS(); layer++)
+        {
+            for (int row = tileTop; row <= tileBottom; row++)
+            {
+                for (int col = tileLeft; col <= tileRight; col++)
+                {
+                    Tile tile = map.GetTile(layer, col, row);
+                    if (tile == null || !tile.IsSolid()) continue;
+
+                    Rectangle tileBounds = new Rectangle(col * tileSize, row * tileSize, tileSize, tileSize);
+
+                    if (heroBounds.intersects(tileBounds))
+                    {
+                        int tileId = tile.GetId();
+                        CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
+                        if (strategy != null) {
+                            strategy.handleCollision(hero, tileBounds);
+                        }
+
+                    }
+                }
+            }
         }
-
-        Tile tile = refLinks.GetMap().GetTile(x, y, 1); // layer 1
-        return tile == null || tile.IsSolid();
     }
 
-    public boolean checkTileCollision(Hero hero) {
-        int x =(int) hero.GetX() / tileSize;
-        int y =(int) hero.GetY() / tileSize;
 
-        int xRight = (int)(hero.GetX() + hero.GetWidth() - 1) / tileSize;
-        int yBottom = (int)(hero.GetY() + hero.GetHeight() - 1) / tileSize;
 
-        return isTileSolid(x, y) ||
-                isTileSolid(xRight, y) ||
-                isTileSolid(x, yBottom) ||
-                isTileSolid(xRight, yBottom);
-    }
+
+
+
+
+
+
 
 
 

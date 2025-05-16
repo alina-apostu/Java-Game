@@ -40,7 +40,7 @@ public class PlayState extends State
         super(refLink);
             ///Construieste harta jocului
 
-        map = new Map(refLink,1);
+        map = new Map(refLink,2);
             ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
             ///Construieste eroul
@@ -90,6 +90,9 @@ public class PlayState extends State
     public void Update()
     {
         map.Update();
+
+        collisionHandler.checkTileCollision(hero);
+
         if(mouse1 != null) {
             collisionHandler.checkCollision(hero, mouse1);
         }
@@ -103,9 +106,6 @@ public class PlayState extends State
         {
             hero.Update();  // Doar dacă nu e pauză, îl lași să se miște
 
-            if (collisionHandler.checkTileCollision(hero)) {
-                // Tratăm coliziunea
-            }
 
         }
         if(mouse1 != null) mouse1.Update();

@@ -43,7 +43,7 @@ public class PlayState extends State
         super(refLink);
             ///Construieste harta jocului
 
-        map = new Map(refLink,3);
+        map = new Map(refLink,2);
             ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
             ///Construieste eroul
@@ -124,8 +124,9 @@ public class PlayState extends State
         for (SpiderBlue spider : spiders) {
             spider.Update();
         }
-
-        shadowSpider.Update();
+        if(shadowSpider != null) {
+            shadowSpider.Update();
+        }
     }
 
     /*! \fn public void Draw(Graphics g)
@@ -147,8 +148,10 @@ public class PlayState extends State
         for (SpiderBlue spider : spiders) {
             spider.Draw(g);
         }
+        if(shadowSpider != null) {
+            shadowSpider.Draw(g);
+        }
 
-        shadowSpider.Draw(g);
     }
 
     public Hero getPlayer()

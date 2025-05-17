@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 
 import PaooGame.Items.Hero;
 import PaooGame.Items.NPC.*;
+import PaooGame.Maps.Map;
 import PaooGame.Tiles.Tile;
 
 

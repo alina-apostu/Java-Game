@@ -1,6 +1,7 @@
 package PaooGame;
 
 import PaooGame.Items.Hero;
+import PaooGame.Items.Character;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +15,7 @@ public class PotionTile implements CollisionStrategy {
     private boolean messageShown = false; // se afișează o singură dată
 
     @Override
-    public void handleCollision(Hero hero, Rectangle tileBounds) {
+    public void handleCollisionTile(Hero hero, Rectangle tileBounds) {
         if (!messageShown) {
             Game.isPaused = true;
             hero.SetXMove(0);
@@ -30,5 +31,11 @@ public class PotionTile implements CollisionStrategy {
 
             messageShown = true;
         }
+    }
+
+    @Override
+    public void handleCollisionCharacter(Hero hero, Character character)
+    {
+
     }
 }

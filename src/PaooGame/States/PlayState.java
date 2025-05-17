@@ -43,7 +43,7 @@ public class PlayState extends State
         super(refLink);
             ///Construieste harta jocului
 
-        map = new Map(refLink,3);
+        map = new Map(refLink,1);
             ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
             ///Construieste eroul
@@ -83,8 +83,6 @@ public class PlayState extends State
 
 
         collisionHandler = new CollisionHandler(refLink);
-
-
     }
 
     /*! \fn public void Update()
@@ -97,17 +95,25 @@ public class PlayState extends State
 
         collisionHandler.checkTileCollision(hero);
 
-        if(mouse1 != null) {
+        collisionHandler.checkCharacterCollision(hero,mouse1);
+
+        /*if(mouse1 != null)
+        {
             collisionHandler.checkCollisionMouse(hero, mouse1);
         }
-        if(mouse2 != null) {
+        if(mouse2 != null)
+        {
             collisionHandler.checkCollisionMouse(hero, mouse2);
         }
 
         if(redSpider != null)
+        {
             collisionHandler.checkCollisionRedSpider(hero,redSpider);
+        }
         if(redSpider2 != null)
+        {
             collisionHandler.checkCollisionRedSpider(hero,redSpider2);
+        }*/
 
         if (!Game.isPaused)
         {
@@ -125,7 +131,10 @@ public class PlayState extends State
             spider.Update();
         }
 
-        shadowSpider.Update();
+        if(shadowSpider!=null)
+        {
+            shadowSpider.Update();
+        }
     }
 
     /*! \fn public void Draw(Graphics g)
@@ -148,7 +157,7 @@ public class PlayState extends State
             spider.Draw(g);
         }
 
-        shadowSpider.Draw(g);
+        if(shadowSpider!=null) shadowSpider.Draw(g);
     }
 
     public Hero getPlayer()

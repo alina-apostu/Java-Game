@@ -9,12 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import PaooGame.Items.Hero;
+import PaooGame.Items.Character;
 import PaooGame.Items.NPC.*;
 import PaooGame.Tiles.Tile;
+import PaooGame.Maps.Map;
 
 
-public class CollisionHandler
-{
+public class CollisionHandler {
     private String powerMessage = "";
     private boolean isMessageDisplayed = false;
     private final int tileSize = 32;
@@ -28,26 +29,23 @@ public class CollisionHandler
         CollisionStrategyRegistry.registerStrategy(58, new BookTile());//podea1
     }
 
-    public void checkCollisionMouse(Hero hero, Mouse mouse)
-    {
+    public void checkCollisionMouse(Hero hero, Mouse mouse) {
         // soricei
-        if(hero.getBounds().intersects(mouse.getBounds()) && mouse.isConsumed() == false)
-        {
+        if (hero.getBounds().intersects(mouse.getBounds()) && mouse.isConsumed() == false) {
             String color = mouse.getCurrentColor();
 
-            switch (color)
-            {
+            switch (color) {
                 case "purple":
                     hero.setPower("minge de foc");
-                    powerMessage = "You have gained the Fireball power!";
+                    powerMessage = "You can now throw fireballs!";
                     break;
                 case "green":
                     hero.setPower("zbor");
-                    powerMessage = "";
+                    powerMessage = "Take a quick flight to avoid danger.";
                     break;
                 case "blue":
                     hero.setPower("invizibilitate");
-                    powerMessage = "";
+                    powerMessage = "Use invisibility to sneak past enemies.";
                     break;
             }
             mouse.setConsumed(true);
@@ -60,13 +58,11 @@ public class CollisionHandler
         }
     }
 
-    public void checkCollisionRedSpider(Hero hero, RedSpider redSpider)
-    {
+    public void checkCollisionRedSpider(Hero hero, RedSpider redSpider) {
         // paianjeni rosii
         // panza
         Rectangle webBounds = redSpider.getWebBounds();
-        if(webBounds != null && hero.getBounds().intersects(webBounds))
-        {
+        if (webBounds != null && hero.getBounds().intersects(webBounds)) {
             Game.isPaused = true;
             hero.SetXMove(0);
             hero.SetYMove(0);
@@ -74,10 +70,8 @@ public class CollisionHandler
         }
     }
 
-    public void showPowerMessage(Hero hero, Mouse mouse)
-    {
-        if(isMessageDisplayed == false)
-        {
+    public void showPowerMessage(Hero hero, Mouse mouse) {
+        if (isMessageDisplayed == false) {
             Game.isPaused = true;
             // cream un dialog nou
             JDialog dialog = new JDialog();
@@ -85,7 +79,7 @@ public class CollisionHandler
             dialog.setModal(true); // adica utilizatorul trebuie sa inchida aceasta fereastra inainte de a reveni la joc
             dialog.setLayout(new BorderLayout());
             dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE); // la inchidere dialocul sa fie inchis nu toata aplicatia
-            dialog.setSize(300,150); // dimensiunea ferestrei
+            dialog.setSize(300, 150); // dimensiunea ferestrei
             dialog.setLocationRelativeTo(null);
 
             JLabel messageLabel = new JLabel(powerMessage, SwingConstants.CENTER); // cream o eticheta care contine mesajul si il centram orizontal
@@ -105,17 +99,15 @@ public class CollisionHandler
             // panou pentru buton
             JPanel buttonPanel = new JPanel();
             buttonPanel.add(continueButton);
-            dialog.add(buttonPanel,BorderLayout.SOUTH); // si il adaugam in sudul ferestrei
+            dialog.add(buttonPanel, BorderLayout.SOUTH); // si il adaugam in sudul ferestrei
 
             isMessageDisplayed = true;
             dialog.setVisible(true);
         }
     }
 
-    private void showWebCaughtMessage()
-    {
-        if(isMessageDisplayed == false)
-        {
+    private void showWebCaughtMessage() {
+        if (isMessageDisplayed == false) {
             JDialog dialog = new JDialog();
             dialog.setTitle("Caught in web!");
             dialog.setModal(true);
@@ -145,9 +137,28 @@ public class CollisionHandler
         }
     }
 
-
-    public void checkTileCollision(Hero hero)
+    public void checkCharacterCollision(Hero hero, Character character)
     {
+        if(character == null) return;
+
+        if (hero.getBounds().intersects(character.getBounds()))
+        {
+            System.out.println("intersectie cu caracter!");
+
+            if (character instanceof Mouse) {
+                CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(Mouse.class);
+                if (strategy != null)
+                    strategy.handleCollisionCharacter(hero, character);
+            } else if (character instanceof RedSpider) {
+                CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(RedSpider.class);
+                if (strategy != null)
+                    strategy.handleCollisionCharacter(hero, character);
+            }
+        }
+
+    }
+
+    public void checkTileCollision(Hero hero) {
         Rectangle heroBounds = hero.getBounds();
         int tileSize = Tile.TILE_WIDTH;
 
@@ -157,37 +168,32 @@ public class CollisionHandler
         int tileBottom = (heroBounds.y + heroBounds.height) / tileSize;
 
 
-
         Map map = refLinks.GetMap();
 
-       // System.out.println("mapid="+map.getLevelIndex());
+        // System.out.println("mapid="+map.getLevelIndex());
 
-        for (int layer = 0; layer <map.getNUM_LAYERS(); layer++)
-        {
-           // System.out.println("layer="+layer);
-            for (int row = tileTop; row <= tileBottom; row++)
-            {
-                for (int col = tileLeft; col <= tileRight; col++)
-                {
-                    Tile tile = map.GetTile(col,row,layer);
-                    if (tile != null && tile.IsSolid())
-                    {
-                        System.out.println(tileLeft + " " + tileRight + " " + tileTop + " " + tileBottom);
+        for (int layer = 0; layer < map.getNUM_LAYERS(); layer++) {
+            // System.out.println("layer="+layer);
+            for (int row = tileTop; row <= tileBottom; row++) {
+                for (int col = tileLeft; col <= tileRight; col++) {
+                    Tile tile = map.GetTile(col, row, layer);
+                    if (tile != null && tile.IsSolid()) {
+                        //System.out.println(tileLeft + " " + tileRight + " " + tileTop + " " + tileBottom);
 
-                        System.out.println("Tile ID: " + tile.GetId() + " at " + col + "," + row);
+                        //System.out.println("Tile ID: " + tile.GetId() + " at " + col + "," + row);
 
 
                         Rectangle tileBounds = new Rectangle(col * tileSize, row * tileSize, tileSize, tileSize);
 
-                        System.out.println(tileBounds);
+                        //System.out.println(tileBounds);
 
 
                         if (heroBounds.intersects(tileBounds)) {
-                            System.out.println(heroBounds + " " + tileBounds);
+                            //System.out.println(heroBounds + " " + tileBounds);
                             int tileId = tile.GetId();
                             CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
                             if (strategy != null) {
-                                strategy.handleCollision(hero, tileBounds);
+                                strategy.handleCollisionTile(hero, tileBounds);
                             }
 
                         }
@@ -196,12 +202,4 @@ public class CollisionHandler
             }
         }
     }
-
-
-
-
-
-
-
-
 }

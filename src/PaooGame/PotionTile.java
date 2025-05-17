@@ -11,7 +11,8 @@ public class PotionTile implements CollisionStrategy {
 
     private Set<Point> triggeredTiles = new HashSet<>();
 
-    public PotionTile() {
+    public PotionTile()
+    {
         System.out.println("potion tile collision created");
     }
 

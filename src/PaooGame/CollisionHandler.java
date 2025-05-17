@@ -25,7 +25,8 @@ public class CollisionHandler
         this.refLinks = refLinks;
         //CollisionStrategyRegistry.registerStrategy(0, new Floor1());
         CollisionStrategyRegistry.registerStrategy(57, new BookTile());
-        CollisionStrategyRegistry.registerStrategy(58, new BookTile());//podea1
+        CollisionStrategyRegistry.registerStrategy(58, new BookTile());
+        CollisionStrategyRegistry.registerStrategy(98, new PotionTile());
     }
 
     public void checkCollisionMouse(Hero hero, Mouse mouse)
@@ -187,7 +188,7 @@ public class CollisionHandler
                             int tileId = tile.GetId();
                             CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
                             if (strategy != null) {
-                                strategy.handleCollision(hero, tileBounds);
+                                strategy.handleCollisionTile(hero, tileBounds);
                             }
 
                         }

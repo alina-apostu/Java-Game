@@ -7,7 +7,7 @@ import java.awt.*;
 public class Floor1  implements CollisionStrategy{
     @Override
 
-    public void handleCollision(Hero hero, Rectangle tileBounds) {
+    public void handleCollisionTile(Hero hero, Rectangle tileBounds) {
 
     }
 }

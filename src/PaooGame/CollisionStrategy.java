@@ -6,5 +6,5 @@ import java.awt.*;
 
 public interface CollisionStrategy
 {
-    void handleCollision(Hero hero, Rectangle tileBounds);
+    void handleCollisionTile(Hero hero, Rectangle tileBounds);
 }

@@ -13,10 +13,10 @@ public class Podea1 extends Tile
         }
 
 
-      /*  @Override
+       @Override
         public boolean IsSolid()
     {
         return true;
-    }*/
+    }
 
 }

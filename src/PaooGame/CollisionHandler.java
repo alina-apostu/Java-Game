@@ -24,7 +24,7 @@ public class CollisionHandler
 
     public CollisionHandler(RefLinks refLinks) {
         this.refLinks = refLinks;
-        //CollisionStrategyRegistry.registerStrategy(0, new Floor1());
+        CollisionStrategyRegistry.registerStrategy(0, new Floor1());
         CollisionStrategyRegistry.registerStrategy(57, new BookTile());
         CollisionStrategyRegistry.registerStrategy(58, new BookTile());
         CollisionStrategyRegistry.registerStrategy(98, new PotionTile());
@@ -174,18 +174,18 @@ public class CollisionHandler
                     Tile tile = map.GetTile(col,row,layer);
                     if (tile != null && tile.IsSolid())
                     {
-                        System.out.println(tileLeft + " " + tileRight + " " + tileTop + " " + tileBottom);
+                        //System.out.println(tileLeft + " " + tileRight + " " + tileTop + " " + tileBottom);
 
-                        System.out.println("Tile ID: " + tile.GetId() + " at " + col + "," + row);
+                        //System.out.println("Tile ID: " + tile.GetId() + " at " + col + "," + row);
 
 
                         Rectangle tileBounds = new Rectangle(col * tileSize, row * tileSize, tileSize, tileSize);
 
-                        System.out.println(tileBounds);
+                        //System.out.println(tileBounds);
 
 
                         if (heroBounds.intersects(tileBounds)) {
-                            System.out.println(heroBounds + " " + tileBounds);
+                            //System.out.println(heroBounds + " " + tileBounds);
                             int tileId = tile.GetId();
                             CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
                             if (strategy != null) {

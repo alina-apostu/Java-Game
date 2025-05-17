@@ -146,6 +146,12 @@ public class Hero extends Character {
                 jumpSpeed = 0; // viteza de saritura se reseteaza
             }
         }
+
+        if (isFalling && y > groundLevelY) {
+            y = groundLevelY;
+            isFalling = false;
+            jumpSpeed = 0;
+        }
         Move();
     }
 
@@ -285,5 +291,11 @@ public class Hero extends Character {
     public void setGroundLevelY(float groundLevelY) {
         this.groundLevelY = groundLevelY;
     }
+
+
+    public int getBoundsYOffset() {
+        return bounds.y;
+    }
+
 
 }

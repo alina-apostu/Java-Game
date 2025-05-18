@@ -1,5 +1,6 @@
-package PaooGame;
+package PaooGame.Collision;
 
+import PaooGame.Game;
 import PaooGame.Items.*;
 import PaooGame.Items.Character;
 import PaooGame.Items.NPC.Mouse;
@@ -20,7 +21,7 @@ public class MouseCollision implements CollisionStrategy {
     public void handleCollisionCharacter(Hero hero, Character character)
     {
         Mouse mouse = (Mouse) character;
-        if (hero.getBounds().intersects(mouse.getBounds()) && mouse.isConsumed() == false)
+        if (mouse.isConsumed() == false)
         {
             String color = mouse.getCurrentColor();
 

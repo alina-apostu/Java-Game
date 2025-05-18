@@ -8,7 +8,7 @@ import PaooGame.Items.ShadowSpider;
 import PaooGame.Items.SpiderBlue;
 import PaooGame.Maps.Map;
 import PaooGame.RefLinks;
-import PaooGame.CollisionHandler;
+import PaooGame.Collision.CollisionHandler;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -43,12 +43,12 @@ public class PlayState extends State
         super(refLink);
             ///Construieste harta jocului
 
-        map = new Map(refLink,1);
+        map = new Map(refLink,3);
             ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
             ///Construieste eroul
 
-        hero = new Hero(refLink,50, 115, selectedCharacter);
+        hero = new Hero(refLink,50, 108, selectedCharacter);
 
         spiders = new ArrayList<>();
         int x=map.getLevelIndex();
@@ -60,27 +60,26 @@ public class PlayState extends State
                 break;
 
             case 2:
-                spiders.add(new SpiderBlue(refLink, 300, 115));
-                spiders.add(new SpiderBlue(refLink, 900, 115));
-                spiders.add(new SpiderBlue(refLink, 1400, 115));
-                spiders.add(new SpiderBlue(refLink, 2100, 115));
-                spiders.add(new SpiderBlue(refLink, 2700, 115));
-                spiders.add(new SpiderBlue(refLink, 2750, 45));
-                spiders.add(new SpiderBlue(refLink, 3050, 115));
+                spiders.add(new SpiderBlue(refLink, 300, 101));
+                spiders.add(new SpiderBlue(refLink, 900, 101));
+                spiders.add(new SpiderBlue(refLink, 1400, 101));
+                spiders.add(new SpiderBlue(refLink, 2100, 101));
+                spiders.add(new SpiderBlue(refLink, 2700, 101));
+                spiders.add(new SpiderBlue(refLink, 2750, 36));
+                spiders.add(new SpiderBlue(refLink, 3050, 101));
                 break;
 
             case 3:
-                spiders.add(new SpiderBlue(refLink, 280, 115));
-                spiders.add(new SpiderBlue(refLink, 300, 115));
-                spiders.add(new SpiderBlue(refLink, 320, 115));
-                spiders.add(new SpiderBlue(refLink, 850, 115));
-                spiders.add(new SpiderBlue(refLink, 1400, 115));
-                redSpider = new RedSpider(refLink, 500, 115);
-                redSpider2 = new RedSpider(refLink,600, 115);
+                spiders.add(new SpiderBlue(refLink, 280, 101));
+                spiders.add(new SpiderBlue(refLink, 300, 101));
+                spiders.add(new SpiderBlue(refLink, 320, 101));
+                spiders.add(new SpiderBlue(refLink, 850, 101));
+                spiders.add(new SpiderBlue(refLink, 1400, 101));
+                redSpider = new RedSpider(refLink, 500, 110);
+                redSpider2 = new RedSpider(refLink,600, 110);
                 shadowSpider = new ShadowSpider(refLink,3000,115);
                 break;
         }
-
 
         collisionHandler = new CollisionHandler(refLink);
     }
@@ -97,30 +96,18 @@ public class PlayState extends State
 
         collisionHandler.checkCharacterCollision(hero,mouse1);
 
-        /*if(mouse1 != null)
-        {
-            collisionHandler.checkCollisionMouse(hero, mouse1);
-        }
-        if(mouse2 != null)
-        {
-            collisionHandler.checkCollisionMouse(hero, mouse2);
-        }
+        collisionHandler.checkCharacterCollision(hero,redSpider);
 
-        if(redSpider != null)
+        for (SpiderBlue spider : spiders)
         {
-            collisionHandler.checkCollisionRedSpider(hero,redSpider);
+            collisionHandler.checkCharacterCollision(hero,spider);
         }
-        if(redSpider2 != null)
-        {
-            collisionHandler.checkCollisionRedSpider(hero,redSpider2);
-        }*/
 
         if (!Game.isPaused)
         {
             hero.Update();  // Doar dacă nu e pauză, îl lași să se miște
-
-
         }
+
         if(mouse1 != null) mouse1.Update();
         if(mouse2 != null) mouse2.Update();
 
@@ -150,10 +137,11 @@ public class PlayState extends State
         if(mouse2 != null) mouse2.Draw(g);
 
         if(redSpider != null) redSpider.Draw(g);
-        if(redSpider2 != null) redSpider2.Draw(g);
+        //if(redSpider2 != null) redSpider2.Draw(g);
 
         hero.Draw(g);
-        for (SpiderBlue spider : spiders) {
+        for (SpiderBlue spider : spiders)
+        {
             spider.Draw(g);
         }
 

@@ -170,4 +170,10 @@ public class RedSpider extends Character
         }
         return null;
     }
+
+    public boolean isWebFullyOpened()
+    {
+        if(webIndex == 6) return true;
+        return false;
+    }
 }

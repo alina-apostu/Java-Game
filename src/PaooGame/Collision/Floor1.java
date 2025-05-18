@@ -1,11 +1,11 @@
-package PaooGame;
+package PaooGame.Collision;
 
 import PaooGame.Items.Hero;
 import PaooGame.Items.Character;
 
 import java.awt.*;
 
-public class Floor1  implements CollisionStrategy{
+public class Floor1  implements CollisionStrategy {
     @Override
 
     public void handleCollisionTile(Hero hero, Rectangle tileBounds)

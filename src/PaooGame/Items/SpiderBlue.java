@@ -80,7 +80,17 @@ public class SpiderBlue extends Character {
     }
 
     @Override
-    public void Draw(Graphics g) {
+    public void Draw(Graphics g)
+    {
         g.drawImage(image, (int) x, (int) y, width, height, null);
+
+        /*g.setColor(Color.RED);
+        Rectangle r = getBounds();
+        g.drawRect(r.x, r.y, r.width, r.height);*/
+    }
+
+    public Rectangle getBounds()
+    {
+        return new Rectangle((int) (x + 10), (int) (y + 20), 12, 12);
     }
 }

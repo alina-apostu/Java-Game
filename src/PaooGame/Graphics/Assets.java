@@ -104,7 +104,8 @@ public class Assets
 
     public static BufferedImage[] spiderBlueRight;
 
-    public static BufferedImage shadowSpider;
+    public static BufferedImage[] shadowSpiderWalk;
+    public static BufferedImage[] shadowSpiderAttack;
 
     public static BufferedImage podea2;
     public static BufferedImage copac1;
@@ -258,6 +259,8 @@ public class Assets
         SpriteSheet redSpiderSheet = new SpriteSheet(ImageLoader.LoadImage("/NPC/red_spider.png"));
         SpriteSheet webSheet = new SpriteSheet(ImageLoader.LoadImage("/NPC/web.png"));
 
+        SpriteSheet shadowSpiderSheet = new SpriteSheet(ImageLoader.LoadImage("/Inamici/shadow_spider.png"));
+
         // Se obtin subimaginile corespunzatoare elementelor necesare.
 
         // pisici
@@ -334,7 +337,16 @@ public class Assets
         }
         spiderBlueRight[6]=spiderBlueSheet.crop(0,8);
 
-        shadowSpider = ImageLoader.LoadImage("/Inamici/spider.png");
+        shadowSpiderWalk = new BufferedImage[4];
+        shadowSpiderAttack = new BufferedImage[6];
+        for(int i=0;i<4;i++)
+        {
+            shadowSpiderWalk[i] = shadowSpiderSheet.crop2(i,1,64,64);
+        }
+        for(int i=0;i<6;i++)
+        {
+            shadowSpiderAttack[i] = shadowSpiderSheet.crop2(i,3,64,64);
+        }
 
         // elemente harti
         podea1=sheet.crop(0,3);

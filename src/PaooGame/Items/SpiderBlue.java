@@ -91,6 +91,6 @@ public class SpiderBlue extends Character {
 
     public Rectangle getBounds()
     {
-        return new Rectangle((int) (x + 10), (int) (y + 20), 12, 12);
+        return new Rectangle((int) (x + 14), (int) (y + 14), width-28, height-28);
     }
 }

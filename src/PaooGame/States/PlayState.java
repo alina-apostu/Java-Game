@@ -49,6 +49,7 @@ public class PlayState extends State
             ///Construieste eroul
 
         hero = new Hero(refLink,50, 108, selectedCharacter);
+        refLink.SetHero(hero);
 
         spiders = new ArrayList<>();
         int x=map.getLevelIndex();
@@ -72,12 +73,12 @@ public class PlayState extends State
             case 3:
                 spiders.add(new SpiderBlue(refLink, 280, 101));
                 spiders.add(new SpiderBlue(refLink, 300, 101));
-                spiders.add(new SpiderBlue(refLink, 320, 101));
+                //spiders.add(new SpiderBlue(refLink, 320, 101));
                 spiders.add(new SpiderBlue(refLink, 850, 101));
                 spiders.add(new SpiderBlue(refLink, 1400, 101));
-                redSpider = new RedSpider(refLink, 500, 110);
+                redSpider = new RedSpider(refLink, 600, 110);
                 redSpider2 = new RedSpider(refLink,600, 110);
-                shadowSpider = new ShadowSpider(refLink,3000,115);
+                shadowSpider = new ShadowSpider(refLink,3000,94);
                 break;
         }
 
@@ -98,6 +99,8 @@ public class PlayState extends State
 
         collisionHandler.checkCharacterCollision(hero,redSpider);
 
+        collisionHandler.checkCharacterCollision(hero,shadowSpider);
+
         for (SpiderBlue spider : spiders)
         {
             collisionHandler.checkCharacterCollision(hero,spider);
@@ -105,7 +108,7 @@ public class PlayState extends State
 
         if (!Game.isPaused)
         {
-            hero.Update();  // Doar dacă nu e pauză, îl lași să se miște
+            hero.Update();  // Doar dacă nu e pauză, îl laș să se miște
         }
 
         if(mouse1 != null) mouse1.Update();

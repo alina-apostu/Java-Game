@@ -5,6 +5,7 @@ import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
 import PaooGame.Input.KeyManager;
 import PaooGame.Input.MouseInput;
+import PaooGame.Items.Hero;
 import PaooGame.Items.Item;
 import PaooGame.States.*;
 import PaooGame.Tiles.Tile;

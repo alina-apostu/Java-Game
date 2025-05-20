@@ -43,6 +43,7 @@ public class Hero extends Character {
 
     // folosim HashSet pentru ca nu permite elemente duplicate
     private Set<Character> stungByBlueSpiders = new HashSet<>();
+    private Set<Character> stungByRedSpiders = new HashSet<>();
 
     /*! \fn public Hero(RefLinks refLink, float x, float y)
         \brief Constructorul de initializare al clasei Hero.
@@ -258,7 +259,7 @@ public class Hero extends Character {
     @Override
 
     public Rectangle getBounds() {
-        return new Rectangle((int) (x + 10), (int) (y + 22), 12, 10);
+        return new Rectangle((int) (x + 14), (int) (y + 14), width-28,height-50);
     }
 
     public boolean itWasStungByBlueSpider(Character spider)
@@ -269,6 +270,16 @@ public class Hero extends Character {
     public void setWasStungByBlueSpider(Character spider)
     {
         stungByBlueSpiders.add(spider);
+    }
+
+    public boolean itWasStungByRedSpider(Character spider)
+    {
+        return stungByRedSpiders.contains(spider);
+    }
+
+    public void setWasStungByRedSpider(Character spider)
+    {
+        stungByRedSpiders.add(spider);
     }
 
     public void setFalling(boolean falling) {

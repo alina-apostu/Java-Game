@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import PaooGame.Items.Hero;
 import PaooGame.Items.Character;
 import PaooGame.Items.NPC.*;
+import PaooGame.Items.ShadowSpider;
 import PaooGame.Items.SpiderBlue;
 import PaooGame.RefLinks;
 import PaooGame.Tiles.Tile;
@@ -25,6 +26,7 @@ public class CollisionHandler
         CollisionStrategyRegistry.registerCharacterStrategy(Mouse.class, new MouseCollision());
         CollisionStrategyRegistry.registerCharacterStrategy(RedSpider.class, new RedSpiderCollision());
         CollisionStrategyRegistry.registerCharacterStrategy(SpiderBlue.class, new BlueSpiderCollision());
+        CollisionStrategyRegistry.registerCharacterStrategy(ShadowSpider.class, new ShadowSpiderCollision());
     }
 
     public void checkCharacterCollision(Hero hero, Character character)
@@ -44,11 +46,13 @@ public class CollisionHandler
         {
             RedSpider redSpider = (RedSpider)character;
             Rectangle webBounds = redSpider.getWebBounds();
-            if (webBounds != null && hero.getBounds().intersects(webBounds))
+
+            if ((webBounds != null && hero.getBounds().intersects(webBounds)) || (hero.itWasStungByRedSpider(character) == false && hero.getBounds().intersects(redSpider.getBounds())))
             {
                 CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(RedSpider.class);
                 if (strategy != null)
                     strategy.handleCollisionCharacter(hero, character);
+                //hero.setWasStungByRedSpider(character);
             }
         }
         else if(character instanceof SpiderBlue)
@@ -60,8 +64,20 @@ public class CollisionHandler
                     CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(SpiderBlue.class);
                     if (strategy != null)
                         strategy.handleCollisionCharacter(hero, character);
-                    hero.setWasStungByBlueSpider(character);
+                    //hero.setWasStungByBlueSpider(character);
                 }
+            }
+        }
+        else if(character instanceof ShadowSpider)
+        {
+            ShadowSpider shadowSpider = (ShadowSpider)character;
+            Rectangle webBounds = shadowSpider.getWebBounds();
+
+            if (webBounds != null && hero.getBounds().intersects(webBounds))
+            {
+                CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(ShadowSpider.class);
+                if (strategy != null)
+                    strategy.handleCollisionCharacter(hero, character);
             }
         }
     }

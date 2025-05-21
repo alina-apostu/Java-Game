@@ -1,4 +1,4 @@
-package PaooGame;
+package PaooGame.Collision;
 
 
 import PaooGame.Items.Hero;

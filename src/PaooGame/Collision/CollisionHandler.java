@@ -1,4 +1,4 @@
-package PaooGame;
+package PaooGame.Collision;
 
 import java.awt.Rectangle;
 import java.awt.BorderLayout;
@@ -8,9 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import PaooGame.Game;
 import PaooGame.Items.Hero;
 import PaooGame.Items.NPC.*;
 import PaooGame.Maps.Map;
+import PaooGame.RefLinks;
 import PaooGame.Tiles.Tile;
 
 

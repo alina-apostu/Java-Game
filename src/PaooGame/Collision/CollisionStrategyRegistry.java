@@ -1,4 +1,4 @@
-package PaooGame;
+package PaooGame.Collision;
 import java.util.HashMap;
 import java.util.Map;
 

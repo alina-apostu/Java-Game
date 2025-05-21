@@ -1,5 +1,6 @@
-package PaooGame;
+package PaooGame.Collision;
 
+import PaooGame.Game;
 import PaooGame.Items.Hero;
 
 import javax.swing.*;

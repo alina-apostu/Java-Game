@@ -8,7 +8,7 @@ import PaooGame.Items.ShadowSpider;
 import PaooGame.Items.SpiderBlue;
 import PaooGame.Maps.Map;
 import PaooGame.RefLinks;
-import PaooGame.CollisionHandler;
+import PaooGame.Collision.CollisionHandler;
 
 import java.awt.*;
 import java.util.ArrayList;

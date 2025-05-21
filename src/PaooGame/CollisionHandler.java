@@ -30,9 +30,30 @@ public class CollisionHandler
         CollisionStrategyRegistry.registerStrategy(98, new PotionTile());
         CollisionStrategyRegistry.registerStrategy(2, new WallTileStgDrt());
         CollisionStrategyRegistry.registerStrategy(164, new ObstacolStgDrtUp());
-        //CollisionStrategyRegistry.registerStrategy(164, new ObstacolStg());
         CollisionStrategyRegistry.registerStrategy(0, new TavanPodea());
+
         CollisionStrategyRegistry.registerStrategy(67, new ObstacolStgDrtUp());
+        //nivel2
+        CollisionStrategyRegistry.registerStrategy(99, new TavanPodea());
+        //nivel3
+        CollisionStrategyRegistry.registerStrategy(138, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(139, new ObstacolStgDrtUp());
+
+        CollisionStrategyRegistry.registerStrategy(148, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(149, new ObstacolStgDrtUp());
+
+        CollisionStrategyRegistry.registerStrategy(166, new ObstacolStgDrtUp());
+
+        CollisionStrategyRegistry.registerStrategy(158, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(159, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(160, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(161, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(162, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(163, new ObstacolStgDrtUp());
+
+
+
+
     }
 
     public void checkCollisionMouse(Hero hero, Mouse mouse)

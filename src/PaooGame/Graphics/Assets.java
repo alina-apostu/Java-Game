@@ -222,6 +222,7 @@ public class Assets
 
     public static BufferedImage podea1obstacol;
     public static BufferedImage podea2jos;
+    public static BufferedImage lemnObstacol;
 
 
 
@@ -537,6 +538,8 @@ public class Assets
         podea1obstacol=sheet.crop(0,3);
 
         podea2jos=sheet6.crop(0,0);
+
+        lemnObstacol=sheet9.crop(2,6);
 
     }
 }

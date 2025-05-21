@@ -60,13 +60,13 @@ public class PlayState extends State
                 break;
 
             case 2:
-                spiders.add(new SpiderBlue(refLink, 300, 115));
-                spiders.add(new SpiderBlue(refLink, 900, 115));
-                spiders.add(new SpiderBlue(refLink, 1400, 115));
-                spiders.add(new SpiderBlue(refLink, 2100, 115));
-                spiders.add(new SpiderBlue(refLink, 2700, 115));
-                spiders.add(new SpiderBlue(refLink, 2750, 45));
-                spiders.add(new SpiderBlue(refLink, 3050, 115));
+                spiders.add(new SpiderBlue(refLink, 300, 100));
+                spiders.add(new SpiderBlue(refLink, 900, 100));
+                spiders.add(new SpiderBlue(refLink, 1400, 100));
+                spiders.add(new SpiderBlue(refLink, 2100, 100));
+                spiders.add(new SpiderBlue(refLink, 2700, 100));
+                spiders.add(new SpiderBlue(refLink, 2750, 30));
+                spiders.add(new SpiderBlue(refLink, 3050, 100));
                 break;
 
             case 3:
@@ -95,7 +95,11 @@ public class PlayState extends State
     {
         map.Update();
 
+
         collisionHandler.checkTileCollision(hero);
+
+
+
 
         if(mouse1 != null) {
             collisionHandler.checkCollisionMouse(hero, mouse1);
@@ -127,6 +131,8 @@ public class PlayState extends State
         if(shadowSpider != null) {
             shadowSpider.Update();
         }
+
+
     }
 
     /*! \fn public void Draw(Graphics g)

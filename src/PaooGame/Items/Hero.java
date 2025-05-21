@@ -38,6 +38,8 @@ public class Hero extends Character {
     private float groundLevelY; // y unde se afla solul pe care coboara personajul
 
     private String power; // puterea luate de la soricei
+    //private boolean isOnGroundThisFrame = false;
+    private boolean onTile = false;
 
 
     /*! \fn public Hero(RefLinks refLink, float x, float y)
@@ -256,7 +258,7 @@ public class Hero extends Character {
     @Override
 
     public Rectangle getBounds() {
-        return new Rectangle((int) (x + 14), (int) (y + 14), width - 28, height - 28);
+        return new Rectangle((int) (x-12), (int) (y + 14), width-18 , height - 28);
     }
 
 
@@ -264,7 +266,7 @@ public class Hero extends Character {
         this.isFalling = falling;
     }
 
-    public boolean isFalling() {
+    public boolean getisFalling() {
         return this.isFalling;
 
     }
@@ -296,6 +298,34 @@ public class Hero extends Character {
     public int getBoundsYOffset() {
         return bounds.y;
     }
+
+    /*public void setOnGroundThisFrame(boolean value) {
+        isOnGroundThisFrame = value;
+    }
+
+    public boolean isOnGroundThisFrame() {
+        return isOnGroundThisFrame;
+    }*/
+
+    public float GetGravity() {
+        return this.gravity;
+    }
+
+    public boolean isOnTile() {
+        return onTile;
+    }
+
+    public void setOnTile(boolean val) {
+        onTile = val;
+    }
+    public void resetOnTile() {
+        onTile = false;
+    }
+
+    public float GetGroundLevelY() {
+        return this.groundLevelY;
+    }
+
 
 
 }

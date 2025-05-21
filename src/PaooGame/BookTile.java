@@ -21,6 +21,7 @@ public class BookTile implements CollisionStrategy {
 
         if (!triggeredTiles.contains(tilePos)) {
             triggeredTiles.add(tilePos);
+            System.out.println(tilePos.x+" "+tilePos.y);
 
             Game.isPaused = true;
             hero.SetXMove(0);

@@ -244,6 +244,10 @@ public class Tile
     public static Tile geam6   = new Geam6(163);
 
 
+    public static Tile podea1obstacol  = new Podea1Obstacol(164);
+    public static Tile podea2jos  = new Podea2Jos(165);
+
+
 
 
 

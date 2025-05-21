@@ -24,10 +24,15 @@ public class CollisionHandler
 
     public CollisionHandler(RefLinks refLinks) {
         this.refLinks = refLinks;
-        CollisionStrategyRegistry.registerStrategy(0, new Floor1());
+        //CollisionStrategyRegistry.registerStrategy(0, new Floor1());
         CollisionStrategyRegistry.registerStrategy(57, new BookTile());
         CollisionStrategyRegistry.registerStrategy(58, new BookTile());
         CollisionStrategyRegistry.registerStrategy(98, new PotionTile());
+        CollisionStrategyRegistry.registerStrategy(2, new WallTileStgDrt());
+        CollisionStrategyRegistry.registerStrategy(164, new ObstacolStgDrtUp());
+        //CollisionStrategyRegistry.registerStrategy(164, new ObstacolStg());
+        CollisionStrategyRegistry.registerStrategy(0, new TavanPodea());
+        CollisionStrategyRegistry.registerStrategy(67, new ObstacolStgDrtUp());
     }
 
     public void checkCollisionMouse(Hero hero, Mouse mouse)
@@ -153,6 +158,8 @@ public class CollisionHandler
         Rectangle heroBounds = hero.getBounds();
         int tileSize = Tile.TILE_WIDTH;
 
+        hero.resetOnTile();
+
         int tileLeft = heroBounds.x / tileSize; // coloana tileului din stânga unde începe eroul
         int tileRight = (heroBounds.x + heroBounds.width) / tileSize;
         int tileTop = heroBounds.y / tileSize; // linia tileului de sus unde începe eroul
@@ -197,6 +204,12 @@ public class CollisionHandler
                 }
             }
         }
+
+
+
+
+
+
     }
 
 

@@ -268,7 +268,7 @@ public class Hero extends Character {
     @Override
 
     public Rectangle getBounds() {
-        return new Rectangle((int) (x+15), (int) (y+15), width-28 , height-28);
+        return new Rectangle((int) (x+14), (int) (y+14), width-28 , height-28);
     }
 
 

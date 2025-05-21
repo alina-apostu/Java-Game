@@ -1,5 +1,6 @@
 package PaooGame.Collision;
 
+import PaooGame.Items.Character;
 import PaooGame.Items.Hero;
 
 import java.awt.*;
@@ -172,6 +173,12 @@ public class ObstacolStgDrtUp implements CollisionStrategy
         }*/
 
 
+
+    }
+
+    @Override
+    public void handleCollisionCharacter(Hero hero, Character character)
+    {
 
     }
 }

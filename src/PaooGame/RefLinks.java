@@ -1,6 +1,7 @@
 package PaooGame;
 
 import PaooGame.Input.KeyManager;
+import PaooGame.Items.Hero;
 import PaooGame.Maps.Map;
 
 /*! \class public class RefLinks
@@ -12,6 +13,7 @@ public class RefLinks
 {
     private Game game;          /*!< Referinta catre obiectul Game.*/
     private Map map;            /*!< Referinta catre harta curenta.*/
+    private Hero hero;
 
     /*! \fn public RefLinks(Game game)
         \brief Constructorul de initializare al clasei.
@@ -29,6 +31,16 @@ public class RefLinks
     public KeyManager GetKeyManager()
     {
         return game.GetKeyManager();
+    }
+
+    public void SetHero(Hero hero)
+    {
+        this.hero = hero;
+    }
+
+    public Hero GetHero()
+    {
+        return hero;
     }
 
     /*! \fn public int GetWidth()

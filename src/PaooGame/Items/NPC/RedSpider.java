@@ -87,7 +87,7 @@ public class RedSpider extends Character
                     isWebVisible = true;
                     webIndex = 0;
                     lastWebFrameTime = currentTime;
-                    webX = (int)x - 40;
+                    webX = (int)x - 50;
                     webY = (int)y + 10;
                 }
 
@@ -169,5 +169,11 @@ public class RedSpider extends Character
             return new Rectangle(webX + offsetX, webY, width, height);
         }
         return null;
+    }
+
+    public boolean isWebFullyOpened()
+    {
+        if(webIndex == 5) return true;
+        return false;
     }
 }

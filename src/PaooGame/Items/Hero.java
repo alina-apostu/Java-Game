@@ -6,6 +6,8 @@ import PaooGame.RefLinks;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.HashSet;
+import java.util.Set;
 
 /*! \class public class Hero extends Character
     \brief Implementeaza notiunea de erou/player (caracterul controlat de jucator).
@@ -44,6 +46,9 @@ public class Hero extends Character {
     private String characterType;
 
 
+    // folosim HashSet pentru ca nu permite elemente duplicate
+    private Set<Character> stungByBlueSpiders = new HashSet<>();
+    private Set<Character> stungByRedSpiders = new HashSet<>();
 
     /*! \fn public Hero(RefLinks refLink, float x, float y)
         \brief Constructorul de initializare al clasei Hero.
@@ -52,9 +57,10 @@ public class Hero extends Character {
         \param x Pozitia initiala pe axa X a eroului.
         \param y Pozitia initiala pe axa Y a eroului.
      */
-    public Hero(RefLinks refLink, float x, float y, String characterName) {
+    public Hero(RefLinks refLink, float x, float y, String characterName)
+    {
         //Apel al constructorului clasei de baza
-        super(refLink, x, y, Character.DEFAULT_CREATURE_WIDTH, Character.DEFAULT_CREATURE_HEIGHT);
+        super(refLink, x, y, Character.DEFAULT_CREATURE_WIDTH +10, Character.DEFAULT_CREATURE_HEIGHT +10);
 
         this.refLink=refLink;
         this.characterType = characterName;
@@ -245,8 +251,10 @@ public class Hero extends Character {
         \brief g Contextul grafi in care trebuie efectuata desenarea eroului.
      */
     @Override
-    public void Draw(Graphics g) {
+    public void Draw(Graphics g)
+    {
         g.drawImage(image, (int) x, (int) y, width, height, null);
+
 
         ///doar pentru debug daca se doreste vizualizarea dreptunghiului de coliziune altfel se vor comenta urmatoarele doua linii
         //g.setColor(Color.blue);
@@ -255,22 +263,46 @@ public class Hero extends Character {
         /*Rectangle bounds = getBounds();
         g.setColor(Color.RED); // sau orice culoare vrei
         g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);*///pentru debug
+
     }
 
-    public void setPower(String power) {
+    public void setPower(String power)
+    {
         this.power = power;
     }
 
-    public String getPower() {
+    public String getPower()
+    {
         return power;
     }
 
     @Override
 
     public Rectangle getBounds() {
+
         return new Rectangle((int) (x+14), (int) (y+14), width-28 , height-28);
+
     }
 
+    public boolean itWasStungByBlueSpider(Character spider)
+    {
+       return stungByBlueSpiders.contains(spider);
+    }
+
+    public void setWasStungByBlueSpider(Character spider)
+    {
+        stungByBlueSpiders.add(spider);
+    }
+
+    public boolean itWasStungByRedSpider(Character spider)
+    {
+        return stungByRedSpiders.contains(spider);
+    }
+
+    public void setWasStungByRedSpider(Character spider)
+    {
+        stungByRedSpiders.add(spider);
+    }
 
     public void setFalling(boolean falling) {
         this.isFalling = falling;

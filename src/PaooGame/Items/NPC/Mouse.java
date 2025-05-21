@@ -110,7 +110,7 @@ public class Mouse extends PaooGame.Items.Character
     @Override
     public Rectangle getBounds()
     {
-        return new Rectangle((int)(x + 14), (int)(y + 14), width - 28, height - 28);
+        return new Rectangle((int)(x + 10), (int)(y + 10), width - 20, height - 20);
     }
 
     public void showSparkle()

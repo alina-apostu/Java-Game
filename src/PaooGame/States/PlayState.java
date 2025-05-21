@@ -48,7 +48,8 @@ public class PlayState extends State
         refLink.SetMap(map);
             ///Construieste eroul
 
-        hero = new Hero(refLink,50, 115, selectedCharacter);
+        hero = new Hero(refLink,50, 108, selectedCharacter);
+        refLink.SetHero(hero);
 
         spiders = new ArrayList<>();
         int x=map.getLevelIndex();
@@ -60,31 +61,30 @@ public class PlayState extends State
                 break;
 
             case 2:
-                spiders.add(new SpiderBlue(refLink, 300, 100));
-                spiders.add(new SpiderBlue(refLink, 900, 100));
-                spiders.add(new SpiderBlue(refLink, 1400, 100));
-                spiders.add(new SpiderBlue(refLink, 2100, 100));
-                spiders.add(new SpiderBlue(refLink, 2700, 100));
-                spiders.add(new SpiderBlue(refLink, 2750, 30));
-                spiders.add(new SpiderBlue(refLink, 3050, 100));
+
+                spiders.add(new SpiderBlue(refLink, 300, 101));
+                spiders.add(new SpiderBlue(refLink, 900, 101));
+                spiders.add(new SpiderBlue(refLink, 1400, 101));
+                spiders.add(new SpiderBlue(refLink, 2100, 101));
+                spiders.add(new SpiderBlue(refLink, 2700, 101));
+                spiders.add(new SpiderBlue(refLink, 2750, 36));
+                spiders.add(new SpiderBlue(refLink, 3050, 101));
                 break;
 
             case 3:
-                spiders.add(new SpiderBlue(refLink, 280, 100));
-                spiders.add(new SpiderBlue(refLink, 300, 100));
-                spiders.add(new SpiderBlue(refLink, 320, 100));
-                spiders.add(new SpiderBlue(refLink, 850, 100));
-                spiders.add(new SpiderBlue(refLink, 1400, 100));
-                redSpider = new RedSpider(refLink, 500, 115);
-                redSpider2 = new RedSpider(refLink,600, 115);
-                shadowSpider = new ShadowSpider(refLink,3000,115);
+                spiders.add(new SpiderBlue(refLink, 280, 101));
+                spiders.add(new SpiderBlue(refLink, 300, 101));
+                //spiders.add(new SpiderBlue(refLink, 320, 101));
+                spiders.add(new SpiderBlue(refLink, 850, 101));
+                spiders.add(new SpiderBlue(refLink, 1400, 101));
+                redSpider = new RedSpider(refLink, 600, 110);
+                redSpider2 = new RedSpider(refLink,600, 110);
+                shadowSpider = new ShadowSpider(refLink,3000,94);
+
                 break;
         }
 
-
         collisionHandler = new CollisionHandler(refLink);
-
-
     }
 
     /*! \fn public void Update()
@@ -99,26 +99,23 @@ public class PlayState extends State
         collisionHandler.checkTileCollision(hero);
 
 
+        collisionHandler.checkCharacterCollision(hero,mouse1);
 
 
-        if(mouse1 != null) {
-            collisionHandler.checkCollisionMouse(hero, mouse1);
+        collisionHandler.checkCharacterCollision(hero,redSpider);
+
+        collisionHandler.checkCharacterCollision(hero,shadowSpider);
+
+        for (SpiderBlue spider : spiders)
+        {
+            collisionHandler.checkCharacterCollision(hero,spider);
         }
-        if(mouse2 != null) {
-            collisionHandler.checkCollisionMouse(hero, mouse2);
-        }
-
-        if(redSpider != null)
-            collisionHandler.checkCollisionRedSpider(hero,redSpider);
-        if(redSpider2 != null)
-            collisionHandler.checkCollisionRedSpider(hero,redSpider2);
 
         if (!Game.isPaused)
         {
-            hero.Update();  // Doar dacă nu e pauză, îl lași să se miște
-
-
+            hero.Update();  // Doar dacă nu e pauză, îl laș să se miște
         }
+
         if(mouse1 != null) mouse1.Update();
         if(mouse2 != null) mouse2.Update();
 
@@ -131,6 +128,7 @@ public class PlayState extends State
         if(shadowSpider != null) {
             shadowSpider.Update();
         }
+
 
 
     }
@@ -148,15 +146,19 @@ public class PlayState extends State
         if(mouse2 != null) mouse2.Draw(g);
 
         if(redSpider != null) redSpider.Draw(g);
-        if(redSpider2 != null) redSpider2.Draw(g);
+        //if(redSpider2 != null) redSpider2.Draw(g);
 
         hero.Draw(g);
-        for (SpiderBlue spider : spiders) {
+        for (SpiderBlue spider : spiders)
+        {
             spider.Draw(g);
         }
         if(shadowSpider != null) {
             shadowSpider.Draw(g);
         }
+
+
+        if(shadowSpider!=null) shadowSpider.Draw(g);
 
     }
 

@@ -20,8 +20,11 @@ public class WallTileStgDrt implements CollisionStrategy
         float tileLeft = tileBounds.x;
         float tileRight = tileBounds.x + tileBounds.width;
 
-        // Verificare coliziune laterală
-        if (heroBounds.intersects(tileBounds)) {
+        if (!hero.isOnTile() && heroBounds.intersects(tileBounds))
+        {
+            if ((hero.getisJumping()==true) || (hero.getisFalling()==true)) {
+                return;
+            }
             // Coliziune din dreapta (se lovește de partea stângă a tile-ului)
             if (heroRight > tileLeft && heroLeft < tileLeft) {
                 // Repoziționează eroul imediat în stânga tile-ului
@@ -36,5 +39,6 @@ public class WallTileStgDrt implements CollisionStrategy
                 System.out.println("Coliziune pe stânga (cu dreapta tile-ului)");
             }
         }
+
     }
 }

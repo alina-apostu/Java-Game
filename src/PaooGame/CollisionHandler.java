@@ -30,12 +30,15 @@ public class CollisionHandler
         CollisionStrategyRegistry.registerStrategy(98, new PotionTile());
         CollisionStrategyRegistry.registerStrategy(2, new WallTileStgDrt());
         CollisionStrategyRegistry.registerStrategy(164, new ObstacolStgDrtUp());
-        CollisionStrategyRegistry.registerStrategy(0, new TavanPodea());
+        CollisionStrategyRegistry.registerStrategy(0, new TavanTile());
 
-        CollisionStrategyRegistry.registerStrategy(67, new ObstacolStgDrtUp());
+
         //nivel2
-        CollisionStrategyRegistry.registerStrategy(99, new TavanPodea());
+        CollisionStrategyRegistry.registerStrategy(67, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(165, new TavanTile());
+
         //nivel3
+        CollisionStrategyRegistry.registerStrategy(99, new TavanTile());
         CollisionStrategyRegistry.registerStrategy(138, new ObstacolStgDrtUp());
         CollisionStrategyRegistry.registerStrategy(139, new ObstacolStgDrtUp());
 
@@ -50,6 +53,9 @@ public class CollisionHandler
         CollisionStrategyRegistry.registerStrategy(161, new ObstacolStgDrtUp());
         CollisionStrategyRegistry.registerStrategy(162, new ObstacolStgDrtUp());
         CollisionStrategyRegistry.registerStrategy(163, new ObstacolStgDrtUp());
+
+        CollisionStrategyRegistry.registerStrategy(48, new LevelTransitionTile());
+
 
 
 

@@ -31,6 +31,9 @@ public class MenuState extends State
     private Image freyaGif;
     private Image emberGif;
 
+    private int levelIndex = 1;
+
+
     public MenuState(RefLinks refLink)
     {
         //Apel al constructorului clasei de baza.
@@ -172,7 +175,7 @@ public class MenuState extends State
             else
             {
                 JOptionPane.showMessageDialog(null,"You chose: " + selectedCharacter + "\nLevel 1 is loading...", "Selected character",JOptionPane.INFORMATION_MESSAGE);
-                State.SetState(new PlayState(refLink, selectedCharacter)); // schimbam starea jocului
+                State.SetState(new PlayState(refLink, selectedCharacter,levelIndex)); // schimbam starea jocului
             }
         }
         else if(loadButton.contains(mx,my))

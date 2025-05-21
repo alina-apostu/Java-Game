@@ -40,6 +40,9 @@ public class Hero extends Character {
     private String power; // puterea luate de la soricei
     //private boolean isOnGroundThisFrame = false;
     private boolean onTile = false;
+    private RefLinks refLink;
+    private String characterType;
+
 
 
     /*! \fn public Hero(RefLinks refLink, float x, float y)
@@ -52,6 +55,9 @@ public class Hero extends Character {
     public Hero(RefLinks refLink, float x, float y, String characterName) {
         //Apel al constructorului clasei de baza
         super(refLink, x, y, Character.DEFAULT_CREATURE_WIDTH, Character.DEFAULT_CREATURE_HEIGHT);
+
+        this.refLink=refLink;
+        this.characterType = characterName;
 
         if (characterName.equals("Luna")) {
             characterUp = Assets.lunaUp;
@@ -245,6 +251,10 @@ public class Hero extends Character {
         ///doar pentru debug daca se doreste vizualizarea dreptunghiului de coliziune altfel se vor comenta urmatoarele doua linii
         //g.setColor(Color.blue);
         //g.fillRect((int)(x + bounds.x), (int)(y + bounds.y), bounds.width, bounds.height);
+
+        /*Rectangle bounds = getBounds();
+        g.setColor(Color.RED); // sau orice culoare vrei
+        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);*///pentru debug
     }
 
     public void setPower(String power) {
@@ -258,7 +268,7 @@ public class Hero extends Character {
     @Override
 
     public Rectangle getBounds() {
-        return new Rectangle((int) (x-12), (int) (y + 14), width-18 , height - 28);
+        return new Rectangle((int) (x+15), (int) (y+15), width-28 , height-28);
     }
 
 
@@ -298,6 +308,9 @@ public class Hero extends Character {
     public int getBoundsYOffset() {
         return bounds.y;
     }
+    public int getBoundsXOffset() {
+        return bounds.x;
+    }
 
     /*public void setOnGroundThisFrame(boolean value) {
         isOnGroundThisFrame = value;
@@ -325,6 +338,15 @@ public class Hero extends Character {
     public float GetGroundLevelY() {
         return this.groundLevelY;
     }
+
+    public RefLinks GetReflink() {
+        return super.refLink;
+    }
+
+    public String getCharacterType() {
+        return characterType;
+    }
+
 
 
 

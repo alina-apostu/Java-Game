@@ -4,9 +4,9 @@ import PaooGame.Items.Hero;
 
 import java.awt.*;
 
-public class TavanPodea implements CollisionStrategy
+public class TavanTile implements CollisionStrategy
 {
-    public TavanPodea() {
+    public TavanTile() {
         System.out.println("TavanPodea collision strategy created");
     }
 

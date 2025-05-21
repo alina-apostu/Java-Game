@@ -90,7 +90,7 @@ public class ObstacolStgDrtUp implements CollisionStrategy
             if (overlapWidth >= minRequiredOverlap) {
                 System.out.println("Eroul este complet pe tile (sprijinit corespunzător)");
 
-                float newY = tileTop - heroBounds.height-14;
+                float newY = tileTop - heroBounds.height-hero.getBoundsXOffset();;
                 hero.SetY(newY);
                 hero.setJumpSpeed(0);
                 hero.setFalling(false);
@@ -106,7 +106,7 @@ public class ObstacolStgDrtUp implements CollisionStrategy
                 hero.setFalling(true);
                 hero.setisJumping(false);
                 hero.setOnTile(false);
-                float newY = tileTop - heroBounds.height-14;
+                float newY = tileTop - heroBounds.height-hero.getBoundsXOffset();
                 hero.SetY(newY);
 
             }
@@ -123,7 +123,7 @@ public class ObstacolStgDrtUp implements CollisionStrategy
 
             System.out.println(" Coliziune cu TAVAN detectată corect.");
             float oldY = hero.GetY();
-            float newY = tileBottom - hero.getBoundsYOffset();
+            float newY = tileBottom - hero.getBoundsYOffset()+1;
             hero.SetY(newY);
             hero.setJumpSpeed(0.5f); // începe să cadă
             hero.setisJumping(false);

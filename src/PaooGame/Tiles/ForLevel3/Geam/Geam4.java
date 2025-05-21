@@ -18,5 +18,9 @@ public class Geam4 extends Tile
     public void Draw(Graphics g, int x, int y) {
         g.drawImage(img, x, y, 32, 32, null);
     }
+    public boolean IsSolid()
+    {
+        return true;
+    }
 
 }

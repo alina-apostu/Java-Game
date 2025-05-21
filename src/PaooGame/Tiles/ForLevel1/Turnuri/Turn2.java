@@ -10,4 +10,10 @@ public class Turn2 extends Tile
         /// Apel al constructorului clasei de baza
         super(Assets.turn2, id);
     }
+
+    @Override
+    public boolean IsSolid()
+    {
+        return true;
+    }
 }

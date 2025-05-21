@@ -11,5 +11,10 @@ public class CCC6 extends Tile
             /// Apel al constructorului clasei de baza
             super(Assets.ccc6, id);
         }
+    @Override
+    public boolean IsSolid()
+    {
+        return true;
+    }
 
 }

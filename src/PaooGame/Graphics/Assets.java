@@ -221,6 +221,10 @@ public class Assets
     public static BufferedImage geam5;
     public static BufferedImage geam6;
 
+    public static BufferedImage podea1obstacol;
+    public static BufferedImage podea2jos;
+    public static BufferedImage lemnObstacol;
+
 
 
 
@@ -427,6 +431,7 @@ public class Assets
 
 
         podea2=sheet6.crop(0,0);
+
         copac1=sheet7.crop(0,0); //incep tile uri pentru nivelul 2
         copac2=sheet7.crop(0,1);
         copac3=sheet7.crop(0,2);
@@ -540,6 +545,13 @@ public class Assets
         geam4=sheet4.crop(1,3);
         geam5=sheet4.crop(1,4);
         geam6=sheet4.crop(1,5);
+
+        //copii tile-uri obstacole realizate pentru coliziuni
+        podea1obstacol=sheet.crop(0,3);
+
+        podea2jos=sheet6.crop(0,0);
+
+        lemnObstacol=sheet9.crop(2,6);
 
     }
 }

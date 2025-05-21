@@ -37,13 +37,13 @@ public class PlayState extends State
 
         \param refLink O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.
      */
-    public PlayState(RefLinks refLink, String selectedCharacter)
+    public PlayState(RefLinks refLink, String selectedCharacter, int levelIndex)
     {
             ///Apel al constructorului clasei de baza
         super(refLink);
             ///Construieste harta jocului
 
-        map = new Map(refLink,3);
+        map = new Map(refLink,levelIndex);
             ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
             ///Construieste eroul
@@ -61,6 +61,7 @@ public class PlayState extends State
                 break;
 
             case 2:
+
                 spiders.add(new SpiderBlue(refLink, 300, 101));
                 spiders.add(new SpiderBlue(refLink, 900, 101));
                 spiders.add(new SpiderBlue(refLink, 1400, 101));
@@ -79,6 +80,7 @@ public class PlayState extends State
                 redSpider = new RedSpider(refLink, 600, 110);
                 redSpider2 = new RedSpider(refLink,600, 110);
                 shadowSpider = new ShadowSpider(refLink,3000,94);
+
                 break;
         }
 
@@ -93,9 +95,12 @@ public class PlayState extends State
     {
         map.Update();
 
+
         collisionHandler.checkTileCollision(hero);
 
+
         collisionHandler.checkCharacterCollision(hero,mouse1);
+
 
         collisionHandler.checkCharacterCollision(hero,redSpider);
 
@@ -120,11 +125,12 @@ public class PlayState extends State
         for (SpiderBlue spider : spiders) {
             spider.Update();
         }
-
-        if(shadowSpider!=null)
-        {
+        if(shadowSpider != null) {
             shadowSpider.Update();
         }
+
+
+
     }
 
     /*! \fn public void Draw(Graphics g)
@@ -147,8 +153,13 @@ public class PlayState extends State
         {
             spider.Draw(g);
         }
+        if(shadowSpider != null) {
+            shadowSpider.Draw(g);
+        }
+
 
         if(shadowSpider!=null) shadowSpider.Draw(g);
+
     }
 
     public Hero getPlayer()

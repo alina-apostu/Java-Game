@@ -40,6 +40,11 @@ public class Hero extends Character {
     private float groundLevelY; // y unde se afla solul pe care coboara personajul
 
     private String power; // puterea luate de la soricei
+    //private boolean isOnGroundThisFrame = false;
+    private boolean onTile = false;
+    private RefLinks refLink;
+    private String characterType;
+
 
     // folosim HashSet pentru ca nu permite elemente duplicate
     private Set<Character> stungByBlueSpiders = new HashSet<>();
@@ -56,6 +61,9 @@ public class Hero extends Character {
     {
         //Apel al constructorului clasei de baza
         super(refLink, x, y, Character.DEFAULT_CREATURE_WIDTH +10, Character.DEFAULT_CREATURE_HEIGHT +10);
+
+        this.refLink=refLink;
+        this.characterType = characterName;
 
         if (characterName.equals("Luna")) {
             characterUp = Assets.lunaUp;
@@ -152,6 +160,12 @@ public class Hero extends Character {
                 jumpSpeed = 0; // viteza de saritura se reseteaza
             }
         }
+
+        if (isFalling && y > groundLevelY) {
+            y = groundLevelY;
+            isFalling = false;
+            jumpSpeed = 0;
+        }
         Move();
     }
 
@@ -241,9 +255,15 @@ public class Hero extends Character {
     {
         g.drawImage(image, (int) x, (int) y, width, height, null);
 
-        /*g.setColor(Color.RED);
-        Rectangle r = getBounds();
-        g.drawRect(r.x, r.y, r.width, r.height);*/
+
+        ///doar pentru debug daca se doreste vizualizarea dreptunghiului de coliziune altfel se vor comenta urmatoarele doua linii
+        //g.setColor(Color.blue);
+        //g.fillRect((int)(x + bounds.x), (int)(y + bounds.y), bounds.width, bounds.height);
+
+        /*Rectangle bounds = getBounds();
+        g.setColor(Color.RED); // sau orice culoare vrei
+        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);*///pentru debug
+
     }
 
     public void setPower(String power)
@@ -259,7 +279,9 @@ public class Hero extends Character {
     @Override
 
     public Rectangle getBounds() {
-        return new Rectangle((int) (x + 14), (int) (y + 14), width-28,height-50);
+
+        return new Rectangle((int) (x+14), (int) (y+14), width-28 , height-28);
+
     }
 
     public boolean itWasStungByBlueSpider(Character spider)
@@ -286,7 +308,7 @@ public class Hero extends Character {
         this.isFalling = falling;
     }
 
-    public boolean isFalling() {
+    public boolean getisFalling() {
         return this.isFalling;
 
     }
@@ -313,5 +335,51 @@ public class Hero extends Character {
     public void setGroundLevelY(float groundLevelY) {
         this.groundLevelY = groundLevelY;
     }
+
+
+    public int getBoundsYOffset() {
+        return bounds.y;
+    }
+    public int getBoundsXOffset() {
+        return bounds.x;
+    }
+
+    /*public void setOnGroundThisFrame(boolean value) {
+        isOnGroundThisFrame = value;
+    }
+
+    public boolean isOnGroundThisFrame() {
+        return isOnGroundThisFrame;
+    }*/
+
+    public float GetGravity() {
+        return this.gravity;
+    }
+
+    public boolean isOnTile() {
+        return onTile;
+    }
+
+    public void setOnTile(boolean val) {
+        onTile = val;
+    }
+    public void resetOnTile() {
+        onTile = false;
+    }
+
+    public float GetGroundLevelY() {
+        return this.groundLevelY;
+    }
+
+    public RefLinks GetReflink() {
+        return super.refLink;
+    }
+
+    public String getCharacterType() {
+        return characterType;
+    }
+
+
+
 
 }

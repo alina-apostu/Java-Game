@@ -9,5 +9,7 @@ public class Scara12 extends Tile
         /// Apel al constructorului clasei de baza
         super(Assets.scara12, id);
     }
+
+
 }
 

@@ -11,5 +11,9 @@ public class CCC12 extends Tile
             /// Apel al constructorului clasei de baza
             super(Assets.ccc12, id);
         }
+    public boolean IsSolid()
+    {
+        return true;
+    }
 
 }

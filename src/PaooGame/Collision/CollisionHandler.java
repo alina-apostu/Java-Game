@@ -62,6 +62,9 @@ public class CollisionHandler
 
         CollisionStrategyRegistry.registerStrategy(48, new LevelTransitionTile());
 
+        CollisionStrategyRegistry.registerStrategy(110, new WinTile());
+
+
         CollisionStrategyRegistry.registerCharacterStrategy(Mouse.class, new MouseCollision());
         CollisionStrategyRegistry.registerCharacterStrategy(RedSpider.class, new RedSpiderCollision());
         CollisionStrategyRegistry.registerCharacterStrategy(SpiderBlue.class, new BlueSpiderCollision());
@@ -74,6 +77,7 @@ public class CollisionHandler
 
         if (character instanceof Mouse)
         {
+
             if (hero.getBounds().intersects(character.getBounds()))
             {
                 CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(Mouse.class);

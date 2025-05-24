@@ -9,6 +9,7 @@ import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 import PaooGame.Items.Character;
+import PaooGame.PublicGamaData;
 
 public class BookTile implements CollisionStrategy {
     private Set<Point> triggeredTiles = new HashSet<>();
@@ -22,9 +23,15 @@ public class BookTile implements CollisionStrategy {
 
     @Override
     public void handleCollisionTile(Hero hero, Rectangle tileBounds) {
+
+
+
         Point tilePos = new Point(tileBounds.x / 32, tileBounds.y / 32);
 
         if (!triggeredTiles.contains(tilePos)) {
+
+            PublicGamaData.subbScore(10);// de fiecare data cand personajul atinge o carte, scorul scade
+
             triggeredTiles.add(tilePos);
             System.out.println(tilePos.x+" "+tilePos.y);
 

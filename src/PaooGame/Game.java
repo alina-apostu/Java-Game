@@ -1,6 +1,7 @@
 package PaooGame;
 
 import PaooGame.Camera.Camera2;
+import PaooGame.DataBase.DataBaseManager;
 import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
 import PaooGame.Input.KeyManager;
@@ -133,6 +134,17 @@ public class Game implements Runnable
 
         cam=new Camera2(0,0,wnd.GetWndWidth(), wnd.GetWndHeight());
         //cam=new Camera2(0,0,300,192);
+        refLink.setCamera(cam);
+
+        PublicGamaData.refLinks = refLink; // pentru datele de tip scor, playerNmae,...
+
+
+
+        //baza de date
+        DataBaseManager db = DataBaseManager.getInstance();
+        db.connect();
+        db.createTable();
+
         ///Seteaza starea implicita cu care va fi lansat programul in executie
         State.SetState(menuState);
 

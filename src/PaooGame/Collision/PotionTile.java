@@ -3,6 +3,7 @@ package PaooGame.Collision;
 import PaooGame.Game;
 import PaooGame.Items.Hero;
 
+import PaooGame.Items.Character;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashSet;
@@ -25,17 +26,27 @@ public class PotionTile implements CollisionStrategy {
         if (!triggeredTiles.contains(tilePos)) {
             triggeredTiles.add(tilePos);
 
+
             Game.isPaused = true;
             hero.SetXMove(0);
             hero.SetYMove(0);
 
             JOptionPane.showMessageDialog(null,
+
                     "You have discovered a deadly potion!\nYou have lost one life.",
                     "Magic Potion",
+
                     JOptionPane.INFORMATION_MESSAGE);
 
             Game.isPaused = false;
             Game.getRefLinks().GetKeyManager().resetKeys();
+
         }
     }
+  @Override
+    public void handleCollisionCharacter(Hero hero, Character character)
+    {
+
+    }
+
 }

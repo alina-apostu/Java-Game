@@ -4,6 +4,8 @@ import PaooGame.Game;
 import PaooGame.Items.Hero;
 
 import PaooGame.Items.Character;
+import PaooGame.PublicGamaData;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashSet;
@@ -24,6 +26,8 @@ public class PotionTile implements CollisionStrategy {
         System.out.println("s a apelat handle pt potion");
 
         if (!triggeredTiles.contains(tilePos)) {
+
+            PublicGamaData.subbScore(10);// de fiecare data cand personajul atinge o potiune, scorul scade
             triggeredTiles.add(tilePos);
 
 

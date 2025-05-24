@@ -1,5 +1,6 @@
 package PaooGame;
 
+import PaooGame.Camera.Camera2;
 import PaooGame.Input.KeyManager;
 import PaooGame.Items.Hero;
 import PaooGame.Maps.Map;
@@ -14,6 +15,7 @@ public class RefLinks
     private Game game;          /*!< Referinta catre obiectul Game.*/
     private Map map;            /*!< Referinta catre harta curenta.*/
     private Hero hero;
+    private Camera2 camera;
 
     /*! \fn public RefLinks(Game game)
         \brief Constructorul de initializare al clasei.
@@ -94,4 +96,15 @@ public class RefLinks
     {
         this.map = map;
     }
+
+    public Camera2 getCamera()
+    {
+        return camera;
+    }
+
+    public void setCamera(Camera2 camera)
+    {
+        this.camera = camera;
+    }
+
 }

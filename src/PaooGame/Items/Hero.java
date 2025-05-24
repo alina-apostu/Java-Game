@@ -2,6 +2,7 @@ package PaooGame.Items;
 
 import PaooGame.Game;
 import PaooGame.Graphics.Assets;
+import PaooGame.PublicGamaData;
 import PaooGame.RefLinks;
 
 import java.awt.*;
@@ -44,6 +45,10 @@ public class Hero extends Character {
     private boolean onTile = false;
     private RefLinks refLink;
     private String characterType;
+
+
+    private String playerName;//nume jucator curent
+    //private int score;//scorul jucatorului
 
 
     // folosim HashSet pentru ca nu permite elemente duplicate
@@ -378,6 +383,16 @@ public class Hero extends Character {
     public String getCharacterType() {
         return characterType;
     }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+
 
 
 

@@ -1,5 +1,6 @@
 package PaooGame.States;
 
+import PaooGame.PublicGamaData;
 import PaooGame.RefLinks;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -31,7 +32,10 @@ public class MenuState extends State
     private Image freyaGif;
     private Image emberGif;
 
-    private int levelIndex = 1;
+    private int levelIndex = 1;//nivelul de inceput
+
+    private String playerName = null;//numele jucatorului
+
 
 
     public MenuState(RefLinks refLink)
@@ -108,17 +112,17 @@ public class MenuState extends State
         int nameWidth;
         int nameX;
         //Luna
-        name="Luna";
+        name="Cat Luna";
         nameWidth = g.getFontMetrics().stringWidth(name);
         nameX = lunaBox.x + (lunaBox.width - nameWidth)/2;
         g.drawString(name, nameX, lunaBox.y + lunaBox.height + 35);
         //Freya
-        name="Freya";
+        name="Cat Freya";
         nameWidth = g.getFontMetrics().stringWidth(name);
         nameX = freyaBox.x + (freyaBox.width - nameWidth)/2;
         g.drawString(name, nameX, freyaBox.y + freyaBox.height + 35);
         //Ember
-        name="Ember";
+        name="Cat Ember";
         nameWidth = g.getFontMetrics().stringWidth(name);
         nameX = emberBox.x + (emberBox.width - nameWidth)/2;
         g.drawString(name, nameX, emberBox.y + emberBox.height + 35);
@@ -170,13 +174,32 @@ public class MenuState extends State
             // daca s-a dat click pe start mai intai verificam daca jucatorul a ales un personaj apoi trecem in PlayState
         else if(startButton.contains(mx,my))
         {
+
             if(selectedCharacter == null)
                 JOptionPane.showMessageDialog(null, "You must choose a character before starting the game!", "Warning", JOptionPane.WARNING_MESSAGE);
             else
             {
-                JOptionPane.showMessageDialog(null,"You chose: " + selectedCharacter + "\nLevel 1 is loading...", "Selected character",JOptionPane.INFORMATION_MESSAGE);
-                State.SetState(new PlayState(refLink, selectedCharacter,levelIndex)); // schimbam starea jocului
+                // jucatorul trebuie sa introduca numele sau
+                playerName = JOptionPane.showInputDialog(null, "Enter your player name:", "Player Name", JOptionPane.QUESTION_MESSAGE);
+
+                if(playerName == null || playerName.trim().isEmpty()) {
+                    // dacă nu a introdus nimic, afișăm mesaj de eroare și nu continuăm
+                    JOptionPane.showMessageDialog(null, "Player name cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return; //
+                }
+
+                PublicGamaData.playerName = playerName;
+                PublicGamaData.characterType = selectedCharacter;
+
+                JOptionPane.showMessageDialog(null,"You chose: " + selectedCharacter + "\nPlayer name: " + playerName + "\nLevel 1 is loading...", "Selected character",JOptionPane.INFORMATION_MESSAGE);
+
+                // Trece în PlayState și transmite atât personajul, cât și numele jucătorului
+                State.SetState(new PlayState(refLink, selectedCharacter, levelIndex, playerName));// schimbam starea jocului
+
             }
+
+
+
         }
         else if(loadButton.contains(mx,my))
         {

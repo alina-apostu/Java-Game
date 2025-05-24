@@ -1,6 +1,7 @@
 package PaooGame.Collision;
 
 
+import PaooGame.Items.Character;
 import PaooGame.Items.Hero;
 import PaooGame.Maps.Map;
 import PaooGame.States.PlayState;
@@ -36,5 +37,11 @@ public class LevelTransitionTile implements CollisionStrategy {
 
             }
         }
+    }
+
+    @Override
+    public void handleCollisionCharacter(Hero hero, Character character)
+    {
+
     }
 }

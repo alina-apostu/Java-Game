@@ -15,7 +15,7 @@ public class ObstacolStgDrtUp implements CollisionStrategy
     public void handleCollisionTile(Hero hero, Rectangle tileBounds)
     {
         Rectangle heroBounds = hero.getBounds();
-        //boolean isssOnTile = false;
+        boolean isOnTileNow = false;
 
         float heroLeft = hero.GetX();
         float heroRight = hero.GetX() + heroBounds.width;
@@ -91,14 +91,15 @@ public class ObstacolStgDrtUp implements CollisionStrategy
             if (overlapWidth >= minRequiredOverlap) {
                 System.out.println("Eroul este complet pe tile (sprijinit corespunzător)");
 
-                float newY = tileTop - heroBounds.height-14;;
+                float newY = tileTop - heroBounds.height-22;;
                 hero.SetY(newY);
                 hero.setJumpSpeed(0);
                 hero.setFalling(false);
                 hero.setisJumping(false);
-                //isssOnTile = true;
+                isOnTileNow= true;
                 hero.setOnTile(true);
-                //hero.setGroundLevelY(newY);
+
+
             } else if(hero.GetY()==hero.GetGroundLevelY())
             {
 
@@ -107,8 +108,11 @@ public class ObstacolStgDrtUp implements CollisionStrategy
                 hero.setFalling(true);
                 hero.setisJumping(false);
                 hero.setOnTile(false);
-                float newY = tileTop - heroBounds.height-14;
+                float newY = tileTop - heroBounds.height;
                 hero.SetY(newY);
+
+
+
 
             }
         }
@@ -122,35 +126,42 @@ public class ObstacolStgDrtUp implements CollisionStrategy
                 heroBottom > tileBottom &&
                 heroBounds.intersects(tileBounds)) {
 
-            System.out.println(" Coliziune cu TAVAN detectată corect.");
-            float oldY = hero.GetY();
-            float newY = tileBottom - hero.getBoundsYOffset();
-            hero.SetY(newY);
-            hero.setJumpSpeed(0.5f); // începe să cadă
-            hero.setisJumping(false);
-            hero.setFalling(true);
-            hero.SetY( hero.GetY()+ hero.GetSpeed()); // cade
-            //hero.SetSpeed(hero.GetSpeed() +hero.GetGravity()); //actioneaza gravitatia
+            //float overlapWidth = Math.min(heroRight, tileRight) - Math.max(heroLeft, tileLeft);
+            //float minRequiredOverlap = heroBounds.width * 0.3f; //cat de mult se atinge eroul de tavan
+
+            //if (overlapWidth >= minRequiredOverlap && heroBounds.intersects(tileBounds)) {
+
+                System.out.println(" Coliziune cu TAVAN detectată corect.");
+                float oldY = hero.GetY();
+                float newY = tileBottom - hero.getBoundsYOffset();
+                //hero.SetY(newY);
+                hero.setJumpSpeed(0.5f); // începe să cadă
+                hero.setisJumping(false);
+                hero.setFalling(true);
+                hero.SetY(hero.GetY() + hero.GetSpeed()); // cade
+                //hero.SetSpeed(hero.GetSpeed() +hero.GetGravity()); //actioneaza gravitatia
+
+
         }
 
 
         // Verificare coliziune laterală
-       else if (!hero.isOnTile() && heroBounds.intersects(tileBounds))
+       else if (!isOnTileNow && !hero.getisFalling() && !hero.getisJumping())
        {
-           if ((hero.getisJumping()==true) || (hero.getisFalling()==true)) {
+           /*if ((hero.getisJumping()==true) || (hero.getisFalling()==true)) {
                return;
-           }
+           }*/
             // Coliziune din dreapta (se lovește de partea stângă a tile-ului)
             if (heroRight > tileLeft && heroLeft < tileLeft) {
                 // Repoziționează eroul imediat în stânga tile-ului
-                hero.SetX(tileLeft - heroBounds.width);
+                hero.SetX(tileLeft - heroBounds.width-14);
                 System.out.println("Coliziune pe dreapta (cu stânga tile-ului)");
             }
 
             // Coliziune din stânga (se lovește de partea dreaptă a tile-ului)
             else if (heroLeft < tileRight && heroRight > tileRight) {
                 // Repoziționează eroul imediat în dreapta tile-ului
-                hero.SetX(tileRight);
+                hero.SetX(tileRight-14);
                 System.out.println("Coliziune pe stânga (cu dreapta tile-ului)");
             }
         }

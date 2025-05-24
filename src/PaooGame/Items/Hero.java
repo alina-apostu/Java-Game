@@ -280,7 +280,7 @@ public class Hero extends Character {
 
     public Rectangle getBounds() {
 
-        return new Rectangle((int) (x+14), (int) (y+14), width-28 , height-28);
+        return new Rectangle((int) (x+20), (int) (y+20), width-34 , height-40);
 
     }
 

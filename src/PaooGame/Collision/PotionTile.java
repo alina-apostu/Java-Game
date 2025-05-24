@@ -28,6 +28,7 @@ public class PotionTile implements CollisionStrategy {
         if (!triggeredTiles.contains(tilePos)) {
 
             PublicGamaData.subbScore(10);// de fiecare data cand personajul atinge o potiune, scorul scade
+            hero.loseLife();//eroul pierde o viata de fiecare data cand se intalneste cu o potiune
             triggeredTiles.add(tilePos);
 
 

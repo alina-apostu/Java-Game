@@ -136,7 +136,7 @@ public class Game implements Runnable
         //cam=new Camera2(0,0,300,192);
         refLink.setCamera(cam);
 
-        PublicGamaData.refLinks = refLink; // pentru datele de tip scor, playerNmae,...
+        PublicGamaData.refLinks = refLink; // pentru datele de tip scor, playerName,...
 
 
 

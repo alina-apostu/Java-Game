@@ -80,18 +80,6 @@ public class PlayState extends State
                 mice.add(new Mouse(refLink, 422, 120, "green"));
                 mice.add(new Mouse(refLink, 500, 111, "green"));
                 mice.add(new Mouse(refLink, 600, 111, "blue"));
-
-                break;
-
-            case 2:
-
-                spiders.add(new SpiderBlue(refLink, 300, 101));
-                spiders.add(new SpiderBlue(refLink, 900, 101));
-                spiders.add(new SpiderBlue(refLink, 1400, 101));
-                spiders.add(new SpiderBlue(refLink, 2100, 101));
-                spiders.add(new SpiderBlue(refLink, 2700, 101));
-                spiders.add(new SpiderBlue(refLink, 2750, 36));
-                spiders.add(new SpiderBlue(refLink, 3050, 101));
                 break;
 
             case 3:

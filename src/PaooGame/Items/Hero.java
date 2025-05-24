@@ -199,8 +199,13 @@ public class Hero extends Character {
                     if (characterIndex >= characterUp.length) {
                         characterIndex = 0;
                         isAnimating = false;
-                    } else {
-                        image = characterUp[characterIndex];
+                    }
+                    else
+                    {
+                        if (facingRight)
+                            image = characterUp[characterIndex];
+                        else
+                            image = flipImageHorizontally(characterUp[characterIndex]);
                     }
                     break;
 
@@ -301,7 +306,10 @@ public class Hero extends Character {
                 isAnimating = true;
                 currentAnimation = "up";
                 characterIndex = 0;
-                image = characterUp[characterIndex];
+                if(facingRight == true)
+                    image = characterUp[characterIndex];
+                else
+                    image = flipImageHorizontally(characterRight[characterIndex]);
                 lastFrameTime = currentTime;
             }
         }

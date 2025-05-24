@@ -26,14 +26,14 @@ public class LevelTransitionTile implements CollisionStrategy {
 
 
 
-                // Cream o nouă stare de joc pentru următorul nivel
+                //
                 PlayState nextState = new PlayState(hero.GetReflink(), hero.getCharacterType(),nextLevel);
 
                 // Schimbăm starea curentă
                 State.SetState(nextState);
             } else {
                 System.out.println("Ai terminat toate nivelurile!");
-                // Eventual poți seta o stare de tip "GameWonState" sau meniul principal
+
             }
         }
     }

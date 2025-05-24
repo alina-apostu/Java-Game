@@ -3,11 +3,12 @@ package PaooGame.Items;
 import PaooGame.Game;
 import PaooGame.Graphics.Assets;
 import PaooGame.RefLinks;
+import PaooGame.States.PlayState;
+import PaooGame.States.State;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /*! \class public class Hero extends Character
     \brief Implementeaza notiunea de erou/player (caracterul controlat de jucator).
@@ -38,12 +39,32 @@ public class Hero extends Character {
     private long lastJumpTime = 0; // momentul ultimei apasari pe tasta up
     private final long jumpBoost = 260; //(ms) daca se apasa rede iar tasta up creste inaltimea sariturii
     private float groundLevelY; // y unde se afla solul pe care coboara personajul
+    private boolean facingRight = true;
 
+    // pentru puteri
     private String power; // puterea luate de la soricei
+
+    private FireBall fireBall;
+    private boolean firePressedLast = false;
+
+    private boolean shortFlyActive = false;
+    private boolean isFlying = false;
+    private long flyStartTime = 0;
+    private float flySpeed = 2f; // viteza cu care se ridica de la sol sau coboara pe sol
+    private final long shortFlyDuration = 5000; // 1.5 sec
+    private float maxFlyHeightY;
+
+    private long invisibilityStartTime = 0;
+    private boolean invisible = false;
+    private final long invisibilityDuration = 5000; // 3 sec
 
     // folosim HashSet pentru ca nu permite elemente duplicate
     private Set<Character> stungByBlueSpiders = new HashSet<>();
     private Set<Character> stungByRedSpiders = new HashSet<>();
+
+    private boolean stungByShadowSpider = false;
+
+    private ArrayList<Character> enemies;
 
     /*! \fn public Hero(RefLinks refLink, float x, float y)
         \brief Constructorul de initializare al clasei Hero.
@@ -90,13 +111,71 @@ public class Hero extends Character {
         \brief Actualizeaza pozitia si imaginea eroului.
      */
     @Override
-    public void Update() {
+    public void Update()
+    {
         //Verifica daca a fost apasata o tasta
         GetInput();
 
         // timpul curent in ms
         // este folosit pentru a controla timpul intre schimbarea cadrelor animatiei
         long currentTime = System.currentTimeMillis();
+
+        if(isFlying == true)
+        {
+            // se ridica de la sol
+            if(y > maxFlyHeightY)
+            {
+                y -= flySpeed;
+                if(y < maxFlyHeightY)
+                    y = maxFlyHeightY;
+            }
+
+            if(refLink.GetKeyManager().left)
+            {
+                facingRight = false;
+                xMove = -speed;
+                if (!isAnimating) {
+                    isAnimating = true;
+                    currentAnimation = "left";
+                    characterIndex = 0;
+                    image = flipImageHorizontally(characterRight[characterIndex]);
+                    lastFrameTime = currentTime;
+                }
+            }
+            else if (refLink.GetKeyManager().right)
+            {
+                facingRight = true;
+                xMove = speed;
+                if (!isAnimating) {
+                    isAnimating = true;
+                    currentAnimation = "right";
+                    characterIndex = 0;
+                    image = characterRight[characterIndex];
+                    lastFrameTime = currentTime;
+                }
+            }
+            else
+            {
+                xMove = 0;
+                isAnimating = false;
+            }
+
+            if(currentTime - flyStartTime >= shortFlyDuration)
+            {
+                isFlying = false;
+                isFalling = true;
+                jumpSpeed = flySpeed; // viteza cu care cade
+            }
+
+            Move();
+            return; // iesim din update
+        }
+
+        if(invisible == true)
+        {
+            if(currentTime - invisibilityStartTime >= invisibilityDuration)
+                invisible = false;
+        }
 
         if (isAnimating && currentTime - lastFrameTime > frameInterval) {
             characterIndex++; // se schimba cadrul animatiei
@@ -152,6 +231,13 @@ public class Hero extends Character {
                 jumpSpeed = 0; // viteza de saritura se reseteaza
             }
         }
+
+        if(fireBall !=null && fireBall.isActive())
+        {
+            fireBall.Update();
+            if(fireBall.isActive() == false)
+                fireBall = null;
+        }
         Move();
     }
 
@@ -168,7 +254,8 @@ public class Hero extends Character {
     /*! \fn private void GetInput()
         \brief Verifica daca a fost apasata o tasta din cele stabilite pentru controlul eroului.
      */
-    private void GetInput() {
+    private void GetInput()
+    {
         if (Game.isPaused == true) {
             SetXMove(0);
             SetYMove(0);
@@ -207,7 +294,9 @@ public class Hero extends Character {
         }
 
         // dreapta
-        if (refLink.GetKeyManager().right) {
+        if (refLink.GetKeyManager().right)
+        {
+            facingRight = true;
             xMove = speed;
             if (!isAnimating) {
                 isAnimating = true;
@@ -219,7 +308,9 @@ public class Hero extends Character {
         }
 
         // stanga
-        if (refLink.GetKeyManager().left) {
+        if (refLink.GetKeyManager().left)
+        {
+            facingRight = false;
             xMove = -speed;
             if (!isAnimating) {
                 isAnimating = true;
@@ -228,6 +319,36 @@ public class Hero extends Character {
                 image = flipImageHorizontally(characterRight[characterIndex]);
                 lastFrameTime = currentTime;
             }
+        }
+
+        // tasta A - minge de foc
+        if(refLink.GetKeyManager().foc)
+        {
+            if(firePressedLast == false)
+            {
+                shootFireball();
+                firePressedLast = true;
+            }
+            else
+            {
+                firePressedLast = false;
+            }
+        }
+
+        if(refLink.GetKeyManager().zbor)
+        {
+            if(isFlying == false && isJumping == false && isFalling == false)
+            {
+                isFlying = true;
+                flyStartTime = System.currentTimeMillis();
+                maxFlyHeightY = groundLevelY - 80;
+            }
+        }
+
+        if(refLink.GetKeyManager().invizibil)
+        {
+            invisible = true;
+            invisibilityStartTime = System.currentTimeMillis();
         }
     }
 
@@ -239,11 +360,21 @@ public class Hero extends Character {
     @Override
     public void Draw(Graphics g)
     {
-        g.drawImage(image, (int) x, (int) y, width, height, null);
+        if(invisible == true)
+        {
+            Graphics2D g2d = (Graphics2D) g.create();
+            float alpha = 0.3f; // seteaza transparenta
 
-        /*g.setColor(Color.RED);
-        Rectangle r = getBounds();
-        g.drawRect(r.x, r.y, r.width, r.height);*/
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+            g2d.drawImage(image, (int)x, (int)y, width, height, null);
+        }
+        else
+        {
+            g.drawImage(image, (int) x, (int) y, width, height, null);
+        }
+
+        if(fireBall !=null && fireBall.isActive())
+            fireBall.Draw(g);
     }
 
     public void setPower(String power)
@@ -258,8 +389,19 @@ public class Hero extends Character {
 
     @Override
 
-    public Rectangle getBounds() {
-        return new Rectangle((int) (x + 14), (int) (y + 14), width-28,height-50);
+    public Rectangle getBounds()
+    {
+        return new Rectangle((int) (x + 20), (int) (y + 14), width-28,height-50);
+    }
+
+    public boolean itWasStungByShadowSpider()
+    {
+        return stungByShadowSpider;
+    }
+
+    public void setStungByShadowSpider(boolean x)
+    {
+        stungByShadowSpider = x;
     }
 
     public boolean itWasStungByBlueSpider(Character spider)
@@ -314,4 +456,38 @@ public class Hero extends Character {
         this.groundLevelY = groundLevelY;
     }
 
+    private void shootFireball()
+    {
+        if(fireBall == null)
+        {
+            float fbX;
+            float fbY = y + 10;
+            int direction;
+
+            if(facingRight == true)
+            {
+                fbX = x + width;
+                direction = 1;
+            }
+            else
+            {
+                fbX = x - 16;
+                direction = -1;
+            }
+
+            fireBall = new FireBall(refLink, fbX, fbY, direction,enemies);
+        }
+    }
+
+    public void setEnemies(ArrayList<Character> enemies)
+    {
+        this.enemies = new ArrayList<>();
+        this.enemies = enemies;
+    }
+
+    @Override
+    public void Die()
+    {
+
+    }
 }

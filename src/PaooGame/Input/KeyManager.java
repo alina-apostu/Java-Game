@@ -42,7 +42,7 @@ public class KeyManager implements KeyListener
 
         zbor    = keys[KeyEvent.VK_W]; //modificate sageata sus
         foc  = keys[KeyEvent.VK_A]; //sageata jos
-        invizibil  = keys[KeyEvent.VK_S]; //sageata stg
+        invizibil  = keys[KeyEvent.VK_D]; //sageata stg
 
     }
 

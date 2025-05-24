@@ -14,10 +14,21 @@ public class SpiderBlue extends Character {
     private boolean movingRight = true;
     private float leftLimit, rightLimit;
 
-    public SpiderBlue(RefLinks refLink, float x, float y) {
+    // moarte
+    private BufferedImage[] death;
+    private int deathIndex = 0;
+    private long lastDeathFrameTime = 0;
+    private final long deathFrameInterval = 150; // viteza cu care se schimba cadrele
+    private boolean dying = false;
+    private boolean dead = false;
+
+    public SpiderBlue(RefLinks refLink, float x, float y)
+    {
         super(refLink, x, y, Character.DEFAULT_CREATURE_WIDTH, Character.DEFAULT_CREATURE_HEIGHT);
 
-        moveRight = Assets.spiderBlueRight;
+        moveRight = Assets.blueSpiderRight;
+        death = Assets.blueSpiderDeath;
+
         image = moveRight[0];
         characterIndex = 0;
         lastTime = System.currentTimeMillis();
@@ -33,12 +44,41 @@ public class SpiderBlue extends Character {
     }
 
     @Override
-    public void Update() {
+    public void Update()
+    {
+        if(dead == true)
+            return;
+
+        long currentTime = System.currentTimeMillis();
+
+        if(dying == true)
+        {
+            if(currentTime - lastDeathFrameTime >= deathFrameInterval)
+            {
+                lastDeathFrameTime = currentTime;
+                if(deathIndex < death.length-1)
+                {
+                    deathIndex++;
+                    image = death[deathIndex];
+                }
+                else
+                {
+                    dead = true;
+                    dying = false;
+                }
+            }
+
+            return; // nu mai facem update daca moare;
+        }
+
         // Mișcare automată
-        if (movingRight) {
+        if (movingRight)
+        {
             x += speed;
             if (x > rightLimit) movingRight = false;
-        } else {
+        }
+        else
+        {
             x -= speed;
             if (x < leftLimit) movingRight = true;
         }
@@ -46,7 +86,6 @@ public class SpiderBlue extends Character {
         Move();
 
         //  animația
-        long currentTime = System.currentTimeMillis();
         if (currentTime - lastTime > 200) // 200 ms între cadre
         {
             characterIndex++;
@@ -92,5 +131,20 @@ public class SpiderBlue extends Character {
     public Rectangle getBounds()
     {
         return new Rectangle((int) (x + 14), (int) (y + 14), width-28, height-28);
+    }
+
+    @Override
+    public void Die()
+    {
+        dying = true;
+        dead = false;
+        deathIndex = 0;
+        image = death[deathIndex];
+        lastDeathFrameTime = System.currentTimeMillis();
+    }
+
+    public boolean isDead()
+    {
+        return dead;
     }
 }

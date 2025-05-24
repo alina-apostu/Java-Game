@@ -77,8 +77,8 @@ public class CollisionHandler
 
         if (character instanceof Mouse)
         {
-
-            if (hero.getBounds().intersects(character.getBounds()))
+            Mouse mouse = (Mouse)character;
+            if (hero.getBounds().intersects(mouse.getBounds()))
             {
                 CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(Mouse.class);
                 if (strategy != null)
@@ -92,22 +92,24 @@ public class CollisionHandler
 
             if ((webBounds != null && hero.getBounds().intersects(webBounds)) || (hero.itWasStungByRedSpider(character) == false && hero.getBounds().intersects(redSpider.getBounds())))
             {
-                CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(RedSpider.class);
-                if (strategy != null)
-                    strategy.handleCollisionCharacter(hero, character);
-                //hero.setWasStungByRedSpider(character);
+                if(redSpider.isDead() == false)
+                {
+                    CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(RedSpider.class);
+                    if (strategy != null)
+                        strategy.handleCollisionCharacter(hero, character);
+                }
             }
         }
         else if(character instanceof SpiderBlue)
         {
-            if (hero.getBounds().intersects(character.getBounds()))
+            SpiderBlue blueSpider = (SpiderBlue) character;
+            if (hero.getBounds().intersects(blueSpider.getBounds()) && hero.itWasStungByBlueSpider(character) == false)
             {
-                if(hero.itWasStungByBlueSpider(character) == false)
+                if(blueSpider.isDead() == false)
                 {
                     CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(SpiderBlue.class);
                     if (strategy != null)
                         strategy.handleCollisionCharacter(hero, character);
-                    //hero.setWasStungByBlueSpider(character);
                 }
             }
         }
@@ -116,11 +118,14 @@ public class CollisionHandler
             ShadowSpider shadowSpider = (ShadowSpider)character;
             Rectangle webBounds = shadowSpider.getWebBounds();
 
-            if (webBounds != null && hero.getBounds().intersects(webBounds))
+            if ((webBounds != null && hero.getBounds().intersects(webBounds)) || (hero.getBounds().intersects(shadowSpider.getBounds())))
             {
-                CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(ShadowSpider.class);
-                if (strategy != null)
-                    strategy.handleCollisionCharacter(hero, character);
+                if(shadowSpider.isDead() == false)
+                {
+                    CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(ShadowSpider.class);
+                    if (strategy != null)
+                        strategy.handleCollisionCharacter(hero, character);
+                }
             }
         }
     }

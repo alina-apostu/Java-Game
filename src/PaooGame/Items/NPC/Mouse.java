@@ -118,4 +118,10 @@ public class Mouse extends PaooGame.Items.Character
         showSparkle = true;
         sparkleStartTime = System.currentTimeMillis();
     }
+
+    @Override
+    public void Die()
+    {
+
+    }
 }

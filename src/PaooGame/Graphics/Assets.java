@@ -97,15 +97,19 @@ public class Assets
     public static  BufferedImage purple_sparkle;
     public static BufferedImage green_sparkle;
     public static BufferedImage blue_sparkle;
+    public static BufferedImage fireball;
 
     public static BufferedImage[] redSpider;
     public static BufferedImage[] redSpiderAttack;
     public static BufferedImage[] web;
+    public static BufferedImage[] redSpiderDeath;
 
-    public static BufferedImage[] spiderBlueRight;
+    public static BufferedImage[] blueSpiderRight;
+    public static BufferedImage[] blueSpiderDeath;
 
     public static BufferedImage[] shadowSpiderWalk;
     public static BufferedImage[] shadowSpiderAttack;
+    public static BufferedImage[] shadowSpiderDeath;
 
     public static BufferedImage podea2;
     public static BufferedImage copac1;
@@ -250,7 +254,6 @@ public class Assets
         SpriteSheet sheet9 = new SpriteSheet(ImageLoader.LoadImage("/textures/lemn2.png"));
         SpriteSheet sheet10 = new SpriteSheet(ImageLoader.LoadImage("/textures/fundal_bej.png"));
         SpriteSheet sheet11 = new SpriteSheet(ImageLoader.LoadImage("/textures/scari_maro1.png"));
-        SpriteSheet spiderBlueSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/SpiderBlue.png"));
         SpriteSheet magic = new SpriteSheet(ImageLoader.LoadImage("/textures/CarteMagica.png"));
         //SpriteSheet web = new SpriteSheet(ImageLoader.LoadImage("/textures/spiderWeb1.png"));
         SpriteSheet sheet12 = new SpriteSheet(ImageLoader.LoadImage("/textures/carti3_transp.png"));
@@ -259,6 +262,8 @@ public class Assets
         SpriteSheet lunaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/luna.png"));
         SpriteSheet freyaSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/freya.png"));
         SpriteSheet emberSheet = new SpriteSheet(ImageLoader.LoadImage("/characters/ember.png"));
+
+        SpriteSheet spiderBlueSheet = new SpriteSheet(ImageLoader.LoadImage("/textures/SpiderBlue.png"));
 
         SpriteSheet redSpiderSheet = new SpriteSheet(ImageLoader.LoadImage("/NPC/red_spider.png"));
         SpriteSheet webSheet = new SpriteSheet(ImageLoader.LoadImage("/NPC/web.png"));
@@ -285,8 +290,7 @@ public class Assets
         lunaUp[2] = lunaSheet.crop(0,1);
         freyaUp[2] = freyaSheet.crop(0,1);
         emberUp[2] = emberSheet.crop(0,1);
-      
-        spiderBlueRight = new BufferedImage[7];
+
       
         for(int i=0;i<2;i++)
         {
@@ -304,6 +308,7 @@ public class Assets
         purple_sparkle = ImageLoader.LoadImage("/NPC/purple_glitter.png");
         green_sparkle = ImageLoader.LoadImage("/NPC/green_glitter.png");
         blue_sparkle = ImageLoader.LoadImage("/NPC/blue_glitter.png");
+        fireball = ImageLoader.LoadImage("/characters/fire_ball.png");
 
         greenMouse[0] = ImageLoader.LoadImage("/NPC/green_mouse.png");
         greenMouse[1] = ImageLoader.LoadImage("/NPC/green_mouse2.png");
@@ -320,6 +325,7 @@ public class Assets
         // paianjenii rosii
         redSpider = new BufferedImage[3];
         redSpiderAttack = new BufferedImage[8];
+        redSpiderDeath = new BufferedImage[8];
         web = new BufferedImage[6];
 
         redSpider[0] = redSpiderSheet.crop(0,0);
@@ -328,21 +334,28 @@ public class Assets
         for(int i=0;i<8;i++)
         {
             redSpiderAttack[i] = redSpiderSheet.crop(i,2);
+            redSpiderDeath[i] = redSpiderSheet.crop(i,4);
         }
         for(int i=0;i<6;i++)
         {
             web[i] = webSheet.crop(i,0);
         }
-     
+
+        blueSpiderRight = new BufferedImage[7];
+        blueSpiderDeath = new BufferedImage[9];
         for(int i=0;i<6;i++)
         {
-            spiderBlueRight[i] = spiderBlueSheet.crop(i,9);
-
+            blueSpiderRight[i] = spiderBlueSheet.crop(i,9);
         }
-        spiderBlueRight[6]=spiderBlueSheet.crop(0,8);
+        blueSpiderRight[6]=spiderBlueSheet.crop(0,8);
+        for(int i=0;i<9;i++)
+        {
+            blueSpiderDeath[i] = spiderBlueSheet.crop(i,6);
+        }
 
         shadowSpiderWalk = new BufferedImage[4];
         shadowSpiderAttack = new BufferedImage[6];
+        shadowSpiderDeath = new BufferedImage[7];
         for(int i=0;i<4;i++)
         {
             shadowSpiderWalk[i] = shadowSpiderSheet.crop2(i,1,64,64);
@@ -350,6 +363,10 @@ public class Assets
         for(int i=0;i<6;i++)
         {
             shadowSpiderAttack[i] = shadowSpiderSheet.crop2(i,3,64,64);
+        }
+        for(int i=0;i<7;i++)
+        {
+            shadowSpiderDeath[i] = shadowSpiderSheet.crop2(i,2,64,64);
         }
 
         // elemente harti

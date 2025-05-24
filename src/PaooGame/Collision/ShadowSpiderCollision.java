@@ -31,6 +31,14 @@ public class ShadowSpiderCollision implements CollisionStrategy
             hero.SetYMove(0);
             showWebCaughtMessage();
         }
+        else if(hero.itWasStungByShadowSpider() == false && hero.getBounds().intersects(shadowSpider.getBounds()))
+        {
+            Game.isPaused = true;
+            hero.SetXMove(0);
+            hero.SetYMove(0);
+            showMessage();
+            hero.setStungByShadowSpider(true);
+        }
     }
 
     private void showWebCaughtMessage()
@@ -45,6 +53,39 @@ public class ShadowSpiderCollision implements CollisionStrategy
             dialog.setLocationRelativeTo(null);
 
             JLabel messageLabel = new JLabel("<html>You've been caught by the Shadow Spider's web!<br>You lost all your lives!</html>", SwingConstants.CENTER);
+            dialog.add(messageLabel, BorderLayout.CENTER);
+
+            JButton continueButton = new JButton("Continue");
+            continueButton.addActionListener(e ->
+            {
+                dialog.dispose();
+                isMessageDisplayed = false;
+                Game.isPaused = false;
+                Game.getRefLinks().GetKeyManager().resetKeys();
+            });
+
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.add(continueButton);
+            dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+            isMessageDisplayed = true;
+            dialog.setVisible(true);
+        }
+    }
+
+    public void showMessage()
+    {
+        if (isMessageDisplayed == false)
+        {
+            JDialog dialog = new JDialog();
+            dialog.setTitle("Stung by the Shadow spider!");
+            dialog.setModal(true);
+            dialog.setLayout(new BorderLayout());
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialog.setSize(400, 150);
+            dialog.setLocationRelativeTo(null);
+
+            JLabel messageLabel = new JLabel("<html>You've been stung by the Shadow spider!<br>You lost all your lives!</html>", SwingConstants.CENTER);
             dialog.add(messageLabel, BorderLayout.CENTER);
 
             JButton continueButton = new JButton("Continue");

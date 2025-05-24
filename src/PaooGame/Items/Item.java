@@ -51,6 +51,8 @@ public abstract class Item
         ///Metoda abstracta destinata desenarii starii curente
     public abstract void Draw(Graphics g);
 
+    public abstract void Die();
+
     /*! \fn public float GetX()
         \brief Returneaza coordonata pe axa X.
      */

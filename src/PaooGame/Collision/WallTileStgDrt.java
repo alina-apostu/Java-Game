@@ -42,6 +42,7 @@ public class WallTileStgDrt implements CollisionStrategy
         }
 
     }
+
     @Override
     public void handleCollisionCharacter(Hero hero, Character character)
     {

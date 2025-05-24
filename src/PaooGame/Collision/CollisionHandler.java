@@ -2,18 +2,28 @@ package PaooGame.Collision;
 
 import java.awt.Rectangle;
 
+import java.awt.BorderLayout;
+import javax.swing.JDialog;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import PaooGame.Game;
 import PaooGame.Items.Hero;
 import PaooGame.Items.Character;
 import PaooGame.Items.NPC.*;
 import PaooGame.Items.ShadowSpider;
 import PaooGame.Items.SpiderBlue;
+import PaooGame.Maps.Map;
 import PaooGame.RefLinks;
 import PaooGame.Tiles.Tile;
-import PaooGame.Maps.Map;
+
 
 
 public class CollisionHandler
 {
+
     private final int tileSize = 32;
     private RefLinks refLinks;
 
@@ -22,7 +32,39 @@ public class CollisionHandler
         this.refLinks = refLinks;
         //CollisionStrategyRegistry.registerStrategy(0, new Floor1());
         CollisionStrategyRegistry.registerStrategy(57, new BookTile());
-        CollisionStrategyRegistry.registerStrategy(58, new BookTile());//podea1
+        CollisionStrategyRegistry.registerStrategy(58, new BookTile());
+        CollisionStrategyRegistry.registerStrategy(98, new PotionTile());
+        CollisionStrategyRegistry.registerStrategy(2, new WallTileStgDrt());
+        CollisionStrategyRegistry.registerStrategy(164, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(0, new TavanTile());
+
+
+        //nivel2
+        CollisionStrategyRegistry.registerStrategy(67, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(165, new TavanTile());
+
+        //nivel3
+        CollisionStrategyRegistry.registerStrategy(99, new TavanTile());
+        CollisionStrategyRegistry.registerStrategy(138, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(139, new ObstacolStgDrtUp());
+
+        CollisionStrategyRegistry.registerStrategy(148, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(149, new ObstacolStgDrtUp());
+
+        CollisionStrategyRegistry.registerStrategy(166, new ObstacolStgDrtUp());
+
+        CollisionStrategyRegistry.registerStrategy(158, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(159, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(160, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(161, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(162, new ObstacolStgDrtUp());
+        CollisionStrategyRegistry.registerStrategy(163, new ObstacolStgDrtUp());
+
+        CollisionStrategyRegistry.registerStrategy(48, new LevelTransitionTile());
+
+        CollisionStrategyRegistry.registerStrategy(110, new WinTile());
+
+
         CollisionStrategyRegistry.registerCharacterStrategy(Mouse.class, new MouseCollision());
         CollisionStrategyRegistry.registerCharacterStrategy(RedSpider.class, new RedSpiderCollision());
         CollisionStrategyRegistry.registerCharacterStrategy(SpiderBlue.class, new BlueSpiderCollision());
@@ -91,11 +133,15 @@ public class CollisionHandler
     public void checkTileCollision(Hero hero) {
         Rectangle heroBounds = hero.getBounds();
         int tileSize = Tile.TILE_WIDTH;
+      
+        hero.resetOnTile();
+
 
         int tileLeft = heroBounds.x / tileSize; // coloana tileului din stânga unde începe eroul
         int tileRight = (heroBounds.x + heroBounds.width) / tileSize;
         int tileTop = heroBounds.y / tileSize; // linia tileului de sus unde începe eroul
         int tileBottom = (heroBounds.y + heroBounds.height) / tileSize;
+
 
         Map map = refLinks.GetMap();
 
@@ -107,6 +153,7 @@ public class CollisionHandler
                 for (int col = tileLeft; col <= tileRight; col++) {
                     Tile tile = map.GetTile(col, row, layer);
                     if (tile != null && tile.IsSolid()) {
+
                         //System.out.println(tileLeft + " " + tileRight + " " + tileTop + " " + tileBottom);
 
                         //System.out.println("Tile ID: " + tile.GetId() + " at " + col + "," + row);
@@ -130,5 +177,7 @@ public class CollisionHandler
                 }
             }
         }
+
     }
 }
+

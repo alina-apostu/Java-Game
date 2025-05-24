@@ -27,6 +27,7 @@ public class BlueSpiderCollision implements CollisionStrategy
         hero.SetXMove(0);
         showMessage();
         hero.setWasStungByBlueSpider(blueSpider);
+
     }
 
     public void showMessage()

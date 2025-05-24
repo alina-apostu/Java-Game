@@ -19,4 +19,9 @@ public class Geam1 extends Tile
         g.drawImage(img, x, y, 32, 32, null);
     }
 
+    public boolean IsSolid()
+    {
+        return true;
+    }
+
 }

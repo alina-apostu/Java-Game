@@ -2,41 +2,55 @@ package PaooGame.Collision;
 
 import PaooGame.Game;
 import PaooGame.Items.Hero;
+
 import PaooGame.Items.Character;
+import PaooGame.PublicGamaData;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PotionTile implements CollisionStrategy {
 
-    public PotionTile() {
-        System.out.println("book tile collision created");
-    }
+    private Set<Point> triggeredTiles = new HashSet<>();
 
-    private boolean messageShown = false; // se afișează o singură dată
+    public PotionTile()
+    {
+        System.out.println("potion tile collision created");
+    }
 
     @Override
     public void handleCollisionTile(Hero hero, Rectangle tileBounds) {
-        if (!messageShown) {
+        Point tilePos = new Point(tileBounds.x / 32, tileBounds.y / 32);
+        System.out.println("s a apelat handle pt potion");
+
+        if (!triggeredTiles.contains(tilePos)) {
+
+            PublicGamaData.subbScore(10);// de fiecare data cand personajul atinge o potiune, scorul scade
+            triggeredTiles.add(tilePos);
+
+
             Game.isPaused = true;
             hero.SetXMove(0);
             hero.SetYMove(0);
 
             JOptionPane.showMessageDialog(null,
-                    "You have discovered a deadly potion!\\nYou have lost one life.",
-                    "Magic Evil Book",
+
+                    "You have discovered a deadly potion!\nYou have lost one life.",
+                    "Magic Potion",
+
                     JOptionPane.INFORMATION_MESSAGE);
 
             Game.isPaused = false;
             Game.getRefLinks().GetKeyManager().resetKeys();
 
-            messageShown = true;
         }
     }
-
-    @Override
+  @Override
     public void handleCollisionCharacter(Hero hero, Character character)
     {
 
     }
+
 }

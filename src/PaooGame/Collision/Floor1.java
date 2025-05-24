@@ -1,6 +1,7 @@
 package PaooGame.Collision;
 
 import PaooGame.Items.Hero;
+
 import PaooGame.Items.Character;
 
 import java.awt.*;
@@ -18,4 +19,5 @@ public class Floor1  implements CollisionStrategy {
     {
 
     }
+
 }

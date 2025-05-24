@@ -11,5 +11,10 @@ public class Podea2 extends Tile
             /// Apel al constructorului clasei de baza
             super(Assets.podea2, id);
         }
+    public boolean IsSolid()
+    {
+        return true;
+    }
+
 
 }

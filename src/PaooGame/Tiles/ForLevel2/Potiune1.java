@@ -12,4 +12,10 @@ public class Potiune1 extends Tile
             super(Assets.potiune1, id);
         }
 
+    @Override
+    public boolean IsSolid()
+    {
+        return true;
+    }
+
 }

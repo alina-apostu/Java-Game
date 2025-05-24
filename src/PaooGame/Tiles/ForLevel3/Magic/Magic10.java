@@ -12,4 +12,11 @@ public class Magic10 extends Tile
             super(Assets.magic10, id);
         }
 
+    @Override
+    public boolean IsSolid()
+    {
+        return true;
+    }
+
+
 }

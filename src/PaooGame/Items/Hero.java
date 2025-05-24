@@ -2,6 +2,7 @@ package PaooGame.Items;
 
 import PaooGame.Game;
 import PaooGame.Graphics.Assets;
+import PaooGame.PublicGamaData;
 import PaooGame.RefLinks;
 import PaooGame.States.PlayState;
 import PaooGame.States.State;
@@ -43,6 +44,15 @@ public class Hero extends Character {
 
     // pentru puteri
     private String power; // puterea luate de la soricei
+    //private boolean isOnGroundThisFrame = false;
+    private boolean onTile = false;
+    private RefLinks refLink;
+    private String characterType;
+
+
+    private String playerName;//nume jucator curent
+    //private int score;//scorul jucatorului
+
 
     private FireBall fireBall;
     private boolean firePressedLast = false;
@@ -77,6 +87,9 @@ public class Hero extends Character {
     {
         //Apel al constructorului clasei de baza
         super(refLink, x, y, Character.DEFAULT_CREATURE_WIDTH +10, Character.DEFAULT_CREATURE_HEIGHT +10);
+
+        this.refLink=refLink;
+        this.characterType = characterName;
 
         if (characterName.equals("Luna")) {
             characterUp = Assets.lunaUp;
@@ -231,7 +244,7 @@ public class Hero extends Character {
                 jumpSpeed = 0; // viteza de saritura se reseteaza
             }
         }
-
+      
         if(fireBall !=null && fireBall.isActive())
         {
             fireBall.Update();
@@ -387,13 +400,6 @@ public class Hero extends Character {
         return power;
     }
 
-    @Override
-
-    public Rectangle getBounds()
-    {
-        return new Rectangle((int) (x + 20), (int) (y + 14), width-28,height-50);
-    }
-
     public boolean itWasStungByShadowSpider()
     {
         return stungByShadowSpider;
@@ -402,6 +408,12 @@ public class Hero extends Character {
     public void setStungByShadowSpider(boolean x)
     {
         stungByShadowSpider = x;
+    }
+
+    @Override
+    public Rectangle getBounds() 
+    {
+        return new Rectangle((int) (x+20), (int) (y+20), width-34 , height-40);
     }
 
     public boolean itWasStungByBlueSpider(Character spider)
@@ -428,7 +440,7 @@ public class Hero extends Character {
         this.isFalling = falling;
     }
 
-    public boolean isFalling() {
+    public boolean getisFalling() {
         return this.isFalling;
 
     }
@@ -489,5 +501,55 @@ public class Hero extends Character {
     public void Die()
     {
 
+    }
+
+    public int getBoundsYOffset() {
+        return bounds.y;
+    }
+    public int getBoundsXOffset() {
+        return bounds.x;
+    }
+
+    /*public void setOnGroundThisFrame(boolean value) {
+        isOnGroundThisFrame = value;
+    }
+
+    public boolean isOnGroundThisFrame() {
+        return isOnGroundThisFrame;
+    }*/
+
+    public float GetGravity() {
+        return this.gravity;
+    }
+
+    public boolean isOnTile() {
+        return onTile;
+    }
+
+    public void setOnTile(boolean val) {
+        onTile = val;
+    }
+    public void resetOnTile() {
+        onTile = false;
+    }
+
+    public float GetGroundLevelY() {
+        return this.groundLevelY;
+    }
+
+    public RefLinks GetReflink() {
+        return super.refLink;
+    }
+
+    public String getCharacterType() {
+        return characterType;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 }

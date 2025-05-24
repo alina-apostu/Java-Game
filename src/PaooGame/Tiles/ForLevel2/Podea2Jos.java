@@ -1,20 +1,20 @@
-package PaooGame.Tiles.ForLevel3.TipuriLemn;
+package PaooGame.Tiles.ForLevel2;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Tiles.Tile;
 
-public class Lemn extends Tile
+public class Podea2Jos extends Tile
 {
 
-        public Lemn(int id)
+        public Podea2Jos(int id)
         {
             /// Apel al constructorului clasei de baza
-            super(Assets.lemn, id);
+            super(Assets.podea2, id);
         }
-
     public boolean IsSolid()
     {
         return true;
     }
+
 
 }

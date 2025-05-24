@@ -23,7 +23,7 @@ public class DataBaseManager {
     public void connect() {
         try {
             Class.forName("org.sqlite.JDBC"); // Încarcă driverul
-            conn = DriverManager.getConnection("jdbc:sqlite:game.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:game2.db");
             System.out.println("Conexiune la baza de date reușită!");
         } catch (ClassNotFoundException e) {
             System.out.println("Driver JDBC SQLite nu a fost găsit!");
@@ -42,7 +42,7 @@ public class DataBaseManager {
                 + "score INTEGER, "
                 + "level INTEGER, "
                 + "character TEXT, "
-                + "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
+                + "timestamp DATETIME DEFAULT (DATETIME('now', 'localtime'))"
                 + ");";
 
 

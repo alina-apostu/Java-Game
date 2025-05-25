@@ -13,6 +13,7 @@ public class RedSpider extends Character
     private BufferedImage[] walk;
     private BufferedImage[] attack;
     private BufferedImage[] web;
+    private BufferedImage[] death;
 
     // indici pentru a tine evidenta cadrului curent din fiecare animatie
     private int walkIndex = 0;
@@ -37,6 +38,13 @@ public class RedSpider extends Character
     private long lastWebFrameTime = 0;
     private final long webFrameInterval = 350; // animatia panzei se schimba la 200ms
 
+    // moarte
+    private int deathIndex = 0;
+    private long lastDeathFrameTime = 0;
+    private final long deathFrameInterval = 150; // viteza cu care se schimba cadrele
+    private boolean dying = false;
+    private boolean dead = false;
+
     public RedSpider(RefLinks refLink, float x, float y)
     {
         super(refLink, x, y, 50, 50);
@@ -44,6 +52,7 @@ public class RedSpider extends Character
         walk = Assets.redSpider;
         attack = Assets.redSpiderAttack;
         web = Assets.web;
+        death = Assets.redSpiderDeath;
 
         image = walk[0];
         startX = x; // pozitia initiala
@@ -55,7 +64,30 @@ public class RedSpider extends Character
     }
     public void Update()
     {
+        if(dead == true)
+            return;
+
         long currentTime = System.currentTimeMillis();
+
+        if(dying == true)
+        {
+            if(currentTime - lastDeathFrameTime >= deathFrameInterval)
+            {
+                lastDeathFrameTime = currentTime;
+                if(deathIndex < death.length-1)
+                {
+                    deathIndex++;
+                    image = death[deathIndex];
+                }
+                else
+                {
+                    dead = true;
+                    dying = false;
+                }
+            }
+
+            return; // nu mai facem update daca moare;
+        }
 
         if(isWebVisible == true)
         {
@@ -175,5 +207,22 @@ public class RedSpider extends Character
     {
         if(webIndex == 5) return true;
         return false;
+    }
+
+    @Override
+    public void Die()
+    {
+        dying = true;
+        dead = false;
+        deathIndex = 0;
+        image = death[deathIndex];
+        lastDeathFrameTime = System.currentTimeMillis();
+        isAttacking = false;
+        isWebVisible = false;
+    }
+
+    public boolean isDead()
+    {
+        return dead;
     }
 }

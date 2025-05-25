@@ -1,6 +1,7 @@
 package PaooGame.States;
 
 import PaooGame.Game;
+import PaooGame.Items.Character;
 import PaooGame.Graphics.Assets;
 import PaooGame.Items.Hero;
 import PaooGame.Items.NPC.Mouse;
@@ -15,6 +16,7 @@ import PaooGame.Collision.CollisionHandler;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /*! \class public class PlayState extends State
     \brief Implementeaza/controleaza jocul.
@@ -24,14 +26,11 @@ public class PlayState extends State
     private Hero hero;  /*!< Referinta catre obiectul animat erou (controlat de utilizator).*/
     private Map map;    /*!< Referinta catre harta curenta.*/
     
-    private Mouse mouse1;
-    private Mouse mouse2;
-    private Mouse mouse3;
-    private Mouse mouse4;
-    private RedSpider redSpider;
-    private RedSpider redSpider2;
-    
-    private ArrayList<SpiderBlue> spiders;
+    private ArrayList<Mouse> mice;
+
+    private ArrayList<RedSpider> redSpiders;
+
+    private ArrayList<SpiderBlue> blueSpiders;
 
     private CollisionHandler collisionHandler;
 
@@ -60,43 +59,52 @@ public class PlayState extends State
         hero.resetLives(); // se reseteaza viețile la începutul nivelului
         refLink.SetHero(hero);
 
-        spiders = new ArrayList<>();
+        mice = new ArrayList<>();
+        blueSpiders = new ArrayList<>();
+        redSpiders = new ArrayList<>();
+
         int x=map.getLevelIndex();
         System.out.println(x);
         switch (map.getLevelIndex()) {
             case 1:
-                mouse1 = new Mouse(refLink, 200, 111, "purple");
-                mouse2 = new Mouse(refLink, 422, 120, "green");
-                mouse3 = new Mouse(refLink, 500, 111, "green");
-                mouse4 = new Mouse(refLink, 600, 111, "blue");
-
+                mice.add(new Mouse(refLink, 300, 111, "purple"));
+                mice.add(new Mouse(refLink, 700, 111, "green"));
+                mice.add(new Mouse(refLink, 1000, 111, "purple"));
                 break;
 
             case 2:
+                mice.add(new Mouse(refLink, 650, 111,"green"));
+                blueSpiders.add(new SpiderBlue(refLink, 300, 101));
+                blueSpiders.add(new SpiderBlue(refLink, 900, 101));
+                blueSpiders.add(new SpiderBlue(refLink, 1400, 101));
+                blueSpiders.add(new SpiderBlue(refLink, 2100, 101));
+                blueSpiders.add(new SpiderBlue(refLink, 2700, 101));
+                blueSpiders.add(new SpiderBlue(refLink, 2750, 36));
+                blueSpiders.add(new SpiderBlue(refLink, 3050, 101));
+                mice.add(new Mouse(refLink, 200, 111, "purple"));
+                mice.add(new Mouse(refLink, 422, 120, "green"));
+                mice.add(new Mouse(refLink, 500, 111, "green"));
+                mice.add(new Mouse(refLink, 600, 111, "blue"));
 
-                spiders.add(new SpiderBlue(refLink, 300, 101));
-                spiders.add(new SpiderBlue(refLink, 900, 101));
-                spiders.add(new SpiderBlue(refLink, 1400, 101));
-                spiders.add(new SpiderBlue(refLink, 2100, 101));
-                spiders.add(new SpiderBlue(refLink, 2700, 101));
-                spiders.add(new SpiderBlue(refLink, 2750, 36));
-                spiders.add(new SpiderBlue(refLink, 3050, 101));
                 break;
 
-            case 3:
-                spiders.add(new SpiderBlue(refLink, 280, 101));
-                spiders.add(new SpiderBlue(refLink, 300, 101));
-                //spiders.add(new SpiderBlue(refLink, 320, 101));
-                spiders.add(new SpiderBlue(refLink, 850, 101));
-                spiders.add(new SpiderBlue(refLink, 1400, 101));
-                redSpider = new RedSpider(refLink, 600, 110);
-                redSpider2 = new RedSpider(refLink,600, 110);
-                shadowSpider = new ShadowSpider(refLink,3000,94);
 
+
+            case 3:
+                mice.add(new Mouse(refLink, 700, 111, "blue"));
+                mice.add(new Mouse(refLink, 1900, 111, "purple"));
+                blueSpiders.add(new SpiderBlue(refLink, 280, 101));
+                blueSpiders.add(new SpiderBlue(refLink, 300, 101));
+                blueSpiders.add(new SpiderBlue(refLink, 900, 101));
+                blueSpiders.add(new SpiderBlue(refLink, 1400, 101));
+                redSpiders.add(new RedSpider(refLink, 600, 110));
+                redSpiders.add(new RedSpider(refLink,600, 110));
+                shadowSpider = new ShadowSpider(refLink,3000,94);
                 break;
         }
 
         collisionHandler = new CollisionHandler(refLink);
+        hero.setEnemies(getAllEnemies());
     }
 
     /*! \fn public void Update()
@@ -110,18 +118,19 @@ public class PlayState extends State
 
         collisionHandler.checkTileCollision(hero);
 
-
-        collisionHandler.checkCharacterCollision(hero,mouse1);
-        collisionHandler.checkCharacterCollision(hero, mouse3);
-        collisionHandler.checkCharacterCollision(hero, mouse4);
-
-
-
-        collisionHandler.checkCharacterCollision(hero,redSpider);
-
         collisionHandler.checkCharacterCollision(hero,shadowSpider);
 
-        for (SpiderBlue spider : spiders)
+        for (Mouse mouse : mice)
+        {
+            collisionHandler.checkCharacterCollision(hero,mouse);
+        }
+
+        for (SpiderBlue spider : blueSpiders)
+        {
+            collisionHandler.checkCharacterCollision(hero,spider);
+        }
+
+        for(RedSpider spider : redSpiders)
         {
             collisionHandler.checkCharacterCollision(hero,spider);
         }
@@ -131,15 +140,19 @@ public class PlayState extends State
             hero.Update();  // Doar dacă nu e pauză, îl laș să se miște
         }
 
-        if(mouse1 != null) mouse1.Update();
-        if(mouse2 != null) mouse2.Update();
-        if(mouse3 != null) mouse3.Update();
-        if(mouse4 != null) mouse4.Update();
+        for(Mouse mouse : mice)
+        {
+            if(mouse!=null)
+                mouse.Update();
+        }
 
-        if(redSpider != null) redSpider.Update();
-        if(redSpider2 != null) redSpider2.Update();
+        for(RedSpider spider : redSpiders)
+        {
+            if(spider != null)
+                spider.Update();
+        }
 
-        for (SpiderBlue spider : spiders) {
+        for (SpiderBlue spider : blueSpiders) {
             spider.Update();
         }
         if(shadowSpider != null) {
@@ -176,16 +189,21 @@ public class PlayState extends State
     public void Draw(Graphics g)
     {
         map.Draw(g);
-        if(mouse1 != null) mouse1.Draw(g);
-        if(mouse2 != null) mouse2.Draw(g);
-        if(mouse3 != null) mouse3.Draw(g);
-        if(mouse4 != null) mouse4.Draw(g);
 
-        if(redSpider != null) redSpider.Draw(g);
-        //if(redSpider2 != null) redSpider2.Draw(g);
+        for(Mouse mouse : mice)
+        {
+            if(mouse!=null)
+                mouse.Draw(g);
+        }
+
+        for(RedSpider spider : redSpiders)
+        {
+            if(spider != null)
+                spider.Draw(g);
+        }
 
         hero.Draw(g);
-        for (SpiderBlue spider : spiders)
+        for (SpiderBlue spider : blueSpiders)
         {
             spider.Draw(g);
         }
@@ -271,5 +289,31 @@ public class PlayState extends State
     public Map getMap()
     {
         return map;
+    }
+
+    public ArrayList<Character> getAllEnemies()
+    {
+        ArrayList<Character> enemies = new ArrayList<>();
+        if(mice != null)
+        {
+            for(Mouse mouse : mice)
+                enemies.add(mouse);
+        }
+        if(blueSpiders != null)
+        {
+            for (SpiderBlue spider : blueSpiders)
+                enemies.add(spider);
+        }
+        if(redSpiders !=null)
+        {
+            for(RedSpider spider : redSpiders)
+                enemies.add(spider);
+        }
+        if(shadowSpider != null)
+        {
+            enemies.add(shadowSpider);
+        }
+
+        return enemies;
     }
 }

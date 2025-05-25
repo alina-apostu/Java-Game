@@ -36,11 +36,11 @@ public class MouseCollision implements CollisionStrategy {
                     break;
                 case "green":
                     hero.setPower("zbor");
-                    powerMessage = "";
+                    powerMessage = "You can now fly over obstacles!";
                     break;
                 case "blue":
                     hero.setPower("invizibilitate");
-                    powerMessage = "";
+                    powerMessage = "You are invisible now. Use it wisely!";
                     break;
             }
             mouse.setConsumed(true);

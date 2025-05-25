@@ -136,7 +136,7 @@ public abstract class Character extends Item
 
     public Rectangle getBounds()
     {
-        return new Rectangle((int)x,(int)y,width,height);
+        return new Rectangle((int)x, (int)y, width, height);
     }
 }
 

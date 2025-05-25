@@ -268,7 +268,6 @@ public class Assets
 
         SpriteSheet shadowSpiderSheet = new SpriteSheet(ImageLoader.LoadImage("/Inamici/shadow_spider.png"));
 
-        SpriteSheet sheetHeart = new SpriteSheet(ImageLoader.LoadImage("/textures/heart.png"));
 
         // Se obtin subimaginile corespunzatoare elementelor necesare.
 
@@ -558,7 +557,9 @@ public class Assets
 
         lemnObstacol=sheet9.crop(2,6);
 
-        inima=sheetHeart.crop(15,0);
+        inima= ImageLoader.LoadImage("/textures/inima2.png");
+
+
 
     }
 }

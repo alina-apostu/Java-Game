@@ -164,9 +164,24 @@ public class CollisionHandler
                         if (heroBounds.intersects(tileBounds)) {
                             //System.out.println(heroBounds + " " + tileBounds);
                             int tileId = tile.GetId();
-                            CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
-                            if (strategy != null) {
-                                strategy.handleCollisionTile(hero, tileBounds);
+                            if(tileId==58 || tileId==57)//daca sunt tileuri de tip carti, micsoram putin inaltimea lui tilebounds
+                            {
+                               tileBounds = new Rectangle(col * tileSize, (row) * (tileSize-10), tileSize, (tileSize-10));
+                                if (heroBounds.intersects(tileBounds)) {
+                                    CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
+                                    if (strategy != null) {
+                                        strategy.handleCollisionTile(hero, tileBounds);
+                                    }
+
+                                }
+
+                            }
+                            else {
+                                CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
+
+                                if (strategy != null) {
+                                    strategy.handleCollisionTile(hero, tileBounds);
+                                }
                             }
 
                         }

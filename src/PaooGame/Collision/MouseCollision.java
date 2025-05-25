@@ -31,14 +31,17 @@ public class MouseCollision implements CollisionStrategy {
             switch (color)
             {
                 case "purple":
+                    hero.addPower("minge de foc");
                     hero.setPower("minge de foc");
                     powerMessage = "You have gained the Fireball power!";
                     break;
                 case "green":
+                    hero.addPower("zbor");
                     hero.setPower("zbor");
                     powerMessage = "You can now fly over obstacles!";
                     break;
                 case "blue":
+                    hero.addPower("invizibilitate");
                     hero.setPower("invizibilitate");
                     powerMessage = "You are invisible now. Use it wisely!";
                     break;

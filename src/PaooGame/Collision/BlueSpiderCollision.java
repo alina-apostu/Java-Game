@@ -4,6 +4,7 @@ import PaooGame.Game;
 import PaooGame.Items.Character;
 import PaooGame.Items.Hero;
 import PaooGame.Items.SpiderBlue;
+import PaooGame.PublicGamaData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,7 @@ public class BlueSpiderCollision implements CollisionStrategy
     @Override
     public void handleCollisionCharacter(Hero hero, Character character)
     {
+        PublicGamaData.subbScore(50);
         SpiderBlue blueSpider = (SpiderBlue)character;
         Game.isPaused = true;
         hero.SetYMove(0);

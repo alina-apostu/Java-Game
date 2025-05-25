@@ -7,6 +7,7 @@ import PaooGame.RefLinks;
 import PaooGame.States.PlayState;
 import PaooGame.States.State;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
@@ -34,25 +35,26 @@ public class Hero extends Character {
     // pentru saritura
     private boolean isJumping = false; // daca personajul este in faza de urcare (saritura)
     private boolean isFalling = false; // daca personajul este in faza de coborare din saritura
-    private float jumpSpeed = 4f; // viteza de urcare/coborare in saritura
-    private final float maxJumpSpeed = 6f; // viteza initiala de saritura
+    private float jumpSpeed = 3f; // viteza de urcare/coborare in saritura
+    private final float maxJumpSpeed = 5f; // viteza initiala de saritura
     private final float gravity = 0.5f; // acceleratia gravitationala (cat de repede cade)
     private long lastJumpTime = 0; // momentul ultimei apasari pe tasta up
     private final long jumpBoost = 260; //(ms) daca se apasa rede iar tasta up creste inaltimea sariturii
     private float groundLevelY; // y unde se afla solul pe care coboara personajul
     private boolean facingRight = true;
 
-    // pentru puteri
-    private String power; // puterea luate de la soricei
     //private boolean isOnGroundThisFrame = false;
     private boolean onTile = false;
     private RefLinks refLink;
     private String characterType;
 
-
     private String playerName;//nume jucator curent
-    //private int score;//scorul jucatorului
 
+    // pentru puteri
+    private String power; // puterea luate de la soricei
+    private int fireBallPower = 0;
+    private int flyPower = 0;
+    private int invisibilityPower = 0;
 
     private FireBall fireBall;
     private boolean firePressedLast = false;
@@ -345,31 +347,58 @@ public class Hero extends Character {
         // tasta A - minge de foc
         if(refLink.GetKeyManager().foc)
         {
-            if(firePressedLast == false)
+            System.out.println("FireBallPower: " + fireBallPower);  // test
+            if(fireBallPower > 0)
             {
-                shootFireball();
-                firePressedLast = true;
+                if (firePressedLast == false)
+                {
+                    shootFireball();
+                    firePressedLast = true;
+                }
+                else
+                {
+                    firePressedLast = false;
+                }
+                usePower("minge de foc");
             }
             else
-            {
-                firePressedLast = false;
-            }
+                JOptionPane.showMessageDialog(null, "You don't have any more uses left for the fire ball power!", "Warning", JOptionPane.WARNING_MESSAGE);
+
+            Game.getRefLinks().GetKeyManager().resetKeys();
         }
 
+        // tasta W - zbor scurt
         if(refLink.GetKeyManager().zbor)
         {
-            if(isFlying == false && isJumping == false && isFalling == false)
+            if(flyPower > 0)
             {
-                isFlying = true;
-                flyStartTime = System.currentTimeMillis();
-                maxFlyHeightY = groundLevelY - 80;
+                if (isFlying == false && isJumping == false && isFalling == false)
+                {
+                    isFlying = true;
+                    flyStartTime = System.currentTimeMillis();
+                    maxFlyHeightY = groundLevelY - 80;
+                }
+                usePower("zbor");
             }
+            else
+                JOptionPane.showMessageDialog(null, "You don't have any more uses left for the flying power!", "Warning", JOptionPane.WARNING_MESSAGE);
+
+            Game.getRefLinks().GetKeyManager().resetKeys();
         }
 
+        // tasta D - invizibilitate
         if(refLink.GetKeyManager().invizibil)
         {
-            invisible = true;
-            invisibilityStartTime = System.currentTimeMillis();
+            if(invisibilityPower > 0)
+            {
+                invisible = true;
+                invisibilityStartTime = System.currentTimeMillis();
+                usePower("invizibilitate");
+            }
+            else
+                JOptionPane.showMessageDialog(null, "You don't have any more uses left for the invisibility power!", "Warning", JOptionPane.WARNING_MESSAGE);
+
+            Game.getRefLinks().GetKeyManager().resetKeys();
         }
     }
 
@@ -559,5 +588,25 @@ public class Hero extends Character {
 
     public String getPlayerName() {
         return playerName;
+    }
+
+    public void addPower(String power)
+    {
+        if(power.equals("minge de foc"))
+            fireBallPower++;
+        else if(power.equals("zbor"))
+            flyPower++;
+        else if(power.equals("invizibilitate"))
+            invisibilityPower++;
+    }
+
+    public void usePower(String power)
+    {
+        if(power.equals("minge de foc"))
+            fireBallPower--;
+        else if(power.equals("zbor"))
+            flyPower--;
+        else if(power.equals("invizibilitate"))
+            invisibilityPower--;
     }
 }

@@ -30,7 +30,7 @@ public class BookTile implements CollisionStrategy {
 
         if (!triggeredTiles.contains(tilePos)) {
 
-            PublicGamaData.subbScore(10);// de fiecare data cand personajul atinge o carte, scorul scade
+            PublicGamaData.subbScore(20);// de fiecare data cand personajul atinge o carte, scorul scade
 
             triggeredTiles.add(tilePos);
             System.out.println(tilePos.x+" "+tilePos.y);

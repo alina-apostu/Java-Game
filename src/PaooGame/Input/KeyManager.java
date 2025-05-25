@@ -90,5 +90,8 @@ public class KeyManager implements KeyListener
         down = false;
         left = false;
         right = false;
+        foc = false;
+        zbor = false;
+        invizibil = false;
     }
 }

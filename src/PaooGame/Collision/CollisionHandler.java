@@ -92,12 +92,13 @@ public class CollisionHandler
 
             if ((webBounds != null && hero.getBounds().intersects(webBounds)) || (hero.itWasStungByRedSpider(character) == false && hero.getBounds().intersects(redSpider.getBounds())))
             {
-                if(redSpider.isDead() == false)
-                {
-                    CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(RedSpider.class);
-                    if (strategy != null)
-                        strategy.handleCollisionCharacter(hero, character);
-                }
+
+                hero.loseLife();//eroul pierde o viata de fiecare data cand se intalneste cu un paianjen
+                CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(RedSpider.class);
+                if (strategy != null)
+                    strategy.handleCollisionCharacter(hero, character);
+                //hero.setWasStungByRedSpider(character);
+
             }
         }
         else if(character instanceof SpiderBlue)
@@ -107,6 +108,7 @@ public class CollisionHandler
             {
                 if(blueSpider.isDead() == false)
                 {
+                    hero.loseLife();//eroul pierde o viata de fiecare data cand se intalneste cu un paianjen
                     CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(SpiderBlue.class);
                     if (strategy != null)
                         strategy.handleCollisionCharacter(hero, character);

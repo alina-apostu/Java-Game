@@ -34,6 +34,8 @@ public class PlayState extends State
 
     private ShadowSpider shadowSpider;
 
+
+
     /*! \fn public PlayState(RefLinks refLink)
         \brief Constructorul de initializare al clasei
 
@@ -52,6 +54,7 @@ public class PlayState extends State
 
         hero = new Hero(refLink,50, 108, selectedCharacter);
         hero.setPlayerName(playerName);
+        hero.resetLives(); // se reseteaza viețile la începutul nivelului
         refLink.SetHero(hero);
 
         mice = new ArrayList<>();
@@ -151,6 +154,23 @@ public class PlayState extends State
             shadowSpider.Update();
         }
 
+        // dacă jucătorul are 0 vieți, restart la nivel actual
+        if (hero.getLives()<=0) {
+
+            javax.swing.JOptionPane.showMessageDialog(null,
+                    "You have lost all lives for this level.\nRestarting the level...",
+                    "Level Restart",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+            int currentLevel = map.getLevelIndex();
+            String selectedCharacter = hero.getCharacterType();
+            String playerName = hero.getPlayerName();
+
+            // se reseteaza starea de joc cu aceiași parametri
+            State.SetState(new PlayState(refLink, selectedCharacter, currentLevel, playerName));
+        }
+
+
 
 
     }
@@ -195,12 +215,15 @@ public class PlayState extends State
         g2d.setFont(new Font("Georgia", Font.PLAIN, 12));
         FontMetrics fm = g2d.getFontMetrics(); //se obtine metrica fonctului actual :inaltime, latime, .....
 
-        String infoText = "Player: " + hero.getPlayerName() +
+        String infoText1 = "Player: " + hero.getPlayerName() +
                 " | Score: " + PublicGamaData.score +
                 " | Level: " + map.getLevelIndex();
 
-        int textWidth = fm.stringWidth(infoText); //latimea textulului
+        String infoText2 = "Lives: " + hero.getLives();
+
+        int textWidth = Math.max(fm.stringWidth(infoText1), fm.stringWidth(infoText2));//latimea textulului cel mai lat
         int textHeight = fm.getHeight(); //inaltimea textului
+        int lineSpacing = 5; // spatiu intre linii
         int padding = 10; //spatiu folosit pentru margini
 
         // se obtin coordonatele camerei
@@ -211,7 +234,8 @@ public class PlayState extends State
         int boxX = (int) camX + 10; //coordonata x pentru colt stanga sus
         int boxY = (int) camY + 10; //coordonata y pentru colt stanga sus
         int boxWidth = textWidth + padding * 2;
-        int boxHeight = textHeight + padding;
+        int boxHeight = textHeight * 2 + lineSpacing + padding; // 2 linii
+
 
         // Fundal gri transparent
         Color transparentGray = new Color(50, 50, 50, 150);
@@ -220,7 +244,10 @@ public class PlayState extends State
 
         // Text alb
         g2d.setColor(Color.WHITE);
-        g2d.drawString(infoText, boxX + padding, boxY + fm.getAscent() + (padding / 2));
+        g2d.drawString(infoText1, boxX + padding, boxY + fm.getAscent() + (padding / 2));
+        g2d.drawString(infoText2, boxX + padding, boxY + fm.getAscent() + textHeight + lineSpacing);
+
+
 
 
     }

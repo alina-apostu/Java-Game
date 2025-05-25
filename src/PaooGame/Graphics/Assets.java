@@ -230,6 +230,9 @@ public class Assets
     public static BufferedImage lemnObstacol;
 
 
+    public static BufferedImage inima;
+
+
 
 
 
@@ -269,6 +272,8 @@ public class Assets
         SpriteSheet webSheet = new SpriteSheet(ImageLoader.LoadImage("/NPC/web.png"));
 
         SpriteSheet shadowSpiderSheet = new SpriteSheet(ImageLoader.LoadImage("/Inamici/shadow_spider.png"));
+
+        SpriteSheet sheetHeart = new SpriteSheet(ImageLoader.LoadImage("/textures/heart.png"));
 
         // Se obtin subimaginile corespunzatoare elementelor necesare.
 
@@ -569,6 +574,8 @@ public class Assets
         podea2jos=sheet6.crop(0,0);
 
         lemnObstacol=sheet9.crop(2,6);
+
+        inima=sheetHeart.crop(15,0);
 
     }
 }

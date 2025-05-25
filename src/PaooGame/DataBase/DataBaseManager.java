@@ -8,7 +8,7 @@ public class DataBaseManager {
     private static DataBaseManager instance;  // instanța unică (statică)
     private Connection conn; // conexiunea SQL
 
-    // Constructorul este privat -> nu poate fi instanțiat din exterior
+    // Constructorul este privat, deci nu poate fi instanțiat din exterior
     private DataBaseManager() {}
 
     // Metoda publică de acces la instanță (cu lazy instantiation)

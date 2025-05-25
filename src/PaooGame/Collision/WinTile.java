@@ -51,20 +51,41 @@ public class WinTile implements CollisionStrategy {
                 db.savePlayer(playerName, score, level, character);
             }
 
-            db.close();
 
-            try {
-                Thread.sleep(500); // Așteaptă 0.5 secunde înainte sa se inchida jocul
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            boolean done = false;
+            while (!done) {
+                int choice = JOptionPane.showOptionDialog(
+                        null,
+                        "Congratulations!\nYou finished the game!!\nWhat do you want to do next?",
+                        "Victory",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.INFORMATION_MESSAGE,
+                        null,
+                        new Object[]{"Exit", "Show Top 3"},
+                        "Exit"
+                );
+
+                if (choice == 0) { // Exit
+                    db.close();
+                    System.exit(0);
+                } else if (choice == 1) { // Show Top 3
+                    java.util.List<String> topPlayers = db.getTopPlayers(3);
+                    StringBuilder topMsg = new StringBuilder("Top 3 Players:\n");
+                    for (String player : topPlayers) {
+                        topMsg.append(player).append("\n");
+                    }
+                    JOptionPane.showMessageDialog(null, topMsg.toString(), "Leaderboard", JOptionPane.PLAIN_MESSAGE);
+                } else {
+                    done = true; // în caz că se închide fereastra
+                }
             }
 
-            System.exit(0); // se inchide jocul
+            db.close();
         }
     }
 
     @Override
     public void handleCollisionCharacter(Hero hero, Character character) {
-        // Nu tratezi coliziuni cu personaje în această strategie
+        //nu se implementeaza nimic aici
     }
 }

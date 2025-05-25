@@ -51,7 +51,10 @@ public class Hero extends Character {
 
 
     private String playerName;//nume jucator curent
-    //private int score;//scorul jucatorului
+
+    private int lives=5; //numarul de vieti  la fiecare nivel
+    private final int MAX_LIVES = 5;
+
 
 
     private FireBall fireBall;
@@ -552,4 +555,21 @@ public class Hero extends Character {
     public String getPlayerName() {
         return playerName;
     }
+
+
+    public void resetLives() {
+        lives = MAX_LIVES;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void loseLife() {
+        if (lives > 0) {
+            lives--;
+        }
+    }
+
+
 }

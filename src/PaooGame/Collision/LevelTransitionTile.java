@@ -24,6 +24,32 @@ public class LevelTransitionTile implements CollisionStrategy {
 
             if (nextLevel <= 3) {
                 PublicGamaData.currentLevel=nextLevel;
+                if(hero.getLives()==5)
+                {
+                    PublicGamaData.addScore(200);
+                   //mesaj de inchere nivel fara a pierde vieti
+                    javax.swing.JOptionPane.showMessageDialog(null,
+                            "Congratulations! You completed level " + CurrentLevel +
+                                    " without losing a single life!\nYou earned 200 bonus points!",
+                            "Perfect Run!",
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE
+                    );
+
+                    hero.GetReflink().GetKeyManager().resetKeys(); //resetam pentru a nu ramane blocata tasta pentru nivelul urmator
+                }
+                else{
+                    //mesaj simplu de incheiere nivel
+
+                    javax.swing.JOptionPane.showMessageDialog(null,
+                            "Congratulations! You completed level " + CurrentLevel +"!",
+                            "Level Completed!",
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE
+                    );
+
+                    hero.GetReflink().GetKeyManager().resetKeys(); //resetam pentru a nu ramane blocata tasta pentru nivelul urmator
+
+
+                }
                 // se seteaza noua hartă
                 System.out.println("nextLevel="+nextLevel);
                 hero.GetReflink().SetMap(new Map(hero.GetReflink(), nextLevel));

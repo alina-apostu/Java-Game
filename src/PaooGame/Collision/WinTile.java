@@ -40,7 +40,7 @@ public class WinTile implements CollisionStrategy {
 
             DataBaseManager db = DataBaseManager.getInstance();
             db.connect();
-            db.createTable(); // doar o dată e ok, nu se strică dacă există deja
+            db.createTable(); //
 
             String playerName = PublicGamaData.playerName;
             int score = PublicGamaData.score;

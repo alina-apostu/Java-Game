@@ -2,6 +2,7 @@ package PaooGame.States;
 
 import PaooGame.Game;
 import PaooGame.Items.Character;
+import PaooGame.Graphics.Assets;
 import PaooGame.Items.Hero;
 import PaooGame.Items.NPC.Mouse;
 import PaooGame.Items.NPC.RedSpider;
@@ -12,6 +13,7 @@ import PaooGame.PublicGamaData;
 import PaooGame.RefLinks;
 import PaooGame.Collision.CollisionHandler;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ public class PlayState extends State
     private ArrayList<Mouse> mice;
 
     private ArrayList<RedSpider> redSpiders;
-    
+
     private ArrayList<SpiderBlue> blueSpiders;
 
     private CollisionHandler collisionHandler;
@@ -83,7 +85,11 @@ public class PlayState extends State
                 mice.add(new Mouse(refLink, 422, 120, "green"));
                 mice.add(new Mouse(refLink, 500, 111, "green"));
                 mice.add(new Mouse(refLink, 600, 111, "blue"));
+
+
+
                 break;
+
 
             case 3:
                 mice.add(new Mouse(refLink, 700, 111, "blue"));
@@ -219,10 +225,13 @@ public class PlayState extends State
                 " | Score: " + PublicGamaData.score +
                 " | Level: " + map.getLevelIndex();
 
-        String infoText2 = "Lives: " + hero.getLives();
+        /*String infoText2 = "Lives: " + hero.getLives();
 
         int textWidth = Math.max(fm.stringWidth(infoText1), fm.stringWidth(infoText2));//latimea textulului cel mai lat
         int textHeight = fm.getHeight(); //inaltimea textului
+        */
+        int textWidth = fm.stringWidth(infoText1);
+        int textHeight = fm.getHeight();
         int lineSpacing = 5; // spatiu intre linii
         int padding = 10; //spatiu folosit pentru margini
 
@@ -234,8 +243,7 @@ public class PlayState extends State
         int boxX = (int) camX + 10; //coordonata x pentru colt stanga sus
         int boxY = (int) camY + 10; //coordonata y pentru colt stanga sus
         int boxWidth = textWidth + padding * 2;
-        int boxHeight = textHeight * 2 + lineSpacing + padding; // 2 linii
-
+        int boxHeight = textHeight +padding ;
 
         // Fundal gri transparent
         Color transparentGray = new Color(50, 50, 50, 150);
@@ -244,10 +252,32 @@ public class PlayState extends State
 
         // Text alb
         g2d.setColor(Color.WHITE);
-        g2d.drawString(infoText1, boxX + padding, boxY + fm.getAscent() + (padding / 2));
-        g2d.drawString(infoText2, boxX + padding, boxY + fm.getAscent() + textHeight + lineSpacing);
+        int textX = boxX + padding;
+        int textY = boxY + fm.getAscent() + (padding / 2);
+        g2d.drawString(infoText1, textX, textY);
 
+        //desenare tile cu inima pentru numarul de vieti
 
+        if (Assets.inima != null) {
+            int heartWidth = 48;
+            int heartHeight = 48;
+
+            int heartX = boxX + 4;
+            int heartY = boxY + 8;
+
+            g2d.drawImage(Assets.inima, heartX, heartY, heartWidth, heartHeight, null);
+
+            g2d.setFont(new Font("Georgia", Font.BOLD, 10));
+            int livesX = heartX + heartWidth-12;
+            int livesY = heartY + heartHeight/2;
+
+            g2d.setColor(Color.WHITE);
+            g2d.drawString("x " + hero.getLives(), livesX, livesY);
+        }
+
+        else {
+            g2d.drawString("" + hero.getLives(), boxX + 10, boxY + boxHeight + 20);
+        }
 
 
     }

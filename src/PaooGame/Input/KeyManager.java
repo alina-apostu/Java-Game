@@ -22,6 +22,8 @@ public class KeyManager implements KeyListener
     public boolean foc;
     public boolean zbor;
     public boolean invizibil;
+    public boolean esc;
+
 
     /*! \fn public KeyManager()
         \brief Constructorul clasei.
@@ -43,6 +45,8 @@ public class KeyManager implements KeyListener
         zbor    = keys[KeyEvent.VK_W]; //modificate sageata sus
         foc  = keys[KeyEvent.VK_A]; //sageata jos
         invizibil  = keys[KeyEvent.VK_D]; //sageata stg
+        esc = keys[KeyEvent.VK_ESCAPE];//pentru a pune pauza in joc
+
 
     }
 

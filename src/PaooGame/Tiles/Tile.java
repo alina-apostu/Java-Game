@@ -29,7 +29,7 @@ import PaooGame.Tiles.ForLevel3.Panza.Panza3;
 import PaooGame.Tiles.ForLevel3.TipuriLemn.Lemn;
 import PaooGame.Tiles.ForLevel3.TipuriLemn.Lemn3;
 import PaooGame.Tiles.ForLevel3.TipuriLemn.LemnObstacol;
-import PaooGame.Tiles.ForScore.Inima;
+
 
 
 import java.awt.*;
@@ -251,7 +251,7 @@ public class Tile
     public static Tile lemnObstacol     = new LemnObstacol(166);
 
 
-    public static Tile inima   = new Inima(167);
+
 
 
 

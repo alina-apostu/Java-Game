@@ -176,6 +176,14 @@ public class PlayState extends State
         }
 
 
+        //pentru optiunea de pauza joc
+
+        if(refLink.GetKeyManager().esc) {
+            State.SetState(new PauseState(refLink, this));
+            return; // se oprește Update-ul curent
+        }
+
+
 
 
     }

@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import PaooGame.States.MenuState;
+import PaooGame.States.PauseState;
 import PaooGame.States.State;
 
 /*
@@ -21,6 +22,10 @@ public class MouseInput implements MouseListener
         if(currentState instanceof MenuState) // instanceof verifica tipul obiectului
         {
             ((MenuState) currentState).MouseClick(e); // transform obiectul state in MenuState si trimitem coordonatele clickului
+        }
+        else if(currentState instanceof PauseState)
+        {
+            ((PauseState) currentState).MouseClick(e);
         }
     }
     @Override public void mouseReleased(MouseEvent e) {}

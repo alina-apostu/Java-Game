@@ -182,11 +182,18 @@ public class RedSpider extends Character
     {
         // deseneaza paianjenul
         g.drawImage(image, (int)x, (int)y, width, height, null);
+        /*g.setColor(Color.GREEN);
+        Rectangle bounds = getBounds();
+        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);*/
         // deseneaza panza
         if(isWebVisible == true && webIndex < web.length)
         {
             int[] webOffsetsX = {-5, -10, -15, -20, -25, -30};
             int offsetX = webOffsetsX[webIndex];
+
+            /*g.setColor(Color.GREEN);
+            Rectangle webBounds = getWebBounds();
+            g.drawRect(webBounds.x, webBounds.y, webBounds.width, webBounds.height);*/
 
             g.drawImage(web[webIndex], webX + offsetX, webY, width, height, null);
         }
@@ -198,9 +205,15 @@ public class RedSpider extends Character
         {
             int[] webOffsetsX = {-5, -10, -15, -20, -25, -30};
             int offsetX = webOffsetsX[webIndex];
-            return new Rectangle(webX + offsetX, webY, width, height);
+            return new Rectangle(webX + offsetX + 15, webY + 25, width - 30, height - 30);
         }
         return null;
+    }
+
+    @Override
+    public Rectangle getBounds()
+    {
+        return new Rectangle((int) (x + 15), (int) (y + 40), width - 35, height - 40);
     }
 
     public boolean isWebFullyOpened()

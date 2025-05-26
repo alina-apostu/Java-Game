@@ -2,6 +2,7 @@ package PaooGame.Items;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Items.NPC.RedSpider;
+import PaooGame.PublicGamaData;
 import PaooGame.RefLinks;
 import PaooGame.Items.Character;
 
@@ -51,6 +52,10 @@ public class FireBall
                 if(getBounds().intersects(enemy.getBounds()))
                 {
                     enemy.Die();
+                    if(enemy instanceof SpiderBlue || enemy instanceof RedSpider)
+                        PublicGamaData.addScore(75);
+                    if(enemy instanceof ShadowSpider)
+                        PublicGamaData.addScore(500);
                     active = false;
                 }
         }

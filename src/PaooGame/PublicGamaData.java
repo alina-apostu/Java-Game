@@ -4,8 +4,10 @@ import PaooGame.States.PlayState;
 import PaooGame.States.State;
 
 import javax.swing.*;
+import java.util.HashMap;
 
-public class PublicGamaData {
+public class PublicGamaData
+{
     public static int score = 0;
     public static String playerName;
     public static String characterType;
@@ -13,10 +15,13 @@ public class PublicGamaData {
     public static RefLinks refLinks;
 
 
-    public static void addScore(int points) {
+    public static void addScore(int points)
+    {
         PublicGamaData.score+= points;
     }
-    public static void subbScore(int amount) {
+
+    public static void subbScore(int amount)
+    {
         score -= amount;
         if (score < 0) //daca scorul devine <0, atunci jucul se va seta la inceputul nivelului actual
         {

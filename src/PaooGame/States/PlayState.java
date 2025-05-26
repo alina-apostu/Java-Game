@@ -86,8 +86,9 @@ public class PlayState extends State
                 mice.add(new Mouse(refLink, 500, 111, "green"));
                 mice.add(new Mouse(refLink, 600, 111, "blue"));
 
-                break;
 
+
+                break;
 
 
             case 3:

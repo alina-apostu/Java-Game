@@ -68,6 +68,7 @@ public class PlayState extends State
         switch (map.getLevelIndex()) {
             case 1:
                 mice.add(new Mouse(refLink, 300, 111, "purple"));
+                redSpiders.add(new RedSpider(refLink,600, 110));
                 mice.add(new Mouse(refLink, 700, 111, "green"));
                 mice.add(new Mouse(refLink, 1000, 111, "purple"));
                 break;
@@ -99,7 +100,6 @@ public class PlayState extends State
                 blueSpiders.add(new SpiderBlue(refLink, 900, 101));
                 blueSpiders.add(new SpiderBlue(refLink, 1400, 101));
                 redSpiders.add(new RedSpider(refLink, 600, 110));
-                redSpiders.add(new RedSpider(refLink,600, 110));
                 shadowSpider = new ShadowSpider(refLink,3000,94);
                 break;
         }
@@ -258,18 +258,19 @@ public class PlayState extends State
 
         //desenare tile cu inima pentru numarul de vieti
 
-        if (Assets.inima != null) {
-            int heartWidth = 48;
-            int heartHeight = 48;
+        int heartWidth = 48;
+        int heartHeight = 48;
+        int heartX = boxX + 4;
+        int heartY = boxY + 8;
+        int livesX = heartX + heartWidth-12;
+        int livesY = heartY + heartHeight/2;
 
-            int heartX = boxX + 4;
-            int heartY = boxY + 8;
+        if (Assets.inima != null)
+        {
 
             g2d.drawImage(Assets.inima, heartX, heartY, heartWidth, heartHeight, null);
 
             g2d.setFont(new Font("Georgia", Font.BOLD, 10));
-            int livesX = heartX + heartWidth-12;
-            int livesY = heartY + heartHeight/2;
 
             g2d.setColor(Color.WHITE);
             g2d.drawString("x " + hero.getLives(), livesX, livesY);
@@ -279,7 +280,41 @@ public class PlayState extends State
             g2d.drawString("" + hero.getLives(), boxX + 10, boxY + boxHeight + 20);
         }
 
+        // afisarea puterilor
+        int mouseWidth = 40;
+        int mouseHeight = 40;
+        int mouseY = boxY -3;
+        int mouseX = livesX + 10;
+        int numberX = mouseX + mouseWidth - 6;
+        int numberY = livesY + 1;
 
+        if(Assets.purpleMouse[2] != null)
+        {
+            g2d.drawImage(Assets.purpleMouse[2], mouseX, mouseY, mouseWidth, mouseHeight,null);
+            g2d.setFont(new Font("Georgia", Font.BOLD, 10));
+            g2d.setColor(Color.WHITE);
+            g2d.drawString("x " + hero.getPower("minge de foc"), numberX, numberY);
+        }
+
+        mouseX = numberX + 10;
+        numberX = mouseX + mouseWidth - 6;
+        if(Assets.greenMouse[2] != null)
+        {
+            g2d.drawImage(Assets.greenMouse[2], mouseX, mouseY, mouseWidth, mouseHeight,null);
+            g2d.setFont(new Font("Georgia", Font.BOLD, 10));
+            g2d.setColor(Color.WHITE);
+            g2d.drawString("x " + hero.getPower("zbor"), numberX, numberY);
+        }
+
+        mouseX = numberX + 10;
+        numberX = mouseX + mouseWidth - 6;
+        if(Assets.blueMouse[2] != null)
+        {
+            g2d.drawImage(Assets.blueMouse[2], mouseX, mouseY, mouseWidth, mouseHeight,null);
+            g2d.setFont(new Font("Georgia", Font.BOLD, 10));
+            g2d.setColor(Color.WHITE);
+            g2d.drawString("x " + hero.getPower("invizibilitate"), numberX, numberY);
+        }
     }
 
     public Hero getPlayer()

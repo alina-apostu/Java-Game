@@ -4,9 +4,8 @@ import PaooGame.States.PlayState;
 import PaooGame.States.State;
 
 import javax.swing.*;
-import java.util.HashMap;
 
-public class PublicGamaData
+public class PublicGameData
 {
     public static int score = 0;
     public static String playerName;
@@ -17,7 +16,7 @@ public class PublicGamaData
 
     public static void addScore(int points)
     {
-        PublicGamaData.score+= points;
+        PublicGameData.score+= points;
     }
 
     public static void subbScore(int amount)

@@ -4,10 +4,9 @@ package PaooGame.Collision;
 import PaooGame.Items.Character;
 import PaooGame.Items.Hero;
 import PaooGame.Maps.Map;
-import PaooGame.PublicGamaData;
+import PaooGame.PublicGameData;
 import PaooGame.States.PlayState;
 import PaooGame.States.State;
-import PaooGame.DataBase.DataBaseManager;
 
 import java.awt.Rectangle;
 
@@ -23,10 +22,10 @@ public class LevelTransitionTile implements CollisionStrategy {
             int nextLevel = CurrentLevel + 1;
 
             if (nextLevel <= 3) {
-                PublicGamaData.currentLevel=nextLevel;
+                PublicGameData.currentLevel=nextLevel;
                 if(hero.getLives()==5)
                 {
-                    PublicGamaData.addScore(200);
+                    PublicGameData.addScore(200);
                    //mesaj de inchere nivel fara a pierde vieti
                     javax.swing.JOptionPane.showMessageDialog(null,
                             "Congratulations! You completed level " + CurrentLevel +

@@ -2,15 +2,12 @@ package PaooGame.Items;
 
 import PaooGame.Graphics.Assets;
 import PaooGame.Items.NPC.RedSpider;
-import PaooGame.PublicGamaData;
+import PaooGame.PublicGameData;
 import PaooGame.RefLinks;
-import PaooGame.Items.Character;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.sql.Ref;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FireBall
 {
@@ -53,9 +50,9 @@ public class FireBall
                 {
                     enemy.Die();
                     if(enemy instanceof SpiderBlue || enemy instanceof RedSpider)
-                        PublicGamaData.addScore(75);
+                        PublicGameData.addScore(75);
                     if(enemy instanceof ShadowSpider)
-                        PublicGamaData.addScore(500);
+                        PublicGameData.addScore(500);
                     active = false;
                 }
         }

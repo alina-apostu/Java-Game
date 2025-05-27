@@ -1,5 +1,6 @@
 package PaooGame.States;
 
+import PaooGame.DataBase.DataBaseManager;
 import PaooGame.Game;
 import PaooGame.Items.Character;
 import PaooGame.Graphics.Assets;
@@ -9,14 +10,13 @@ import PaooGame.Items.NPC.RedSpider;
 import PaooGame.Items.ShadowSpider;
 import PaooGame.Items.SpiderBlue;
 import PaooGame.Maps.Map;
-import PaooGame.PublicGamaData;
+import PaooGame.PublicGameData;
 import PaooGame.RefLinks;
 import PaooGame.Collision.CollisionHandler;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.List;
 
 /*! \class public class PlayState extends State
     \brief Implementeaza/controleaza jocul.
@@ -36,7 +36,7 @@ public class PlayState extends State
 
     private ShadowSpider shadowSpider;
 
-
+    private Rectangle saveButton;
 
     /*! \fn public PlayState(RefLinks refLink)
         \brief Constructorul de initializare al clasei
@@ -68,7 +68,6 @@ public class PlayState extends State
         switch (map.getLevelIndex()) {
             case 1:
                 mice.add(new Mouse(refLink, 300, 111, "purple"));
-                redSpiders.add(new RedSpider(refLink,600, 110));
                 mice.add(new Mouse(refLink, 700, 111, "green"));
                 mice.add(new Mouse(refLink, 1000, 111, "purple"));
                 break;
@@ -87,8 +86,6 @@ public class PlayState extends State
                 mice.add(new Mouse(refLink, 500, 111, "green"));
                 mice.add(new Mouse(refLink, 600, 111, "blue"));
 
-
-
                 break;
 
 
@@ -106,6 +103,10 @@ public class PlayState extends State
 
         collisionHandler = new CollisionHandler(refLink);
         hero.setEnemies(getAllEnemies());
+
+        int camX = (int)refLink.getCamera().getX();
+        int camY = (int)refLink.getCamera().getY();
+        saveButton = new Rectangle(camX + 440, camY + 10, 50, 30);
     }
 
     /*! \fn public void Update()
@@ -115,7 +116,6 @@ public class PlayState extends State
     public void Update()
     {
         map.Update();
-
 
         collisionHandler.checkTileCollision(hero);
 
@@ -176,9 +176,9 @@ public class PlayState extends State
             State.SetState(new PlayState(refLink, selectedCharacter, currentLevel, playerName));
         }
 
-
-
-
+        int camX = (int)refLink.getCamera().getX();
+        int camY = (int)refLink.getCamera().getY();
+        saveButton.setBounds(camX + 440, camY + 10, 50, 30);
     }
 
     /*! \fn public void Draw(Graphics g)
@@ -222,7 +222,7 @@ public class PlayState extends State
         FontMetrics fm = g2d.getFontMetrics(); //se obtine metrica fonctului actual :inaltime, latime, .....
 
         String infoText1 = "Player: " + hero.getPlayerName() +
-                " | Score: " + PublicGamaData.score +
+                " | Score: " + PublicGameData.score +
                 " | Level: " + map.getLevelIndex();
 
         /*String infoText2 = "Lives: " + hero.getLives();
@@ -315,6 +315,9 @@ public class PlayState extends State
             g2d.setColor(Color.WHITE);
             g2d.drawString("x " + hero.getPower("invizibilitate"), numberX, numberY);
         }
+
+        // butonul de save
+        drawButton(g,saveButton,"SAVE");
     }
 
     public Hero getPlayer()
@@ -351,5 +354,52 @@ public class PlayState extends State
         }
 
         return enemies;
+    }
+
+    private void drawButton(Graphics g, Rectangle r, String s)
+    {
+        // culoare de fundal pentru buton
+        //g.setColor(new Color(92, 84, 112));
+        g.setColor(Color.DARK_GRAY);
+        // se deseneaza un dreptunghi plin
+        g.fillRect(r.x,r.y,r.width,r.height);
+        // culoarea pentru text
+        g.setColor(Color.WHITE);
+        // fontul pentru text
+        g.setFont(new Font("Serif", Font.BOLD,12));
+        // punem textul pe buton
+        int textWidth = g.getFontMetrics().stringWidth(s);
+        int textHeight = g.getFontMetrics().getAscent();
+        int textX = r.x + (r.width - textWidth)/2;
+        int textY = r.y + (r.height + textHeight)/2;
+        g.drawString(s,textX, textY);
+    }
+
+    public void MouseClick(MouseEvent e)
+    {
+        // obtinem coordonatele MouseEvent-ului
+        int mx = e.getX();
+        int my = e.getY();
+
+        int camX = (int)refLink.getCamera().getX();
+        int camY = (int)refLink.getCamera().getY();
+
+        int realX = mx + camX;
+        int realY = my + camY;
+
+        System.out.println("Click at realX=" + realX + " realY=" + realY);
+        System.out.println("Button bounds: " + saveButton);
+
+        System.out.println("\nbutton x: " + saveButton.x + " y: " + saveButton.y);
+        System.out.println("\ncam x: " + camX + " y: " + camY);
+        System.out.println("\nevent x: " + mx + " y: " + my);
+
+        // verificam ce personaj a fost ales
+        if(saveButton.contains(realX,realY))
+        {
+            System.out.println("DAAAAA");
+            DataBaseManager.getInstance().savePlayer(PublicGameData.playerName, PublicGameData.score, PublicGameData.currentLevel, PublicGameData.characterType);
+            System.out.println("Joc salvat manual!");
+        }
     }
 }

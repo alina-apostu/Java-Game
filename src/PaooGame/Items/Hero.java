@@ -2,10 +2,7 @@ package PaooGame.Items;
 
 import PaooGame.Game;
 import PaooGame.Graphics.Assets;
-import PaooGame.PublicGamaData;
 import PaooGame.RefLinks;
-import PaooGame.States.PlayState;
-import PaooGame.States.State;
 
 import javax.swing.*;
 import java.awt.*;

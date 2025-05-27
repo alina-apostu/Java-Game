@@ -4,7 +4,7 @@ import PaooGame.DataBase.DataBaseManager;
 import PaooGame.Game;
 import PaooGame.Items.Hero;
 import PaooGame.Items.Character;
-import PaooGame.PublicGamaData;
+import PaooGame.PublicGameData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,10 +42,10 @@ public class WinTile implements CollisionStrategy {
             db.connect();
             db.createTable(); //
 
-            String playerName = PublicGamaData.playerName;
-            int score = PublicGamaData.score;
-            String character = PublicGamaData.characterType;
-            int level =PublicGamaData.currentLevel;
+            String playerName = PublicGameData.playerName;
+            int score = PublicGameData.score;
+            String character = PublicGameData.characterType;
+            int level = PublicGameData.currentLevel;
 
             if (playerName != null && character != null) {
                 db.savePlayer(playerName, score, level, character);

@@ -10,4 +10,10 @@ public class Franghie2 extends Tile
         /// Apel al constructorului clasei de baza
         super(Assets.franghie2, id);
     }
+    @Override
+    public boolean IsSolid()
+    {
+        return true;
+    }
+
 }

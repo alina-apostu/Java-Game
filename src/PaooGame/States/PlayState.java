@@ -119,6 +119,9 @@ public class PlayState extends State
 
         collisionHandler.checkTileCollision(hero);
 
+        //Graphics2D g2d = (Graphics2D) g;
+        //collisionHandler.checkTileCollision(hero,  g2);
+
         collisionHandler.checkCharacterCollision(hero,shadowSpider);
 
         for (Mouse mouse : mice)
@@ -179,6 +182,14 @@ public class PlayState extends State
         int camX = (int)refLink.getCamera().getX();
         int camY = (int)refLink.getCamera().getY();
         saveButton.setBounds(camX + 440, camY + 10, 50, 30);
+
+        //pentru optiunea de pauza joc
+
+        if(refLink.GetKeyManager().esc) {
+            State.SetState(new PauseState(refLink, this));
+            return; // se oprește Update-ul curent
+        }
+
     }
 
     /*! \fn public void Draw(Graphics g)
@@ -190,6 +201,8 @@ public class PlayState extends State
     public void Draw(Graphics g)
     {
         map.Draw(g);
+        Graphics2D gg = (Graphics2D) g;
+        collisionHandler.checkTileCollision(hero,  gg);
 
         for(Mouse mouse : mice)
         {

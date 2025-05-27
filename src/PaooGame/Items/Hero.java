@@ -78,6 +78,8 @@ public class Hero extends Character {
 
     private ArrayList<Character> enemies;
 
+    private boolean crackedTileCollisionThisFrame = false;
+
     /*! \fn public Hero(RefLinks refLink, float x, float y)
         \brief Constructorul de initializare al clasei Hero.
 
@@ -258,7 +260,10 @@ public class Hero extends Character {
             if(fireBall.isActive() == false)
                 fireBall = null;
         }
+
         Move();
+
+
     }
 
     private BufferedImage flipImageHorizontally(BufferedImage img) {
@@ -429,6 +434,11 @@ public class Hero extends Character {
 
         if(fireBall !=null && fireBall.isActive())
             fireBall.Draw(g);
+
+        //pentru a vedea limitele de coliziune erou
+        /*Rectangle bounds = getBounds();
+        g.setColor(Color.RED); // culoare vizibilă
+        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);*/
     }
 
     public void setPower(String power)
@@ -638,5 +648,24 @@ public class Hero extends Character {
             lives--;
         }
     }
+
+    public boolean isCrackedTileCollisionThisFrame() {
+        return crackedTileCollisionThisFrame;
+    }
+
+    public void setCrackedTileCollisionThisFrame(boolean value) {
+        crackedTileCollisionThisFrame = value;
+    }
+
+    private Set<Point> crackedTileCollisionHistory = new HashSet<>();
+
+    public boolean hasCollidedWithCrackedTile(Point tilePosition) {
+        return crackedTileCollisionHistory.contains(tilePosition);
+    }
+
+    public void markCrackedTileCollision(Point tilePosition) {
+        crackedTileCollisionHistory.add(tilePosition);
+    }
+
 
 }

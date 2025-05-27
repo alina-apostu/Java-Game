@@ -1,8 +1,8 @@
 package PaooGame.Collision;
 
-import java.awt.Rectangle;
+import java.awt.*;
 
-import java.awt.BorderLayout;
+import java.util.Set;
 import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -63,6 +63,15 @@ public class CollisionHandler
         CollisionStrategyRegistry.registerStrategy(48, new LevelTransitionTile());
 
         CollisionStrategyRegistry.registerStrategy(110, new WinTile());
+
+        //CollisionStrategyRegistry.registerStrategy(5, new CrackedTile());
+        //CollisionStrategyRegistry.registerStrategy(4, new CrackedTile());
+        CollisionStrategyRegistry.registerStrategy(167, new WallDrt());
+        CollisionStrategyRegistry.registerStrategy(168, new WallTileStgDrt());
+
+        CollisionStrategyRegistry.registerStrategy(7, new CrackedTile());
+        //CollisionStrategyRegistry.registerStrategy(6, new CrackedTile());
+
 
 
         CollisionStrategyRegistry.registerCharacterStrategy(Mouse.class, new MouseCollision());
@@ -132,10 +141,15 @@ public class CollisionHandler
         }
     }
 
-    public void checkTileCollision(Hero hero) {
+    public void checkTileCollision(Hero hero, Graphics2D g) {
+
+        Set<Integer> debugTileIds = Set.of(57, 58, 7, 6); //pentru debug tilebounds
+        hero.setCrackedTileCollisionThisFrame(false);//pentru actualizarea la fiecare frame, coliziune cu fisurile din podea
+
+
         Rectangle heroBounds = hero.getBounds();
         int tileSize = Tile.TILE_WIDTH;
-      
+
         hero.resetOnTile();
 
 
@@ -159,19 +173,42 @@ public class CollisionHandler
                         //System.out.println(tileLeft + " " + tileRight + " " + tileTop + " " + tileBottom);
 
                         //System.out.println("Tile ID: " + tile.GetId() + " at " + col + "," + row);
-
-
                         Rectangle tileBounds = new Rectangle(col * tileSize, row * tileSize, tileSize, tileSize);
 
-                        //System.out.println(tileBounds);
+                        /*int tileId1 = tile.GetId();
+                        if(tileId1==5 || tileId1==4)//
+                        {
+                            tileBounds = new Rectangle(col * tileSize, ((row) * (tileSize)-20 ), tileSize , (tileSize +15));
+
+                            if (debugTileIds.contains(tile.GetId())) {
+                                g.setColor(Color.RED);
+                                g.drawRect(tileBounds.x, tileBounds.y, tileBounds.width, tileBounds.height);
+                            }
+                        }*/
 
 
                         if (heroBounds.intersects(tileBounds)) {
+
+                            int heroBottomY = heroBounds.y + heroBounds.height;
+                            int tileTopY = tileBounds.y;
+
+                            // dacă partea de jos a eroului e aproape de partea de sus a tile-ului (adică stă pe el)
+                            if (Math.abs(heroBottomY - tileTopY) <= 5) {
+                                hero.setOnTile(true);
+                            }
+
                             //System.out.println(heroBounds + " " + tileBounds);
                             int tileId = tile.GetId();
-                            if(tileId==58 || tileId==57)//daca sunt tileuri de tip carti, micsoram putin inaltimea lui tilebounds
+                            if(tileId==58 || tileId==57 )//daca sunt tileuri de tip carti, micsoram putin inaltimea lui tilebounds
                             {
-                               tileBounds = new Rectangle(col * tileSize, (row) * (tileSize-10), tileSize, (tileSize-10));
+                                tileBounds = new Rectangle(col * tileSize, ((row) * (tileSize)+15), tileSize-5, (tileSize-15));
+
+                                if (debugTileIds.contains(tile.GetId())) {
+                                    g.setColor(Color.RED);
+                                    g.drawRect(tileBounds.x, tileBounds.y, tileBounds.width, tileBounds.height);
+                                }
+
+
                                 if (heroBounds.intersects(tileBounds)) {
                                     CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
                                     if (strategy != null) {
@@ -181,6 +218,47 @@ public class CollisionHandler
                                 }
 
                             }
+
+                            else  if(tileId==7 )
+                            {
+                                tileBounds = new Rectangle((col * tileSize+17), ((row) * (tileSize)+15), tileSize-15, (tileSize-28));
+
+                                /*if (debugTileIds.contains(tile.GetId())) {
+                                    g.setColor(Color.RED);
+                                    g.drawRect(tileBounds.x, tileBounds.y, tileBounds.width, tileBounds.height);
+                                }*/ //pentru a vedea fizic limitele tile ului
+
+
+                                if (heroBounds.intersects(tileBounds)) {
+                                    CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
+                                    if (strategy != null) {
+                                        strategy.handleCollisionTile(hero, tileBounds);
+                                    }
+
+                                }
+
+                            }
+                            else  if(tileId==6 )
+                            {
+                                tileBounds = new Rectangle((col * tileSize+10), ((row) * (tileSize)+15), tileSize-15, (tileSize-24));
+
+                                /*if (debugTileIds.contains(tile.GetId())) {
+                                    g.setColor(Color.RED);
+                                    g.drawRect(tileBounds.x, tileBounds.y, tileBounds.width, tileBounds.height);
+                                } *///pentru a vedea fizic limitele tile ului
+
+
+                                if (heroBounds.intersects(tileBounds)) {
+                                    CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
+                                    if (strategy != null) {
+                                        strategy.handleCollisionTile(hero, tileBounds);
+                                    }
+
+                                }
+
+                            }
+
+
                             else {
                                 CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
 

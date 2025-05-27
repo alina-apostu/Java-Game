@@ -9,14 +9,13 @@ import PaooGame.Items.NPC.RedSpider;
 import PaooGame.Items.ShadowSpider;
 import PaooGame.Items.SpiderBlue;
 import PaooGame.Maps.Map;
-import PaooGame.PublicGamaData;
+import PaooGame.PublicGameData;
 import PaooGame.RefLinks;
 import PaooGame.Collision.CollisionHandler;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
+
 
 /*! \class public class PlayState extends State
     \brief Implementeaza/controleaza jocul.
@@ -116,8 +115,8 @@ public class PlayState extends State
     {
         map.Update();
 
-
-        collisionHandler.checkTileCollision(hero);
+        //Graphics2D g2d = (Graphics2D) g;
+        //collisionHandler.checkTileCollision(hero,  g2);
 
         collisionHandler.checkCharacterCollision(hero,shadowSpider);
 
@@ -198,6 +197,8 @@ public class PlayState extends State
     public void Draw(Graphics g)
     {
         map.Draw(g);
+        Graphics2D gg = (Graphics2D) g;
+        collisionHandler.checkTileCollision(hero,  gg);
 
         for(Mouse mouse : mice)
         {
@@ -230,7 +231,7 @@ public class PlayState extends State
         FontMetrics fm = g2d.getFontMetrics(); //se obtine metrica fonctului actual :inaltime, latime, .....
 
         String infoText1 = "Player: " + hero.getPlayerName() +
-                " | Score: " + PublicGamaData.score +
+                " | Score: " + PublicGameData.score +
                 " | Level: " + map.getLevelIndex();
 
         /*String infoText2 = "Lives: " + hero.getLives();

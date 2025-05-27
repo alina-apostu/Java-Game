@@ -4,7 +4,7 @@ import PaooGame.Game;
 import PaooGame.Items.Character;
 import PaooGame.Items.Hero;
 import PaooGame.Items.NPC.RedSpider;
-import PaooGame.PublicGamaData;
+import PaooGame.PublicGameData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +27,7 @@ public class RedSpiderCollision implements CollisionStrategy
 
         if (webBounds != null && redSpider.isWebFullyOpened() == true)
         {
-            PublicGamaData.subbScore(50);
+            PublicGameData.subbScore(50);
 
             Game.isPaused = true;
             hero.SetXMove(0);

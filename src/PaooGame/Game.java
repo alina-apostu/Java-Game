@@ -6,7 +6,6 @@ import PaooGame.GameWindow.GameWindow;
 import PaooGame.Graphics.Assets;
 import PaooGame.Input.KeyManager;
 import PaooGame.Input.MouseInput;
-import PaooGame.Items.Hero;
 import PaooGame.Items.Item;
 import PaooGame.States.*;
 import PaooGame.Tiles.Tile;
@@ -136,7 +135,7 @@ public class Game implements Runnable
         //cam=new Camera2(0,0,300,192);
         refLink.setCamera(cam);
 
-        PublicGamaData.refLinks = refLink; // pentru datele de tip scor, playerName,...
+        PublicGameData.refLinks = refLink; // pentru datele de tip scor, playerName,...
 
 
 

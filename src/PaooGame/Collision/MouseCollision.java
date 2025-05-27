@@ -4,7 +4,7 @@ import PaooGame.Game;
 import PaooGame.Items.*;
 import PaooGame.Items.Character;
 import PaooGame.Items.NPC.Mouse;
-import PaooGame.PublicGamaData;
+import PaooGame.PublicGameData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +24,7 @@ public class MouseCollision implements CollisionStrategy {
         Mouse mouse = (Mouse) character;
         if (mouse.isConsumed() == false)
         {
-            PublicGamaData.addScore(100); //se agauga 100 pentru fiecare soarece intalnit
+            PublicGameData.addScore(100); //se agauga 100 pentru fiecare soarece intalnit
 
             String color = mouse.getCurrentColor();
 

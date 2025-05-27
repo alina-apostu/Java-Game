@@ -1,6 +1,6 @@
 package PaooGame.States;
 
-import PaooGame.PublicGamaData;
+import PaooGame.PublicGameData;
 import PaooGame.RefLinks;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -188,8 +188,8 @@ public class MenuState extends State
                     return; //
                 }
 
-                PublicGamaData.playerName = playerName;
-                PublicGamaData.characterType = selectedCharacter;
+                PublicGameData.playerName = playerName;
+                PublicGameData.characterType = selectedCharacter;
 
                 JOptionPane.showMessageDialog(null,"You chose: " + selectedCharacter + "\nPlayer name: " + playerName + "\nLevel 1 is loading...", "Selected character",JOptionPane.INFORMATION_MESSAGE);
 

@@ -250,6 +250,12 @@ public class Tile
     public static Tile podea2jos  = new Podea2Jos(165);
     public static Tile lemnObstacol     = new LemnObstacol(166);
 
+    public static Tile podeastg        = new PodeaObstacolStg(167);
+    public static Tile podeadrt        = new PodeaObstacolDrt(168);
+
+    public static Tile treaptaJosFaraColiz        = new TreaptaJosFaraColiz(169);
+    public static Tile treaptaJos2FaraColiz        = new TreaptaJos2FaraColiz(170);
+
 
 
 

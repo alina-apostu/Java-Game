@@ -226,11 +226,16 @@ public class Assets
     public static BufferedImage geam6;
 
     public static BufferedImage podea1obstacol;
+    public static BufferedImage podeastg;
+    public static BufferedImage podeadrt;
     public static BufferedImage podea2jos;
     public static BufferedImage lemnObstacol;
 
 
     public static BufferedImage inima;
+
+    public static BufferedImage treaptaJosFaraColiz;
+    public static BufferedImage treaptaJos2FaraColiz;
 
 
 
@@ -569,12 +574,18 @@ public class Assets
 
         //copii tile-uri obstacole realizate pentru coliziuni
         podea1obstacol=sheet.crop(0,3);
+        podeastg=sheet.crop(0,3);
+        podeadrt=sheet.crop(0,3);
+
 
         podea2jos=sheet6.crop(0,0);
 
         lemnObstacol=sheet9.crop(2,6);
 
         inima= ImageLoader.LoadImage("/textures/inima2.png");
+
+        treaptaJosFaraColiz=sheet2.crop(5,7);
+        treaptaJos2FaraColiz=sheet2.crop(4,7);
 
 
 

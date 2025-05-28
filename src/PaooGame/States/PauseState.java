@@ -1,5 +1,7 @@
 package PaooGame.States;
 
+import PaooGame.DataBase.DataBaseManager;
+import PaooGame.PublicGameData;
 import PaooGame.RefLinks;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -8,6 +10,7 @@ public class PauseState extends State {
     private Rectangle resumeButton;
     private Rectangle menuButton;
     private Rectangle exitButton;
+    private Rectangle saveButton;
 
     private State previousState; // pentru a reveni înapoi
 
@@ -18,12 +21,13 @@ public class PauseState extends State {
         int width = 200;
         int height = 50;
         int x = refLink.GetWidth() / 2 - width / 2;
-        int startY = 200;
+        int startY = 130;
         int spacing = 60;
 
         resumeButton = new Rectangle(x, startY, width, height);
-        menuButton = new Rectangle(x, startY + spacing, width, height);
-        exitButton = new Rectangle(x, startY + 2 * spacing, width, height);
+        saveButton = new Rectangle(x, startY + spacing, width, height);
+        menuButton = new Rectangle(x,startY + 2 * spacing, width, height);
+        exitButton = new Rectangle(x, startY + 3 * spacing, width, height);
     }
 
     @Override
@@ -40,11 +44,12 @@ public class PauseState extends State {
         g.setFont(new Font("Georgia", Font.BOLD, 36));
         String title = "Game Paused";
         int titleWidth = g.getFontMetrics().stringWidth(title);
-        g.drawString(title, refLink.GetWidth()/2 - titleWidth/2, 100);
+        g.drawString(title, refLink.GetWidth()/2 - titleWidth/2, 80);
 
-        drawButton(g, resumeButton, "Resume");
-        drawButton(g, menuButton, "Main Menu");
-        drawButton(g, exitButton, "Exit");
+        drawButton(g, resumeButton, "RESUME");
+        drawButton(g, saveButton, "SAVE");
+        drawButton(g, menuButton, "MAIN MENU");
+        drawButton(g, exitButton, "EXIT");
     }
 
     private void drawButton(Graphics g, Rectangle r, String text) {
@@ -61,12 +66,22 @@ public class PauseState extends State {
         int mx = e.getX();
         int my = e.getY();
 
-        if (resumeButton.contains(mx, my)) {
+        if (resumeButton.contains(mx, my))
+        {
             State.SetState(previousState); // revine în joc
-        } else if (menuButton.contains(mx, my)) {
+        }
+        else if (menuButton.contains(mx, my))
+        {
             State.SetState(new MenuState(refLink));
-        } else if (exitButton.contains(mx, my)) {
+        }
+        else if (exitButton.contains(mx, my))
+        {
             System.exit(0);
+        }
+        else if(saveButton.contains(mx,my))
+        {
+            DataBaseManager.getInstance().savePlayer(PublicGameData.playerName, PublicGameData.score, PublicGameData.currentLevel, PublicGameData.characterType);
+            System.out.println("Joc salvat manual!");
         }
     }
 }

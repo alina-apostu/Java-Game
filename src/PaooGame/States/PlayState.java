@@ -18,9 +18,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-/*! \class public class PlayState extends State
-    \brief Implementeaza/controleaza jocul.
- */
+// clasa PlayState implementeaza/controleaza jocul
 public class PlayState extends State
 {
     private Hero hero;  /*!< Referinta catre obiectul animat erou (controlat de utilizator).*/
@@ -36,24 +34,17 @@ public class PlayState extends State
 
     private ShadowSpider shadowSpider;
 
-    private Rectangle saveButton;
-
-    /*! \fn public PlayState(RefLinks refLink)
-        \brief Constructorul de initializare al clasei
-
-        \param refLink O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.
-     */
     public PlayState(RefLinks refLink, String selectedCharacter, int levelIndex, String playerName)
     {
-            ///Apel al constructorului clasei de baza
+        //Apel al constructorului clasei de baza
         super(refLink);
-            ///Construieste harta jocului
 
+        //Construieste harta jocului
         map = new Map(refLink,levelIndex);
-            ///Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
+        //Referinta catre harta construita este setata si in obiectul shortcut pentru a fi accesibila si in alte clase ale programului.
         refLink.SetMap(map);
-            ///Construieste eroul
 
+        //Construieste eroul
         hero = new Hero(refLink,50, 108, selectedCharacter);
         hero.setPlayerName(playerName);
         hero.resetLives(); // se reseteaza viețile la începutul nivelului
@@ -103,10 +94,6 @@ public class PlayState extends State
 
         collisionHandler = new CollisionHandler(refLink);
         hero.setEnemies(getAllEnemies());
-
-        int camX = (int)refLink.getCamera().getX();
-        int camY = (int)refLink.getCamera().getY();
-        saveButton = new Rectangle(camX + 440, camY + 10, 50, 30);
     }
 
     /*! \fn public void Update()
@@ -116,7 +103,6 @@ public class PlayState extends State
     public void Update()
     {
         map.Update();
-
 
 
         //collisionHandler.checkTileCollision(hero);
@@ -178,11 +164,6 @@ public class PlayState extends State
             // se reseteaza starea de joc cu aceiași parametri
             State.SetState(new PlayState(refLink, selectedCharacter, currentLevel, playerName));
         }
-
-        int camX = (int)refLink.getCamera().getX();
-        int camY = (int)refLink.getCamera().getY();
-        saveButton.setBounds(camX + 440, camY + 10, 50, 30);
-
         //pentru optiunea de pauza joc
 
         if(refLink.GetKeyManager().esc) {
@@ -328,9 +309,6 @@ public class PlayState extends State
             g2d.setColor(Color.WHITE);
             g2d.drawString("x " + hero.getPower("invizibilitate"), numberX, numberY);
         }
-
-        // butonul de save
-        drawButton(g,saveButton,"SAVE");
     }
 
     public Hero getPlayer()
@@ -367,52 +345,5 @@ public class PlayState extends State
         }
 
         return enemies;
-    }
-
-    private void drawButton(Graphics g, Rectangle r, String s)
-    {
-        // culoare de fundal pentru buton
-        //g.setColor(new Color(92, 84, 112));
-        g.setColor(Color.DARK_GRAY);
-        // se deseneaza un dreptunghi plin
-        g.fillRect(r.x,r.y,r.width,r.height);
-        // culoarea pentru text
-        g.setColor(Color.WHITE);
-        // fontul pentru text
-        g.setFont(new Font("Serif", Font.BOLD,12));
-        // punem textul pe buton
-        int textWidth = g.getFontMetrics().stringWidth(s);
-        int textHeight = g.getFontMetrics().getAscent();
-        int textX = r.x + (r.width - textWidth)/2;
-        int textY = r.y + (r.height + textHeight)/2;
-        g.drawString(s,textX, textY);
-    }
-
-    public void MouseClick(MouseEvent e)
-    {
-        // obtinem coordonatele MouseEvent-ului
-        int mx = e.getX();
-        int my = e.getY();
-
-        int camX = (int)refLink.getCamera().getX();
-        int camY = (int)refLink.getCamera().getY();
-
-        int realX = mx + camX;
-        int realY = my + camY;
-
-        System.out.println("Click at realX=" + realX + " realY=" + realY);
-        System.out.println("Button bounds: " + saveButton);
-
-        System.out.println("\nbutton x: " + saveButton.x + " y: " + saveButton.y);
-        System.out.println("\ncam x: " + camX + " y: " + camY);
-        System.out.println("\nevent x: " + mx + " y: " + my);
-
-        // verificam ce personaj a fost ales
-        if(saveButton.contains(realX,realY))
-        {
-            System.out.println("DAAAAA");
-            DataBaseManager.getInstance().savePlayer(PublicGameData.playerName, PublicGameData.score, PublicGameData.currentLevel, PublicGameData.characterType);
-            System.out.println("Joc salvat manual!");
-        }
     }
 }

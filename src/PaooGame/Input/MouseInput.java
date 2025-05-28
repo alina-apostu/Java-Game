@@ -28,10 +28,8 @@ public class MouseInput implements MouseListener
             ((MenuState) currentState).MouseClick(e); // transform obiectul state in MenuState si trimitem coordonatele clickului
         }
 
-        // daca starea curenta este PlayState trimitem evenimentul acolo
-        else if(currentState instanceof PlayState)
-        {
-            ((PlayState) currentState).MouseClick(e);}
+
+        // daca starea curenta este PauseState trimitem evenimentul acolo
 
         else if(currentState instanceof PauseState)
         {

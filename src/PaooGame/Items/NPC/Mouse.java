@@ -89,9 +89,12 @@ public class Mouse extends PaooGame.Items.Character
                     g.drawImage(Assets.blue_sparkle, (int)(x+10), (int)y, width, height, null);
             return; // nu mai desenam soarecele
         }
-        /*g.setColor(Color.GREEN);
+
+       /* g.setColor(Color.GREEN);
         Rectangle bounds = getBounds();
         g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);*/
+
+
         g.drawImage(currentMouse[mouseIndex], (int)x, (int)y, width, height, null );
     }
 

@@ -203,10 +203,10 @@ public class CollisionHandler
                             {
                                 tileBounds = new Rectangle(col * tileSize, ((row) * (tileSize)+15), tileSize-5, (tileSize-15));
 
-                                if (debugTileIds.contains(tile.GetId())) {
+                                /*if (debugTileIds.contains(tile.GetId())) {
                                     g.setColor(Color.RED);
                                     g.drawRect(tileBounds.x, tileBounds.y, tileBounds.width, tileBounds.height);
-                                }
+                                }*/
 
 
                                 if (heroBounds.intersects(tileBounds)) {

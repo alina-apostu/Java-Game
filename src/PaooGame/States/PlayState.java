@@ -117,10 +117,10 @@ public class PlayState extends State
     {
         map.Update();
 
-        collisionHandler.checkTileCollision(hero);
 
-        //Graphics2D g2d = (Graphics2D) g;
-        //collisionHandler.checkTileCollision(hero,  g2);
+
+        //collisionHandler.checkTileCollision(hero);
+
 
         collisionHandler.checkCharacterCollision(hero,shadowSpider);
 

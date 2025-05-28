@@ -45,9 +45,22 @@ public class PlayState extends State
         refLink.SetMap(map);
 
         //Construieste eroul
-        hero = new Hero(refLink,50, 108, selectedCharacter);
+        hero = new Hero(refLink,PublicGameData.playerPosX, PublicGameData.playerPosY, selectedCharacter);
         hero.setPlayerName(playerName);
-        hero.resetLives(); // se reseteaza viețile la începutul nivelului
+        hero.setPower("minge de foc", PublicGameData.fireballPower);
+        hero.setPower("zbor", PublicGameData.flyPower);
+        hero.setPower("invizibilitate", PublicGameData.invisibilityPower);
+        hero.setLives(PublicGameData.lives);
+        if(!PublicGameData.loadedFromSave)
+        {
+            hero.SetX(50);
+            hero.SetY(108);
+            hero.setPower("minge de foc", 0);
+            hero.setPower("zbor", 0);
+            hero.setPower("invizibilitate", 0);
+            hero.resetLives();
+        }
+        //hero.resetLives(); // se reseteaza viețile la începutul nivelului
         refLink.SetHero(hero);
 
         mice = new ArrayList<>();
@@ -167,7 +180,7 @@ public class PlayState extends State
         //pentru optiunea de pauza joc
 
         if(refLink.GetKeyManager().esc) {
-            State.SetState(new PauseState(refLink, this));
+            State.SetState(new PauseState(refLink, this, hero));
             return; // se oprește Update-ul curent
         }
 

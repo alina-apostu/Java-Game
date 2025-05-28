@@ -214,6 +214,7 @@ public class MenuState extends State
 
                 // schimbam starea jocului in PlayState folosind datele incarcarea
                 State.SetState(new PlayState(refLink, PublicGameData.characterType,PublicGameData.currentLevel, PublicGameData.playerName));
+
             }
             else
             {

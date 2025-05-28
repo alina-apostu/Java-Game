@@ -1,6 +1,7 @@
 package PaooGame.States;
 
 import PaooGame.DataBase.DataBaseManager;
+import PaooGame.Items.Hero;
 import PaooGame.PublicGameData;
 import PaooGame.RefLinks;
 import java.awt.*;
@@ -13,10 +14,12 @@ public class PauseState extends State {
     private Rectangle saveButton;
 
     private State previousState; // pentru a reveni înapoi
+    private Hero hero;
 
-    public PauseState(RefLinks refLink, State previousState) {
+    public PauseState(RefLinks refLink, State previousState, Hero hero) {
         super(refLink);
         this.previousState = previousState;
+        this.hero = hero;
 
         int width = 200;
         int height = 50;
@@ -80,7 +83,7 @@ public class PauseState extends State {
         }
         else if(saveButton.contains(mx,my))
         {
-            DataBaseManager.getInstance().savePlayer(PublicGameData.playerName, PublicGameData.score, PublicGameData.currentLevel, PublicGameData.characterType);
+            DataBaseManager.getInstance().savePlayer(PublicGameData.playerName, PublicGameData.score, PublicGameData.currentLevel, PublicGameData.characterType, (int) hero.GetX(), (int) hero.GetY(), hero.getPower("minge de foc"), hero.getPower("zbor"), hero.getPower("invizibilitate"), hero.getLives());
             System.out.println("Joc salvat manual!");
         }
     }

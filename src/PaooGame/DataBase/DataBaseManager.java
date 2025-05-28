@@ -56,22 +56,48 @@ public class DataBaseManager {
         }
     }
 
-    public void savePlayer(String name, int score, int level, String character) {
-        String sql = "INSERT INTO players(name, score, level, character) VALUES(?,?,?,?)";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, name);
-            pstmt.setInt(2, score);
-            pstmt.setInt(3, level);
-            pstmt.setString(4, character);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
+    public void savePlayer(String name, int score, int level, String character)
+    {
+        String checkQuery = "SELECT * FROM players WHERE name = ?";
+        String updateQuery = "UPDATE players SET score = ?, level = ?, character = ?, timestamp = DATETIME('now', 'localtime') WHERE name = ?";
+        String insertQuery = "INSERT INTO players(name, score, level, character) VALUES(?,?,?,?)";
+        try(PreparedStatement checkStmt = conn.prepareStatement(checkQuery))
+        {
+            checkStmt.setString(1,name);
+            ResultSet rs = checkStmt.executeQuery();
+
+            if(rs.next())
+            {
+                // exista deja => facem update
+                try(PreparedStatement updateStmt = conn.prepareStatement(updateQuery))
+                {
+                    updateStmt.setInt(1, score);
+                    updateStmt.setInt(2, level);
+                    updateStmt.setString(3, character);
+                    updateStmt.setString(4, name);
+                    updateStmt.executeUpdate();
+                }
+            }
+            else
+            {
+                // nu exista => il adaugam
+                try (PreparedStatement pstmt = conn.prepareStatement(insertQuery))
+                {
+                    pstmt.setString(1, name);
+                    pstmt.setInt(2, score);
+                    pstmt.setInt(3, level);
+                    pstmt.setString(4, character);
+                    pstmt.executeUpdate();
+                }
+            }
+        }catch (SQLException e) {
             System.out.println("Eroare la salvare: " + e.getMessage());
         }
     }
 
     public ArrayList<String> getTopPlayers(int limit) {
         ArrayList<String> top = new ArrayList<>();
-        String sql = "SELECT name, score FROM players ORDER BY score DESC LIMIT ?";
+        String sql = "SELECT name, score FROM players WHERE level >= 3 ORDER BY score DESC LIMIT ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, limit);
             ResultSet rs = pstmt.executeQuery();

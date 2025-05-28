@@ -38,6 +38,11 @@ public class CollisionHandler
         CollisionStrategyRegistry.registerStrategy(164, new ObstacolStgDrtUp());
         CollisionStrategyRegistry.registerStrategy(0, new TavanTile());
 
+        CollisionStrategyRegistry.registerCharacterStrategy(Mouse.class, new MouseCollision());
+        CollisionStrategyRegistry.registerCharacterStrategy(RedSpider.class, new RedSpiderCollision());
+        CollisionStrategyRegistry.registerCharacterStrategy(SpiderBlue.class, new BlueSpiderCollision());
+        CollisionStrategyRegistry.registerCharacterStrategy(ShadowSpider.class, new ShadowSpiderCollision());
+
 
         //nivel2
         CollisionStrategyRegistry.registerStrategy(67, new ObstacolStgDrtUp());
@@ -71,13 +76,6 @@ public class CollisionHandler
 
         CollisionStrategyRegistry.registerStrategy(7, new CrackedTile());
         //CollisionStrategyRegistry.registerStrategy(6, new CrackedTile());
-
-
-
-        CollisionStrategyRegistry.registerCharacterStrategy(Mouse.class, new MouseCollision());
-        CollisionStrategyRegistry.registerCharacterStrategy(RedSpider.class, new RedSpiderCollision());
-        CollisionStrategyRegistry.registerCharacterStrategy(SpiderBlue.class, new BlueSpiderCollision());
-        CollisionStrategyRegistry.registerCharacterStrategy(ShadowSpider.class, new ShadowSpiderCollision());
     }
 
     public void checkCharacterCollision(Hero hero, Character character)

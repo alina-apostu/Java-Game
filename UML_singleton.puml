@@ -1,0 +1,20 @@
+@startuml
+
+package PaooGame.DataBase
+{
+    class DataBaseManager
+    {
+        - static instance : DataBaseManager
+        - conn : Connection
+        - DataBaseManager()
+        + static getInstance() : DataBaseManager
+        + connect() : void
+        + createTable() : void
+        + savePlayer(name : String, score : int, level : int, character : String) : void
+        + getTopPlayers(limit : int) : ArrayList<String>
+        + loadPlayerByName(name : String) : boolean
+        + close() : void
+    }
+}
+
+@enduml

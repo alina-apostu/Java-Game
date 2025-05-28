@@ -1,0 +1,78 @@
+@startuml
+
+package PaooGame.States
+{
+    abstract class State
+    {
+        -static previousState: State
+        -static currentState: State
+        -refLink: RefLinks
+
+        + State(refLink: RefLinks)
+        + static void SetState(state: State)
+        + static State GetState()
+        + abstract void Update()
+        + abstract void Draw(g: Graphics)
+    }
+
+    class MenuState
+    {
+        -startButton: Rectangle
+        -loadButton: Rectangle
+        -exitButton: Rectangle
+        -lunaBox: Rectangle
+        -freyaBox: Rectangle
+        -emberBox: Rectangle
+        -selectedCharacter: String
+        -lunaGif: Image
+        -freyaGif: Image
+        -emberGif: Image
+        -levelIndex: int
+        -playerName: String
+
+        +MenuState(refLink: RefLinks)
+        +void Update()
+        +void Draw(g: Graphics)
+        +void drawButton(g: Graphics,r: Rectangle,s: String)
+        +void MouseClick(e: MouseEvent)
+    }
+
+    class PlayState
+    {
+            -hero: Hero
+            -map: Map
+            -mice: ArrayList<Mouse>
+            -redSpiders: ArrayList<RedSpider>
+            -blueSpiders: ArrayList<SpiderBlue>
+            -collisionHandler: CollisionHandler
+            -shadowSpider: ShadowSpider
+
+            +PlayState(refLink: RefLinks,selectedCharacter: String,levelIndex: int,playerName: String)
+            +void Update()
+            +void Draw(g: Graphics)
+            +Hero getPlayer()
+            +Map getMap()
+            +ArrayList<Character> getAllEnemies()
+    }
+
+    class PauseState
+    {
+            -resumeButton: Rectangle
+            -menuButton: Rectangle
+            -exitButton: Rectangle
+            -saveButton : Rectangle
+            -previousState: State
+
+            +PauseState(refLink: RefLinks,previousState: State)
+            +void Update()
+            +void Draw(g: Graphics)
+            +void drawButton(g: Graphics,r: Rectangle,text: String)
+            +void MouseClick(e: MouseEvent)
+    }
+
+    State <|.. MenuState
+    State <|.. PlayState
+    State <|.. PauseState
+}
+
+@enduml

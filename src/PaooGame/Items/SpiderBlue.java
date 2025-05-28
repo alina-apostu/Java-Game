@@ -121,6 +121,9 @@ public class SpiderBlue extends Character {
     @Override
     public void Draw(Graphics g)
     {
+        g.setColor(Color.GREEN);
+        Rectangle bounds = getBounds();
+        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
         g.drawImage(image, (int) x, (int) y, width, height, null);
 
         /*g.setColor(Color.RED);
@@ -128,9 +131,10 @@ public class SpiderBlue extends Character {
         g.drawRect(r.x, r.y, r.width, r.height);*/
     }
 
+    @Override
     public Rectangle getBounds()
     {
-        return new Rectangle((int) (x + 20), (int) (y + 45), width-34, height-45);
+        return new Rectangle((int) (x + 25), (int) (y + 45), width - 40, height - 45);
     }
 
     @Override

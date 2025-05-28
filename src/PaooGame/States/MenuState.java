@@ -1,5 +1,7 @@
 package PaooGame.States;
 
+
+import PaooGame.DataBase.DataBaseManager;
 import PaooGame.PublicGameData;
 import PaooGame.RefLinks;
 import java.awt.*;
@@ -197,13 +199,33 @@ public class MenuState extends State
                 State.SetState(new PlayState(refLink, selectedCharacter, levelIndex, playerName));// schimbam starea jocului
 
             }
-
-
-
         }
         else if(loadButton.contains(mx,my))
         {
-            JOptionPane.showMessageDialog(null,"Game is loading...", "Load game",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"Game is loading...", "Load game",JOptionPane.INFORMATION_MESSAGE);
+            String nameToLoad = JOptionPane.showInputDialog(null, "Enter player name to load:", "Load Game", JOptionPane.QUESTION_MESSAGE);
+
+            if(nameToLoad == null || nameToLoad.trim().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Player name cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // incercam sa incarcam datele din baza de date
+            DataBaseManager db = DataBaseManager.getInstance();
+            boolean found = db.loadPlayerByName(nameToLoad);
+
+            if(found)
+            {
+                JOptionPane.showMessageDialog(null, "Loaded game for " + PublicGameData.playerName + "\nCharacter: " + PublicGameData.characterType + "\nLevel: " + PublicGameData.currentLevel + "\nScore: " + PublicGameData.score, "Game Loaded", JOptionPane.INFORMATION_MESSAGE);
+
+                // schimbam starea jocului in PlayState folosind datele incarcarea
+                State.SetState(new PlayState(refLink, PublicGameData.characterType,PublicGameData.currentLevel, PublicGameData.playerName));
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "No save found for player: " + nameToLoad, "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         else if(exitButton.contains(mx,my))
         {

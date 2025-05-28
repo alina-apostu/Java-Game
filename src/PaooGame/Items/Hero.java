@@ -425,6 +425,10 @@ public class Hero extends Character {
         }
         else
         {
+            /*g.setColor(Color.GREEN);
+            Rectangle bounds = getBounds();
+            g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);*/
+
             g.drawImage(image, (int) x, (int) y, width, height, null);
         }
 
@@ -618,6 +622,17 @@ public class Hero extends Character {
             flyPower--;
         else if(power.equals("invizibilitate"))
             invisibilityPower--;
+    }
+
+    public int getPower(String power)
+    {
+        if(power.equals("minge de foc"))
+            return fireBallPower;
+        else if(power.equals("zbor"))
+            return flyPower;
+        else if(power.equals("invizibilitate"))
+            return invisibilityPower;
+        return 0;
     }
 
     public void resetLives() {

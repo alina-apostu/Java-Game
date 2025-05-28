@@ -10,7 +10,9 @@ public class PublicGameData
     public static int score = 0;
     public static String playerName;
     public static String characterType;
-    public static int currentLevel=1;
+    public static int currentLevel = 1;
+    public static float playerPosX = 50;
+    public static float playerPosY = 108;
     public static RefLinks refLinks;
 
 
@@ -28,7 +30,7 @@ public class PublicGameData
             JOptionPane.showMessageDialog(null, "You lost!\nYour score dropped to 0!\nRestarting current level...");
 
             //
-            State.SetState(new PlayState(refLinks, characterType, currentLevel, playerName));
+            State.SetState(new PlayState(refLinks, characterType,currentLevel, playerName));
         }
     }
 }

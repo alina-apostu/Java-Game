@@ -45,7 +45,7 @@ public class PlayState extends State
         refLink.SetMap(map);
 
         //Construieste eroul
-        hero = new Hero(refLink,50, 108, selectedCharacter);
+        hero = new Hero(refLink,PublicGameData.playerPosX, PublicGameData.playerPosY, selectedCharacter);
         hero.setPlayerName(playerName);
         hero.resetLives(); // se reseteaza viețile la începutul nivelului
         refLink.SetHero(hero);
@@ -167,7 +167,7 @@ public class PlayState extends State
         //pentru optiunea de pauza joc
 
         if(refLink.GetKeyManager().esc) {
-            State.SetState(new PauseState(refLink, this));
+            State.SetState(new PauseState(refLink, this, hero));
             return; // se oprește Update-ul curent
         }
 

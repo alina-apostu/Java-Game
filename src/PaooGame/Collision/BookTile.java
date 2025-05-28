@@ -13,18 +13,12 @@ import PaooGame.PublicGameData;
 
 public class BookTile implements CollisionStrategy {
     private Set<Point> triggeredTiles = new HashSet<>();
-
-
     public BookTile() {
         System.out.println("book tile collision created");
     }
 
-
-
     @Override
     public void handleCollisionTile(Hero hero, Rectangle tileBounds) {
-
-
 
         Point tilePos = new Point(tileBounds.x / 32, tileBounds.y / 32);
 

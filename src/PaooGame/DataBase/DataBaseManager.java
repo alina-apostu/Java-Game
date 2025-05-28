@@ -1,5 +1,7 @@
 package PaooGame.DataBase;
 
+import PaooGame.PublicGameData;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -81,6 +83,31 @@ public class DataBaseManager {
         }
 
         return top;
+    }
+
+    public boolean loadPlayerByName(String name)
+    {
+        String sql = "SELECT * FROM players WHERE name = ? ORDER BY timestamp DESC LIMIT 1";
+
+        try(PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setString(1, name);
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next())
+            {
+                PublicGameData.playerName = rs.getString("name");
+                PublicGameData.score = rs.getInt("score");
+                PublicGameData.currentLevel = rs.getInt("level");
+                PublicGameData.characterType = rs.getString("character");
+                return true;
+            }
+        }catch(SQLException e)
+        {
+            System.out.println("Eroare la incarcare player dupa nume: " + e.getMessage());
+        }
+
+        return false;
     }
 
     public void close() {

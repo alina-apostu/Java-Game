@@ -10,16 +10,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane; // pentru mesaje
 import javax.swing.ImageIcon; // pentru gif uri
 
-/*! \class public class MenuState extends State
-    \brief Implementeaza notiunea de menu pentru joc.
- */
+// clasa MenuState implementeaza notiunea de meniu pentru joc
 public class MenuState extends State
 {
-    /*! \fn public MenuState(RefLinks refLink)
-        \brief Constructorul de initializare al clasei.
-
-        \param refLink O referinta catre un obiect "shortcut", obiect ce contine o serie de referinte utile in program.
-     */
     private Rectangle startButton;
     private Rectangle loadButton;
     private Rectangle exitButton;
@@ -114,17 +107,17 @@ public class MenuState extends State
         int nameWidth;
         int nameX;
         //Luna
-        name="Cat Luna";
+        name="Luna";
         nameWidth = g.getFontMetrics().stringWidth(name);
         nameX = lunaBox.x + (lunaBox.width - nameWidth)/2;
         g.drawString(name, nameX, lunaBox.y + lunaBox.height + 35);
         //Freya
-        name="Cat Freya";
+        name="Freya";
         nameWidth = g.getFontMetrics().stringWidth(name);
         nameX = freyaBox.x + (freyaBox.width - nameWidth)/2;
         g.drawString(name, nameX, freyaBox.y + freyaBox.height + 35);
         //Ember
-        name="Cat Ember";
+        name="Ember";
         nameWidth = g.getFontMetrics().stringWidth(name);
         nameX = emberBox.x + (emberBox.width - nameWidth)/2;
         g.drawString(name, nameX, emberBox.y + emberBox.height + 35);

@@ -54,9 +54,8 @@ public class LevelTransitionTile implements CollisionStrategy {
                 hero.GetReflink().SetMap(new Map(hero.GetReflink(), nextLevel));
 
 
-
-                PlayState nextState = new PlayState(hero.GetReflink(), hero.getCharacterType(), nextLevel,hero.getPlayerName());
-
+                PublicGameData.loadedFromSave = false;
+                PlayState nextState = new PlayState(hero.GetReflink(), hero.getCharacterType(), nextLevel ,hero.getPlayerName());
                 // Schimbăm starea curentă
                 State.SetState(nextState);
             } else {

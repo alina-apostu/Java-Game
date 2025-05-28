@@ -83,7 +83,7 @@ public class PauseState extends State {
         }
         else if(saveButton.contains(mx,my))
         {
-            DataBaseManager.getInstance().savePlayer(PublicGameData.playerName, PublicGameData.score, PublicGameData.currentLevel, PublicGameData.characterType, (int) hero.GetX(), (int) hero.GetY());
+            DataBaseManager.getInstance().savePlayer(PublicGameData.playerName, PublicGameData.score, PublicGameData.currentLevel, PublicGameData.characterType, (int) hero.GetX(), (int) hero.GetY(), hero.getPower("minge de foc"), hero.getPower("zbor"), hero.getPower("invizibilitate"), hero.getLives());
             System.out.println("Joc salvat manual!");
         }
     }

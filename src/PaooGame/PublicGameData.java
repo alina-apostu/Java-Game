@@ -13,6 +13,11 @@ public class PublicGameData
     public static int currentLevel = 1;
     public static float playerPosX = 50;
     public static float playerPosY = 108;
+    public static int fireballPower = 0;
+    public static int flyPower = 0;
+    public static int invisibilityPower = 0;
+    public static int lives = 5;
+    public static boolean loadedFromSave = false;
     public static RefLinks refLinks;
 
 

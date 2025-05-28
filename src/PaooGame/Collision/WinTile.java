@@ -39,15 +39,16 @@ public class WinTile implements CollisionStrategy {
             //salvare nume jucator si scor in baza de date
             DataBaseManager db = DataBaseManager.getInstance();
             db.connect();
-            db.createTable(); //
+            //db.createTable(); //
 
             String playerName = PublicGameData.playerName;
             int score = PublicGameData.score;
             String character = PublicGameData.characterType;
             int level = PublicGameData.currentLevel;
 
+
             if (playerName != null && character != null) {
-                db.savePlayer(playerName, score, level, character,(int) hero.GetX(),(int) hero.GetY());
+                db.savePlayer(playerName, score, level, character,(int) hero.GetX(),(int) hero.GetY(), hero.getPower("minge de foc"), hero.getPower("zbor"), hero.getPower("invizibilitate"), hero.getLives());
             }
 
             if(level == 3)

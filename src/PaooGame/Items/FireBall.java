@@ -49,7 +49,7 @@ public class FireBall
                 if(getBounds().intersects(enemy.getBounds()))
                 {
                     enemy.Die();
-                    if(enemy instanceof SpiderBlue || enemy instanceof RedSpider)
+                    if((enemy instanceof SpiderBlue) || (enemy instanceof RedSpider))
                         PublicGameData.addScore(75);
                     if(enemy instanceof ShadowSpider)
                         PublicGameData.addScore(500);
@@ -88,7 +88,7 @@ public class FireBall
 
     public Rectangle getBounds()
     {
-        return new Rectangle((int)x, (int)y, 32,32);
+        return new Rectangle((int)x + 15, (int)y + 20, 32,32);
     }
 
     private BufferedImage flipImageHorizontally(BufferedImage img) {

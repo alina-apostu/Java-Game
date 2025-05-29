@@ -71,13 +71,24 @@ public class PlayState extends State
         System.out.println(x);
         switch (map.getLevelIndex()) {
             case 1:
-                mice.add(new Mouse(refLink, 300, 111, "purple"));
+                mice.add(new Mouse(refLink, 150, 111, "purple"));
+                redSpiders.add(new RedSpider(refLink, 350, 110));
                 mice.add(new Mouse(refLink, 700, 111, "green"));
                 mice.add(new Mouse(refLink, 1000, 111, "purple"));
+                mice.add(new Mouse(refLink,2080,78,"green"));
+                mice.add(new Mouse(refLink, 2700,78,"purple"));
+                mice.add(new Mouse(refLink, 1400, 111,"green"));
                 break;
 
             case 2:
-                mice.add(new Mouse(refLink, 650, 111,"green"));
+                mice.add(new Mouse(refLink, 200, 111,"green"));
+                mice.add(new Mouse(refLink, 720, 78, "purple"));
+                mice.add(new Mouse(refLink, 1200, 111, "green"));
+                mice.add(new Mouse(refLink, 1600, 111, "purple"));
+                mice.add(new Mouse(refLink, 2000, 111, "green"));
+                mice.add(new Mouse(refLink, 2600, 48, "purple"));
+                mice.add(new Mouse(refLink, 3000, 111, "green"));
+                //mice.add(new Mouse(refLink, 600, 111, "blue"));
                 blueSpiders.add(new SpiderBlue(refLink, 300, 101));
                 blueSpiders.add(new SpiderBlue(refLink, 900, 101));
                 blueSpiders.add(new SpiderBlue(refLink, 1400, 101));
@@ -85,22 +96,27 @@ public class PlayState extends State
                 blueSpiders.add(new SpiderBlue(refLink, 2700, 101));
                 blueSpiders.add(new SpiderBlue(refLink, 2750, 36));
                 blueSpiders.add(new SpiderBlue(refLink, 3050, 101));
-                mice.add(new Mouse(refLink, 200, 111, "purple"));
-                mice.add(new Mouse(refLink, 422, 120, "green"));
-                mice.add(new Mouse(refLink, 500, 111, "green"));
-                mice.add(new Mouse(refLink, 600, 111, "blue"));
 
                 break;
 
 
             case 3:
+                mice.add(new Mouse(refLink, 150, 111, "purple"));
+                mice.add(new Mouse(refLink, 185, 73,"green"));
                 mice.add(new Mouse(refLink, 700, 111, "blue"));
+                mice.add(new Mouse(refLink, 1240, 111, "purple"));
+                mice.add(new Mouse(refLink, 570, 73, "purple"));
+                mice.add(new Mouse(refLink, 1300, 50, "blue"));
                 mice.add(new Mouse(refLink, 1900, 111, "purple"));
                 blueSpiders.add(new SpiderBlue(refLink, 280, 101));
                 blueSpiders.add(new SpiderBlue(refLink, 300, 101));
                 blueSpiders.add(new SpiderBlue(refLink, 900, 101));
                 blueSpiders.add(new SpiderBlue(refLink, 1400, 101));
                 redSpiders.add(new RedSpider(refLink, 600, 110));
+                //redSpiders.add(new RedSpider(refLink, 2000, 110));
+                redSpiders.add(new RedSpider(refLink, 2300, 110));
+                blueSpiders.add(new SpiderBlue(refLink, 2700, 101));
+                redSpiders.add(new RedSpider(refLink, 2800, 110));
                 shadowSpider = new ShadowSpider(refLink,3000,94);
                 break;
         }

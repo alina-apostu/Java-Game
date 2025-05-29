@@ -252,6 +252,26 @@ public class CollisionHandler
 
                             }
 
+                            if(tileId==98 )//daca sunt tileuri de tip carti, micsoram putin inaltimea lui tilebounds
+                            {
+                                tileBounds = new Rectangle((col * tileSize+5), ((row) * (tileSize)+15), tileSize-5, (tileSize-18));
+
+                                /*if (debugTileIds.contains(tile.GetId())) {
+                                    g.setColor(Color.RED);
+                                    g.drawRect(tileBounds.x, tileBounds.y, tileBounds.width, tileBounds.height);
+                                }*/
+
+
+                                if (heroBounds.intersects(tileBounds)) {
+                                    CollisionStrategy strategy = CollisionStrategyRegistry.getStrategy(tileId);
+                                    if (strategy != null) {
+                                        strategy.handleCollisionTile(hero, tileBounds);
+                                    }
+
+                                }
+
+                            }
+
                             else  if(tileId==7 )
                             {
                                 tileBounds = new Rectangle((col * tileSize+17), ((row) * (tileSize)+15), tileSize-15, (tileSize-28));

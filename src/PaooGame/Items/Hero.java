@@ -488,7 +488,8 @@ public class Hero extends Character {
         stungByRedSpiders.add(spider);
     }
 
-    public void setFalling(boolean falling) {
+    public void setFalling(boolean falling)
+    {
         this.isFalling = falling;
     }
 

@@ -1,0 +1,138 @@
+@startuml
+package PaooGame.Collision {
+
+    interface CollisionStrategy {
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+
+    class CollisionHandler {
+        -tileSize: int
+        -refLinks: RefLinks
+        +CollisionHandler(refLinks: RefLinks)
+        +void checkCharacterCollision(hero: Hero, character: Character)
+        +void checkTileCollision(hero: Hero, g: Graphics2D)
+    }
+
+    class CollisionStrategyRegistry {
+        -strategies: Map<Integer, CollisionStrategy>
+        -characterStrategies: Map<Class<?>, CollisionStrategy>
+        +static void registerStrategy(tileId: int, strategy: CollisionStrategy)
+        +static CollisionStrategy getStrategy(tileId: int): CollisionStrategy
+        +static void registerCharacterStrategy(clasa: Class<?>, strategy: CollisionStrategy)
+        +static CollisionStrategy getCharacterStrategy(clasa: Class<?>): CollisionStrategy
+    }
+
+    class MouseCollision {
+        -powerMessage: String
+        -isMessageDisplayed: boolean
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+        +void showPowerMessage(hero: Hero, mouse: Mouse)
+    }
+
+    class BlueSpiderCollision
+    {
+        -isMessageDisplayed: boolean
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+        +void showMessage()
+    }
+
+    class RedSpiderCollision
+    {
+        -isMessageDisplayed: boolean
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+        +void showWebCaughtMessage()
+        +void showMessage()
+    }
+
+    class ShadowSpiderCollision
+    {
+        -isMessageDisplayed: boolean
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+        +void showWebCaughtMessage()
+        +void showMessage()
+    }
+
+    class BookTile
+    {
+        -triggeredTiles: Set<Point>
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+
+    class CrackedTile
+    {
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+
+    class LevelTransitionTile
+    {
+        -levelChanged: boolean
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+
+    class ObstacolStgDrtUp
+    {
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+
+    class PotionTile
+    {
+        -triggeredTiles: Set<Point>
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+
+    class TavanTile
+    {
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+    class WallDrt
+    {
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+
+    class WallTileStgDrt
+    {
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+
+    class WinTile
+    {
+        -triggered: boolean
+        +void handleCollisionTile(hero: Hero, tileBounds: Rectangle)
+        +void handleCollisionCharacter(hero: Hero, character: Character)
+    }
+
+    top to bottom direction
+    CollisionStrategy <|.. MouseCollision
+    CollisionStrategy <|.. BlueSpiderCollision
+    CollisionStrategy <|.. RedSpiderCollision
+    CollisionStrategy <|.. ShadowSpiderCollision
+    CollisionStrategy <|.. BookTile
+    CollisionStrategy <|.. CrackedTile
+    CollisionStrategy <|.. LevelTransitionTile
+    CollisionStrategy <|.. ObstacolStgDrtUp
+    CollisionStrategy <|.. PotionTile
+    CollisionStrategy <|.. TavanTile
+    CollisionStrategy <|.. WallDrt
+    CollisionStrategy <|.. WallTileStgDrt
+    CollisionStrategy <|.. WinTile
+    left to right direction
+    CollisionHandler --> CollisionStrategyRegistry
+    CollisionHandler --> CollisionStrategy
+    CollisionStrategyRegistry --> CollisionStrategy
+}
+
+
+@enduml

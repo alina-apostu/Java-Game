@@ -3,6 +3,7 @@ package PaooGame.Items;
 import PaooGame.Game;
 import PaooGame.Graphics.Assets;
 import PaooGame.RefLinks;
+import PaooGame.Tiles.Tile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -666,6 +667,28 @@ public class Hero extends Character {
     public void markCrackedTileCollision(Point tilePosition) {
         crackedTileCollisionHistory.add(tilePosition);
     }
+
+    /*private boolean isStandingOnTile() {
+        int tileWidth = Tile.TILE_WIDTH;
+        int tileHeight = Tile.TILE_HEIGHT;
+
+        // Colțul stânga jos
+        int leftX = (int) x / tileWidth;
+        int bottomY = (int) (y + height + 1) / tileHeight;
+
+        // Colțul dreapta jos
+        int rightX = (int) (x + width - 1) / tileWidth;
+
+        Tile tileLeft = refLink.GetMap().GetTile(leftX, bottomY,1);
+        Tile tileRight = refLink.GetMap().GetTile(rightX, bottomY,1);
+
+        boolean leftSolid = tileLeft != null && !tileLeft.IsSolid();
+        boolean rightSolid = tileRight != null && !tileRight.IsSolid();
+
+        return leftSolid || rightSolid;
+    }*/
+
+
 
 
 }

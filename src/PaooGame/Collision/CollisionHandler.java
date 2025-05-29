@@ -170,6 +170,41 @@ public class CollisionHandler
                     Tile tile = map.GetTile(col, row, layer);
                     if (tile != null && tile.IsSolid()) {
 
+
+
+                        /*if (hero.isOnTile()) {
+                             heroBounds = hero.getBounds();
+                            float heroLeft = heroBounds.x;
+                            float heroRight = heroBounds.x + heroBounds.width;
+
+                            // Determină tile-ul de sub erou
+                            int tileY = (heroBounds.y + heroBounds.height + 1) / tileSize; // tile sub erou
+                            int tileXLeft = (int)(heroLeft / tileSize);
+                            int tileXRight = (int)(heroRight / tileSize);
+
+                            float totalOverlap = 0f;
+                            float requiredOverlap = heroBounds.width * 0.3f;
+
+                            for (int x = tileXLeft; x <= tileXRight; x++) {
+                                Tile tileBelow = refLinks.GetMap().GetTile(x, tileY, layer);
+                                if (tileBelow != null && tileBelow.IsSolid()) {
+                                    Rectangle tileBounds = new Rectangle(x * tileSize, tileY * tileSize, tileSize, tileSize);
+
+                                    float overlap = Math.min(heroRight, tileBounds.x + tileBounds.width) - Math.max(heroLeft, tileBounds.x);
+                                    if (overlap > 0) {
+                                        totalOverlap += overlap;
+                                    }
+                                }
+                            }
+
+                            if (totalOverlap < requiredOverlap) {
+                                System.out.println("Eroul nu mai e sprijinit – începe să cadă.");
+                                hero.setFalling(true);
+                                hero.setOnTile(false);
+                            }
+                        }*/
+
+
                         //System.out.println(tileLeft + " " + tileRight + " " + tileTop + " " + tileBottom);
 
                         //System.out.println("Tile ID: " + tile.GetId() + " at " + col + "," + row);

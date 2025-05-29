@@ -234,6 +234,7 @@ public class RedSpider extends Character
         isWebVisible = false;
     }
 
+    @Override
     public boolean isDead()
     {
         return dead;

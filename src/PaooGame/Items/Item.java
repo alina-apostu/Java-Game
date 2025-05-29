@@ -52,6 +52,7 @@ public abstract class Item
     public abstract void Draw(Graphics g);
 
     public abstract void Die();
+    public abstract boolean isDead();
 
     /*! \fn public float GetX()
         \brief Returneaza coordonata pe axa X.

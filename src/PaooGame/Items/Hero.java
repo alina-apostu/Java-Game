@@ -683,5 +683,9 @@ public class Hero extends Character {
         crackedTileCollisionHistory.add(tilePosition);
     }
 
-
+    @Override
+    public boolean isDead()
+    {
+        return false;
+    }
 }

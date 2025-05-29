@@ -72,7 +72,6 @@ public class PlayState extends State
         switch (map.getLevelIndex()) {
             case 1:
                 mice.add(new Mouse(refLink, 150, 111, "purple"));
-                redSpiders.add(new RedSpider(refLink, 350, 110));
                 mice.add(new Mouse(refLink, 700, 111, "green"));
                 mice.add(new Mouse(refLink, 1000, 111, "purple"));
                 mice.add(new Mouse(refLink,2080,78,"green"));
@@ -115,9 +114,10 @@ public class PlayState extends State
                 redSpiders.add(new RedSpider(refLink, 600, 110));
                 //redSpiders.add(new RedSpider(refLink, 2000, 110));
                 redSpiders.add(new RedSpider(refLink, 2300, 110));
-                blueSpiders.add(new SpiderBlue(refLink, 2700, 101));
+                blueSpiders.add(new SpiderBlue(refLink, 2900, 101));
                 redSpiders.add(new RedSpider(refLink, 2800, 110));
-                shadowSpider = new ShadowSpider(refLink,3000,94);
+                redSpiders.add(new RedSpider(refLink, 2850, 110));
+                shadowSpider = new ShadowSpider(refLink,3200,94);
                 break;
         }
 

@@ -46,7 +46,7 @@ public class FireBall
         for(Character enemy : enemies)
         {
             if((enemy instanceof SpiderBlue) || (enemy instanceof RedSpider) || (enemy instanceof ShadowSpider))
-                if(getBounds().intersects(enemy.getBounds()))
+                if(getBounds().intersects(enemy.getBounds()) && enemy.isDead() == false)
                 {
                     enemy.Die();
                     if((enemy instanceof SpiderBlue) || (enemy instanceof RedSpider))

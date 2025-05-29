@@ -128,4 +128,10 @@ public class Mouse extends PaooGame.Items.Character
     {
 
     }
+
+    @Override
+    public boolean isDead()
+    {
+        return false;
+    }
 }

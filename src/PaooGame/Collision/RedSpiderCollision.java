@@ -34,7 +34,7 @@ public class RedSpiderCollision implements CollisionStrategy
             hero.SetYMove(0);
             showWebCaughtMessage();
         }
-        else if (hero.itWasStungByRedSpider(character) == false && hero.getBounds().intersects(redSpider.getBounds()))
+        else if (hero.itWasStungByRedSpider(character) == false && hero.getBounds().intersects(redSpider.getBounds()) && redSpider.isDead() == false)
         {
             Game.isPaused = true;
             hero.SetXMove(0);

@@ -24,6 +24,7 @@ public class WinTile implements CollisionStrategy {
         if (triggered) return;
 
         if (hero.getBounds().intersects(tileBounds)) {
+            PublicGameData.score+=1000;
             triggered = true;
 
             Game.isPaused = true;
@@ -31,7 +32,7 @@ public class WinTile implements CollisionStrategy {
             hero.SetYMove(0);
 
             JOptionPane.showMessageDialog(null,
-                    "Congratulations!\nYou finished the game!!",
+                    "Congratulations!\nYou finished the game!!\nYou earned 1000 points!",
                     "Victory",
                     JOptionPane.INFORMATION_MESSAGE);
 
@@ -58,7 +59,7 @@ public class WinTile implements CollisionStrategy {
             while (!done) {
                 int choice = JOptionPane.showOptionDialog(
                         null,
-                        "Congratulations!\nYou finished the game!!\nWhat do you want to do next?",
+                        "Congratulations!\nYou finished the game!!\nYour score is: "+PublicGameData.score+"\nWhat do you want to do next?",
                         "Victory",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.INFORMATION_MESSAGE,

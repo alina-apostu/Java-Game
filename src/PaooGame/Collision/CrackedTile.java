@@ -30,7 +30,7 @@ public class CrackedTile implements CollisionStrategy {
             hero.setCrackedTileCollisionThisFrame(true);
             hero.markCrackedTileCollision(tilePosition);
 
-            //Game.isPaused = true;
+            Game.isPaused = true;
             //hero.SetXMove(0);
             //hero.SetYMove(0);
 
@@ -42,6 +42,7 @@ public class CrackedTile implements CollisionStrategy {
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 Game.getRefLinks().GetKeyManager().resetKeys();
+                Game.isPaused = false;
                 ((javax.swing.Timer) e.getSource()).stop(); // oprim timerul după o singură execuție
             }).start();
 

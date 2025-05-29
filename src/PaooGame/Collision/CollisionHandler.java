@@ -99,7 +99,6 @@ public class CollisionHandler
 
             if ((webBounds != null && hero.getBounds().intersects(webBounds)) || (hero.itWasStungByRedSpider(character) == false && hero.getBounds().intersects(redSpider.getBounds())))
             {
-
                 hero.loseLife();//eroul pierde o viata de fiecare data cand se intalneste cu un paianjen
                 CollisionStrategy strategy = CollisionStrategyRegistry.getCharacterStrategy(RedSpider.class);
                 if (strategy != null)

@@ -246,6 +246,7 @@ public class ShadowSpider extends Character {
         isWebVisible = false;
     }
 
+    @Override
     public boolean isDead()
     {
         return dead;

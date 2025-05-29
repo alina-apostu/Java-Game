@@ -150,6 +150,7 @@ public class SpiderBlue extends Character {
         lastDeathFrameTime = System.currentTimeMillis();
     }
 
+    @Override
     public boolean isDead()
     {
         return dead;

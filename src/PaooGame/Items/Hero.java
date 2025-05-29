@@ -684,6 +684,11 @@ public class Hero extends Character {
         crackedTileCollisionHistory.add(tilePosition);
     }
 
+    @Override
+    public boolean isDead()
+    {
+        return false;
+    }
     /*private boolean isStandingOnTile() {
         int tileWidth = Tile.TILE_WIDTH;
         int tileHeight = Tile.TILE_HEIGHT;
@@ -703,8 +708,5 @@ public class Hero extends Character {
 
         return leftSolid || rightSolid;
     }*/
-
-
-
 
 }

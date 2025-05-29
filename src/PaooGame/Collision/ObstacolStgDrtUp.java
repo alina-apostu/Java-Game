@@ -112,10 +112,54 @@ public class ObstacolStgDrtUp implements CollisionStrategy
                 hero.SetY(newY);
 
 
-
-
             }
         }
+
+        /*if (heroBottom <= tileTop && heroBottom + hero.getJumpSpeed() >= tileTop) {
+            // Suprapunere orizontală
+            if (heroRight > tileLeft && heroLeft < tileRight) {
+                float overlapWidth = Math.min(heroRight, tileRight) - Math.max(heroLeft, tileLeft);
+                float minRequiredOverlap = heroBounds.width * 0.3f;
+
+                if (hero.getisJumping() && hero.getJumpSpeed() >= 0) {
+                    // === CAZ 1: Eroul sare și aterizează pe tile ===
+                    if (overlapWidth >= minRequiredOverlap) {
+                        System.out.println("Eroul sare și se sprijină pe tile.");
+                        float newY = tileTop - heroBounds.height - 22; // evită suprapunerea
+                        hero.SetY(newY);
+                        hero.setJumpSpeed(0);
+                        hero.setFalling(false);
+                        hero.setisJumping(false);
+                        hero.setOnTile(true);
+                        isOnTileNow = true;
+                    }
+
+                } else if (!hero.getisJumping()) {
+                    // === CAZ 2: Eroul NU sare și nu e suficient sprijinit ===
+                    if (overlapWidth < minRequiredOverlap) {
+                        System.out.println("Eroul nu sare și nu e sprijinit – începe să cadă până la podea.");
+                        hero.setFalling(true);
+                        hero.setisJumping(false);
+                        hero.setOnTile(false);
+
+                        // Lasă eroul să cadă liber până la nivelul solului
+                        float groundY = hero.getGroundLevelY();
+                        hero.SetY(groundY);
+                    } else {
+                        // E sprijinit suficient, chiar dacă nu a sărit
+                        float newY = tileTop - heroBounds.height - 22;
+                        hero.SetY(newY);
+                        hero.setJumpSpeed(0);
+                        hero.setFalling(false);
+                        hero.setisJumping(false);
+                        hero.setOnTile(true);
+                        isOnTileNow = true;
+                    }
+                }
+            }
+        }*/
+
+
 
 
 

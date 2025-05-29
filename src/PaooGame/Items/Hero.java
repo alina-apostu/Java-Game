@@ -419,7 +419,7 @@ public class Hero extends Character {
         if(invisible == true)
         {
             Graphics2D g2d = (Graphics2D) g.create();
-            float alpha = 0.3f; // seteaza transparenta
+            float alpha = 0.3f; // seteaza transparenta (0.0f înseamnă complet transparent, 1.0f complet opac)
 
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
             g2d.drawImage(image, (int)x, (int)y, width, height, null);

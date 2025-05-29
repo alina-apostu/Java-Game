@@ -48,14 +48,14 @@ public class Hero extends Character {
 
     private String playerName;//nume jucator curent
 
-    private int lives=5; //numarul de vieti  la fiecare nivel
+    private int lives; //numarul de vieti  la fiecare nivel
     private final int MAX_LIVES = 5;
 
     // pentru puteri
     private String power; // puterea luate de la soricei
-    private int fireBallPower = 0;
-    private int flyPower = 0;
-    private int invisibilityPower = 0;
+    private int fireBallPower;
+    private int flyPower;
+    private int invisibilityPower;
 
     private FireBall fireBall;
     private boolean firePressedLast = false;
@@ -625,6 +625,16 @@ public class Hero extends Character {
             invisibilityPower--;
     }
 
+    public void setPower(String power, int val)
+    {
+        if(power.equals("minge de foc"))
+            fireBallPower = val;
+        else if(power.equals("zbor"))
+            flyPower = val;
+        else if(power.equals("invizibilitate"))
+            invisibilityPower = val;
+    }
+
     public int getPower(String power)
     {
         if(power.equals("minge de foc"))
@@ -642,6 +652,11 @@ public class Hero extends Character {
 
     public int getLives() {
         return lives;
+    }
+
+    public void setLives(int val)
+    {
+        lives = val;
     }
 
     public void loseLife() {

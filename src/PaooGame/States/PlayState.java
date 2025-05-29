@@ -102,7 +102,7 @@ public class PlayState extends State
             case 3:
                 mice.add(new Mouse(refLink, 150, 111, "purple"));
                 mice.add(new Mouse(refLink, 185, 73,"green"));
-                mice.add(new Mouse(refLink, 700, 111, "blue"));
+                mice.add(new Mouse(refLink, 740, 111, "blue"));
                 mice.add(new Mouse(refLink, 1240, 111, "purple"));
                 mice.add(new Mouse(refLink, 570, 73, "purple"));
                 mice.add(new Mouse(refLink, 1300, 50, "blue"));
@@ -114,10 +114,10 @@ public class PlayState extends State
                 redSpiders.add(new RedSpider(refLink, 600, 110));
                 //redSpiders.add(new RedSpider(refLink, 2000, 110));
                 redSpiders.add(new RedSpider(refLink, 2300, 110));
-                blueSpiders.add(new SpiderBlue(refLink, 2900, 101));
-                redSpiders.add(new RedSpider(refLink, 2800, 110));
-                redSpiders.add(new RedSpider(refLink, 2850, 110));
-                shadowSpider = new ShadowSpider(refLink,3200,94);
+                blueSpiders.add(new SpiderBlue(refLink, 2920, 101));
+                redSpiders.add(new RedSpider(refLink, 2760, 110));
+                redSpiders.add(new RedSpider(refLink, 2780, 110));
+                shadowSpider = new ShadowSpider(refLink,3000,94);
                 break;
         }
 
